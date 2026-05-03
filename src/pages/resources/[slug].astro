@@ -12,18 +12,53 @@ const { article } = Astro.props;
 const content = ARTICLE_CONTENT[article.slug] || { toc: [], body: '<p>内容编辑中</p>' };
 const related = ARTICLES.filter(x => x.slug !== article.slug && x.cat === article.cat).slice(0, 3);
 
-const jsonLd = {
+const articleUrl = new URL(`/resources/${article.slug}/`, Astro.site).toString();
+const articleJsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": article.title,
   "description": article.excerpt,
-  "author": { "@type": "Person", "name": article.author.split('·')[0].trim() },
+  "author": { "@type": "Organization", "name": "Maginex Education" },
   "datePublished": article.date,
-  "publisher": { "@type": "Organization", "name": "Maginex Education" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Maginex Education",
+    "url": "https://maginext.com",
+  },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": articleUrl },
+  "inLanguage": "zh-CN",
+  "keywords": (article.keywords || []).join(', '),
 };
+
+// HowTo schema — only when content has steps (toc treated as step titles)
+const howToJsonLd = (content.toc && content.toc.length >= 3) ? {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": article.title,
+  "description": article.excerpt,
+  "step": content.toc.map((t, i) => ({
+    "@type": "HowToStep",
+    "position": i + 1,
+    "name": t,
+    "url": `${articleUrl}#s${i + 1}`,
+  })),
+} : null;
+
+// FAQ schema — only if article-content provides faq array
+const faqJsonLd = (content.faq && content.faq.length > 0) ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": content.faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+} : null;
 ---
-<Base title={`${article.title} · Maginex 资源中心`} description={article.excerpt}>
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)}></script>
+<Base title={`${article.title} · Maginex 资源中心`} description={article.excerpt} canonical={articleUrl}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleJsonLd)}></script>
+  {howToJsonLd && <script type="application/ld+json" slot="head" set:html={JSON.stringify(howToJsonLd)}></script>}
+  {faqJsonLd && <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>}
 
   <article class="art-root">
     <div class="art-hero">

@@ -1,8 +1,31 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } from '../data/site.js';
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": FAQ.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a },
+  })),
+};
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Maginex Education",
+  "url": SITE.url,
+  "description": SITE.description,
+  "email": SITE.email,
+  "telephone": SITE.phone,
+  "sameAs": [],
+};
 ---
 <Base>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(orgJsonLd)}></script>
   <!-- Hero -->
   <section class="hero">
     <div class="hero-inner">
