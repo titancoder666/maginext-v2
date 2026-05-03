@@ -1,0 +1,153 @@
+---
+import { SITE, NAV } from '../data/site.js';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const {
+  title = `${SITE.name} · ${SITE.tagline}`,
+  description = SITE.description,
+  ogImage = '/og-default.png',
+  canonical,
+} = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toString();
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <slot name="head" />
+</head>
+<body>
+
+<!-- Top notification bar -->
+<div class="topbar">
+  <span><span class="dot"></span>2026 申请季正在签约 · 仅剩 <strong style="color:#000">17</strong> 个名额</span>
+  <a href="/services/">查看签约流程 →</a>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="Maginex 首页">
+      <span class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 21V3L12 11L21 3V21" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">maginex</span>
+    </a>
+    <nav class="nav">
+      {NAV.map(item => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <div class="header-cta">
+      <span class="lang">EN</span>
+      <a href="/contact/" class="btn btn-primary">免费评估</a>
+      <button class="menu-toggle" aria-label="菜单" id="menu-open">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-head">
+    <a href="/" class="brand">
+      <span class="logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 21V3L12 11L21 3V21" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-name">maginex</span>
+    </a>
+    <button class="menu-toggle" aria-label="关闭" id="menu-close">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M6 18L18 6" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav>
+    {NAV.map(item => <a href={item.href}>{item.label}</a>)}
+    <a href="/contact/" style="margin-top:24px" class="btn btn-primary btn-lg">免费评估 →</a>
+  </nav>
+</div>
+
+<main>
+  <slot />
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">
+          <span class="logo logo-dark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3 21V3L12 11L21 3V21" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-name">maginex</span>
+        </div>
+        <p class="footer-tag">由前 UC 招生官与前移民局官员创办。每年限招 60 位学员。公对公转账 · 不录取退全款。</p>
+      </div>
+      <div>
+        <div class="footer-head">服务</div>
+        <a href="/services/#undergrad" class="footer-link">美本申请</a>
+        <a href="/services/#master" class="footer-link">美硕申请</a>
+        <a href="/services/#phd" class="footer-link">博士申请</a>
+        <a href="/services/#transfer" class="footer-link">美本转学</a>
+        <a href="/services/#visa" class="footer-link">签证 / 身份</a>
+      </div>
+      <div>
+        <div class="footer-head">公司</div>
+        <a href="/consultants/" class="footer-link">顾问团队</a>
+        <a href="/resources/" class="footer-link">资源中心</a>
+        <a href="/cases/" class="footer-link">学生案例</a>
+        <a href="/contact/" class="footer-link">联系我们</a>
+      </div>
+      <div>
+        <div class="footer-head">联系</div>
+        <span class="footer-link">微信: {SITE.wechat}</span>
+        <span class="footer-link">WhatsApp: {SITE.whatsapp}</span>
+        <a href={`mailto:${SITE.email}`} class="footer-link">{SITE.email}</a>
+        <span class="footer-link">{SITE.phone}</span>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2019–2026 Maginex Education · 京 ICP 备 19xxxxxx 号</div>
+      <div class="links">
+        <a>隐私</a><a>条款</a><a>退款</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menu = document.getElementById('mobile-menu');
+  document.getElementById('menu-open')?.addEventListener('click', () => menu?.classList.add('open'));
+  document.getElementById('menu-close')?.addEventListener('click', () => menu?.classList.remove('open'));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site.js';
+---
+<Base title="联系我们 · Maginex" description="24 小时内真人回复 · 0 销售骚扰 · 免费 30 分钟评估">
+  <section class="contact-page">
+    <div class="container contact-grid">
+      <div>
+        <div class="eyebrow">CONTACT · 联系我们</div>
+        <h1 style="font-size:64px;font-weight:700;letter-spacing:-2px;line-height:1.05;margin-top:14px">先聊 30 分钟，<br/><span class="hl">再决定</span>。</h1>
+        <p style="font-size:17px;color:#444;line-height:1.7;margin-top:24px;max-width:480px">
+          不会群发短信，不会催签约，不会卖你信息。免费的 30 分钟咨询永远开放 — 无论你最后签不签约。
+        </p>
+        <div class="contact-channels">
+          <div class="contact-ch">
+            <div class="ch-label">WeChat</div>
+            <div class="ch-val">{SITE.wechat}</div>
+            <div class="ch-help">写一句"想聊 + 你的具体问题"，会优先安排</div>
+          </div>
+          <div class="contact-ch">
+            <div class="ch-label">WhatsApp</div>
+            <div class="ch-val">{SITE.whatsapp}</div>
+            <div class="ch-help">海外学生首选，24h 回复</div>
+          </div>
+          <div class="contact-ch">
+            <div class="ch-label">Email</div>
+            <div class="ch-val">{SITE.email}</div>
+            <div class="ch-help">长邮件首选，附件可发简历 / transcript</div>
+          </div>
+          <div class="contact-ch">
+            <div class="ch-label">Office</div>
+            <div class="ch-val">{SITE.office}</div>
+            <div class="ch-help">{SITE.officeSub}</div>
+          </div>
+        </div>
+      </div>
+      <form class="form-card" action="https://formspree.io/f/REPLACE_ME" method="POST">
+        <div style="font-size:13px;color:#999;letter-spacing:1px;margin-bottom:20px">预约咨询</div>
+        <div class="form-row">
+          <input class="form-input" name="name" placeholder="姓名" required />
+          <input class="form-input" name="wechat" placeholder="微信号" required />
+        </div>
+        <input class="form-input" name="email" type="email" placeholder="邮箱（用于发评估报告）" required />
+        <select class="form-input" name="grade">
+          <option value="">目前年级</option>
+          <option>高一 / 高二</option><option>高三 / 申请季</option>
+          <option>大一 / 大二</option><option>大三 / 大四</option>
+          <option>已毕业 / 在工作</option>
+        </select>
+        <select class="form-input" name="service">
+          <option value="">意向服务</option>
+          <option>美本申请</option><option>美硕申请</option><option>博士申请</option>
+          <option>转学</option><option>签证 / 身份</option><option>学术急救</option>
+        </select>
+        <textarea class="form-input" name="message" style="min-height:120px;resize:vertical" placeholder="想聊的具体问题（可选，但越具体我们能给的回复越有针对性）"></textarea>
+        <button type="submit" class="btn btn-primary" style="width:100%;padding:15px;font-size:15px;margin-top:10px">提交，获取免费评估 →</button>
+        <div style="font-size:11px;color:#999;margin-top:14px;text-align:center">✓ 24 小时内真人回复 · ✓ 不会有销售骚扰 · ✓ 信息严格保密</div>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<style>
+.contact-page { padding: 80px 0 120px; background: linear-gradient(180deg, #fff, #fafafa); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.contact-channels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+.contact-ch { padding: 20px; background: #fff; border: 1px solid var(--c-border); border-radius: 12px; }
+.ch-label { font-size: 11px; color: #999; letter-spacing: 2px; font-weight: 600; }
+.ch-val { font-size: 18px; font-weight: 700; margin-top: 6px; }
+.ch-help { font-size: 12px; color: var(--c-muted); margin-top: 8px; line-height: 1.5; }
+.form-card { background: #fff; border: 1px solid var(--c-border); border-radius: 20px; padding: 32px; height: fit-content; box-shadow: 0 8px 40px rgba(0,0,0,.04); }
+@media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 768px) { .contact-page h1 { font-size: 40px !important; } .contact-channels { grid-template-columns: 1fr; } }
+</style>

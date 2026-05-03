@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import { CASES } from '../data/site.js';
+---
+<Base title="学生案例 · Maginex" description="真实学生录取案例：GPA、标化、来源高中、录取学校全部公开。所有案例经学生书面授权。">
+  <section class="hero">
+    <div class="container" style="text-align:center;max-width:900px">
+      <div class="eyebrow">STORIES · 学生说</div>
+      <h1 class="hero-title">每一个数字<br/>都<span class="hl">有名有姓</span>。</h1>
+      <p class="hero-lede">所有案例经学生书面授权 · GPA / 标化成绩可在签约前核验复印件 · 录取信原件可面谈查看</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="case-grid">
+        {CASES.concat(CASES).map(c => (
+          <article class="card case-card">
+            <div class="case-head">
+              <div class="case-avatar" style={`background:${c.bg}`}>{c.initials}</div>
+              <div style="flex:1">
+                <div class="case-name">{c.surname}</div>
+                <div class="case-from">{c.from} · '{c.year.slice(2)}</div>
+              </div>
+              <span class="case-verify">✓ 已核实</span>
+            </div>
+            <div class="case-school">
+              <div class="case-school-name">{c.school}</div>
+              <div class="case-major">{c.major}</div>
+            </div>
+            <div class="case-quote">"{c.quote}"</div>
+            <div class="case-stats">
+              <div><div class="case-stat-num">{c.gpa}</div><div class="case-stat-key">GPA</div></div>
+              {c.sat && <div><div class="case-stat-num">{c.sat}</div><div class="case-stat-key">SAT</div></div>}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.hero { padding: 88px 0 56px; }
+.hero-title { font-size: 72px; font-weight: 700; letter-spacing: -2.5px; line-height: 1.05; margin-top: 18px; }
+.hero-lede { font-size: 18px; color: #444; margin-top: 24px; }
+.case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.case-card { padding: 24px; }
+.case-head { display: flex; gap: 12px; align-items: center; }
+.case-avatar { width: 42px; height: 42px; border-radius: 99px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: Georgia, serif; }
+.case-name { font-size: 14px; font-weight: 600; }
+.case-from { font-size: 12px; color: var(--c-faint); margin-top: 1px; }
+.case-verify { font-size: 11px; color: var(--c-green); font-weight: 600; }
+.case-school { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--c-border); }
+.case-school-name { font-size: 24px; font-weight: 700; letter-spacing: -.5px; }
+.case-major { font-size: 13px; color: var(--c-muted); margin-top: 4px; }
+.case-quote { font-size: 14px; color: #333; line-height: 1.6; margin-top: 16px; padding: 14px; background: var(--c-soft); border-radius: 8px; }
+.case-stats { display: flex; gap: 24px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--c-border); }
+.case-stat-num { font-size: 18px; font-weight: 700; }
+.case-stat-key { font-size: 11px; color: var(--c-faint); margin-top: 2px; letter-spacing: 1px; }
+@media (max-width: 1024px) { .case-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { .case-grid { grid-template-columns: 1fr; } .hero-title { font-size: 40px; } }
+</style>

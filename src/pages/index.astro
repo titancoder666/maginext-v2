@@ -1,0 +1,371 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } from '../data/site.js';
+---
+<Base>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span class="hero-tag-dot"></span>
+        前 UC Berkeley 招生官 · 前 USCIS 签证官 · 实名团队
+      </div>
+      <h1 class="hero-title">留学申请，<br/>交给真正<span class="hl">懂的人</span>。</h1>
+      <p class="hero-lede">
+        Maginex 由前美国大学招生官与前移民局官员组成。
+        我们不是"金牌顾问培训班"。
+        我们坐在过录取桌的另一端 — 8 年、12,000 份申请。
+      </p>
+      <div class="hero-ctas">
+        <a href="/contact/" class="btn btn-primary btn-lg">免费 30 分钟评估 <span style="margin-left:8px">→</span></a>
+        <a href="/contact/" class="btn btn-ghost btn-lg"><span style="color:var(--c-wechat); margin-right:8px">●</span>微信直聊顾问</a>
+      </div>
+      <div class="hero-micro">
+        {['不录取退全款','公对公转账','文书绝不代写','合同律所公证'].map(t => (
+          <div class="hero-micro-item"><span class="hero-micro-icon">✓</span>{t}</div>
+        ))}
+      </div>
+      <div class="big-num-row">
+        {STATS.map(s => (
+          <div class="big-num-cell">
+            <div class="big-num">{s.num}{s.unit && <span class="big-num-unit">{s.unit}</span>}</div>
+            <div class="big-num-label">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Promises -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">POLICY · 我们的承诺</div>
+        <h2 class="h2">比"满意度 100%"<br/>更<span class="hl">具体</span>的承诺。</h2>
+        <p class="sub">虚的话谁都会说。我们写在合同里、过律师所公证。</p>
+      </div>
+      <div class="grid-4">
+        {GUARANTEES.map(g => (
+          <div class="card">
+            <div class="promise-icon">{g.icon}</div>
+            <div class="promise-title">{g.title}</div>
+            <div class="promise-desc">{g.desc}</div>
+            <div class="promise-link">查看条款 →</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Advisors -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">TEAM · 顾问团队</div>
+        <h2 class="h2">你能在 LinkedIn<br/><span class="hl">搜到他们每一个人</span>。</h2>
+      </div>
+      <div class="grid-4">
+        {ADVISORS.map(a => (
+          <a href={`/consultants/#${a.slug}`} class="card card-white advisor-card">
+            <div class="adv-photo">
+              <div class="adv-avatar" style={`background:${a.bgColor}`}>{a.photo}</div>
+              <div class="adv-badge"><span style="color:var(--c-green)">●</span> 实名</div>
+            </div>
+            <div class="adv-name">{a.cn}</div>
+            <div class="adv-role">{a.role}</div>
+            <div class="adv-tags">{a.tags.map(t => <span class="adv-tag">{t}</span>)}</div>
+            <div class="adv-foot">
+              <span class="adv-foot-link">LinkedIn ↗</span>
+              <span class="adv-foot-link">预约 →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bento — results -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">RESULTS · 录取数据</div>
+        <h2 class="h2">517 封 offer，<br/><span class="hl">下面是其中一部分</span>。</h2>
+      </div>
+      <div class="bento">
+        <div class="bento-cell bento-feature">
+          <div class="bento-eyebrow">FEATURED · 2025</div>
+          <div class="bento-num-big">12 封<br/>UC 录取</div>
+          <div class="bento-sub" style="margin-top:14px">Berkeley · UCLA · UCSD · UCSB · UCI<br/>单届最高 UC 录取数</div>
+          <div class="chip-row" style="margin-top:auto;padding-top:24px">
+            {['UCB','UCLA','UCSD','UCI','UCSB','UCD'].map(s => <span class="chip">{s}</span>)}
+          </div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">IVY</div>
+          <div class="bento-num">23</div>
+          <div class="bento-sub">藤校录取</div>
+          <div class="chip-row">{['Harvard','Yale','Princeton','Penn','Columbia','Cornell'].map(s => <span class="chip">{s}</span>)}</div>
+        </div>
+        <div class="bento-cell bento-dark">
+          <div class="bento-eyebrow" style="color:var(--c-accent)">TOP 30</div>
+          <div class="bento-num">43%</div>
+          <div class="bento-sub" style="color:rgba(255,255,255,.7)">录取率 (近 3 年)</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:14px;line-height:1.6">行业平均 18% · 来源：US News</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">STEM</div>
+          <div class="bento-num">189</div>
+          <div class="bento-sub">CS / 工程录取</div>
+          <div class="chip-row">{['MIT','CMU','Stanford','GaTech','UIUC'].map(s => <span class="chip">{s}</span>)}</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">BUSINESS</div>
+          <div class="bento-num">67</div>
+          <div class="bento-sub">商科录取</div>
+          <div class="chip-row">{['NYU Stern','Wharton','Ross','Marshall'].map(s => <span class="chip">{s}</span>)}</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">TRANSFER</div>
+          <div class="bento-num">72</div>
+          <div class="bento-sub">美本转学成功</div>
+          <div style="font-size:12px;color:var(--c-muted);margin-top:14px;line-height:1.6">CC → UC<br/>校际转学</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">STORIES · 学生说</div>
+        <h2 class="h2">真实学生，<br/><span class="hl">真实数据</span>。</h2>
+        <p class="sub">所有案例经学生书面授权 · GPA / 标化成绩可在签约前核验复印件</p>
+      </div>
+      <div class="grid-3">
+        {CASES.slice(0,6).map(c => (
+          <article class="card card-white case-card">
+            <div class="case-head">
+              <div class="case-avatar" style={`background:${c.bg}`}>{c.initials}</div>
+              <div style="flex:1">
+                <div class="case-name">{c.surname}</div>
+                <div class="case-from">{c.from} · '{c.year.slice(2)}</div>
+              </div>
+              <span class="case-verify">✓ 已核实</span>
+            </div>
+            <div class="case-school">
+              <div class="case-school-name">{c.school}</div>
+              <div class="case-major">{c.major}</div>
+            </div>
+            <div class="case-quote">"{c.quote}"</div>
+            <div class="case-stats">
+              <div><div class="case-stat-num">{c.gpa}</div><div class="case-stat-key">GPA</div></div>
+              {c.sat && <div><div class="case-stat-num">{c.sat}</div><div class="case-stat-key">SAT</div></div>}
+            </div>
+          </article>
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <a href="/cases/" class="btn btn-ghost btn-lg">查看全部案例 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">SERVICES · 服务项目</div>
+        <h2 class="h2">从美高到博士，<br/><span class="hl">全周期</span>。</h2>
+      </div>
+      <div class="grid-3">
+        {SERVICES.map((s, i) => (
+          <a href={`/services/#${s.id}`} class="card service-card">
+            <div class="service-num">0{i+1}</div>
+            <div class="service-title">{s.title}</div>
+            <div class="service-sub">{s.sub}</div>
+            <div class="service-from">建议：{s.from}</div>
+            <div class="service-arrow">了解 →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-soft" id="faq">
+    <div class="container" style="max-width:880px">
+      <div class="section-head">
+        <div class="eyebrow">FAQ · 常被问到</div>
+        <h2 class="h2">直球<span class="hl">提问，直球回答</span>。</h2>
+      </div>
+      <div class="grid-2">
+        {FAQ.map(f => (
+          <div class="card card-white">
+            <div class="faq-q">{f.q}</div>
+            <div class="faq-a">{f.a}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section style="padding:56px 0;border-bottom:1px solid var(--c-border)">
+    <div class="container">
+      <div style="text-align:center;font-size:11px;letter-spacing:3px;color:var(--c-faint);margin-bottom:24px">合作 / 认证机构</div>
+      <div class="partner-strip">
+        {PARTNERS.map(p => <div class="partner-logo">{p}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta section-dark">
+    <div class="container">
+      <div class="final-grid">
+        <div>
+          <div class="eyebrow" style="color:rgba(255,255,255,.5)">FREE ASSESSMENT · 免费评估</div>
+          <h2 class="h2-huge">30 分钟。<br/>真人顾问。<br/><span class="hl">0 销售。</span></h2>
+          <p style="font-size:17px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:24px;max-width:480px">填完下面的表单，由我们的真实顾问 — 不是销售 — 在 24 小时内回复你。我们不会群发短信，不会催签约，不会卖你信息。</p>
+          <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap">
+            <div class="final-chip"><span style="color:var(--c-wechat)">●</span> 微信 {SITE.wechat}</div>
+            <div class="final-chip"><span style="color:#25d366">●</span> WhatsApp {SITE.whatsapp}</div>
+          </div>
+        </div>
+        <form class="form-card" action="https://formspree.io/f/REPLACE_ME" method="POST">
+          <div style="font-size:13px;color:var(--c-faint);letter-spacing:1px;margin-bottom:20px">预约咨询</div>
+          <div class="form-row">
+            <input class="form-input" name="name" placeholder="姓名" required />
+            <input class="form-input" name="wechat" placeholder="微信号" required />
+          </div>
+          <input class="form-input" name="email" type="email" placeholder="邮箱（用于发评估报告）" required />
+          <select class="form-input" name="grade">
+            <option value="">目前年级</option>
+            <option>初中 / 美高准备</option>
+            <option>高一 / 高二</option>
+            <option>高三 / 申请季</option>
+            <option>大一 / 大二</option>
+            <option>大三 / 大四</option>
+            <option>已毕业 / 在工作</option>
+          </select>
+          <select class="form-input" name="service">
+            <option value="">意向服务</option>
+            <option>美本申请</option><option>美硕申请</option><option>博士申请</option>
+            <option>转学</option><option>签证 / 身份</option>
+          </select>
+          <textarea class="form-input" name="message" style="min-height:80px;resize:none" placeholder="想聊的具体问题（可选）"></textarea>
+          <button type="submit" class="btn btn-primary" style="width:100%;padding:15px;font-size:15px;margin-top:10px">提交，获取免费评估 →</button>
+          <div style="font-size:11px;color:var(--c-faint);margin-top:14px;text-align:center">✓ 24 小时内真人回复 · ✓ 不会有销售骚扰 · ✓ 信息严格保密</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.hero { padding: 120px 0 96px; background: linear-gradient(180deg, #fff 0%, #fafafa 100%); border-bottom: 1px solid var(--c-border); }
+.hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 var(--pad-x); text-align: center; }
+.hero-tag { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; background: #fff; border: 1px solid var(--c-border); border-radius: 99px; font-size: 13px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+.hero-tag-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--c-green); box-shadow: 0 0 0 4px rgba(34,197,94,.15); }
+.hero-title { font-size: 88px; font-weight: 700; line-height: 1.02; letter-spacing: -3.5px; margin-top: 32px; }
+.hero-lede { font-size: 20px; line-height: 1.6; color: #444; margin-top: 32px; max-width: 680px; margin-left: auto; margin-right: auto; }
+.hero-ctas { display: flex; gap: 12px; margin-top: 40px; justify-content: center; flex-wrap: wrap; }
+.hero-micro { display: flex; gap: 32px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+.hero-micro-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--c-muted); }
+.hero-micro-icon { color: var(--c-green); }
+.big-num-row { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border); }
+.big-num-cell { text-align: center; border-right: 1px solid var(--c-border); padding: 8px 16px; }
+.big-num-cell:last-child { border-right: none; }
+.big-num { font-size: 56px; font-weight: 700; letter-spacing: -2px; line-height: 1; }
+.big-num-unit { font-size: 24px; color: var(--c-faint); margin-left: 4px; font-weight: 500; }
+.big-num-label { font-size: 13px; color: var(--c-muted); margin-top: 8px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+.promise-icon { font-size: 32px; }
+.promise-title { font-size: 20px; font-weight: 700; margin-top: 24px; letter-spacing: -.3px; }
+.promise-desc { font-size: 14px; color: var(--c-muted); margin-top: 10px; line-height: 1.6; }
+.promise-link { font-size: 13px; color: #000; margin-top: 24px; font-weight: 600; }
+
+.advisor-card { padding: 24px; }
+.adv-photo { position: relative; margin-bottom: 18px; }
+.adv-avatar { width: 100%; aspect-ratio: 1; border-radius: 12px; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 600; font-family: Georgia, serif; }
+.adv-badge { position: absolute; top: 10px; right: 10px; padding: 4px 10px; background: #fff; border-radius: 99px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.adv-name { font-size: 18px; font-weight: 700; letter-spacing: -.3px; }
+.adv-role { font-size: 13px; color: var(--c-muted); margin-top: 4px; line-height: 1.5; min-height: 38px; }
+.adv-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+.adv-tag { padding: 4px 10px; background: var(--c-soft-2); border-radius: 99px; font-size: 11px; color: var(--c-muted); }
+.adv-foot { display: flex; justify-content: space-between; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--c-border); }
+.adv-foot-link { font-size: 13px; color: #000; font-weight: 500; }
+
+.bento { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+.bento-cell { padding: 32px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: var(--r-card); display: flex; flex-direction: column; }
+.bento-feature { grid-row: span 2; background: #fff; }
+.bento-dark { background: #000 !important; color: #fff; }
+.bento-eyebrow { font-size: 11px; letter-spacing: 3px; color: var(--c-faint); font-weight: 600; }
+.bento-num { font-size: 64px; font-weight: 700; letter-spacing: -2px; margin-top: 14px; line-height: 1; }
+.bento-num-big { font-size: 48px; font-weight: 700; letter-spacing: -1.5px; margin-top: 12px; line-height: 1.1; }
+.bento-sub { font-size: 14px; color: var(--c-muted); margin-top: 6px; }
+.bento-dark .bento-sub { color: rgba(255,255,255,.7); }
+.chip-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+.chip { padding: 4px 10px; background: rgba(0,0,0,.05); border-radius: 6px; font-size: 12px; font-weight: 500; }
+
+.case-card { padding: 24px; }
+.case-head { display: flex; gap: 12px; align-items: center; }
+.case-avatar { width: 42px; height: 42px; border-radius: 99px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; font-family: Georgia, serif; }
+.case-name { font-size: 14px; font-weight: 600; }
+.case-from { font-size: 12px; color: var(--c-faint); margin-top: 1px; }
+.case-verify { font-size: 11px; color: var(--c-green); font-weight: 600; }
+.case-school { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--c-border); }
+.case-school-name { font-size: 24px; font-weight: 700; letter-spacing: -.5px; }
+.case-major { font-size: 13px; color: var(--c-muted); margin-top: 4px; }
+.case-quote { font-size: 14px; color: #333; line-height: 1.6; margin-top: 16px; padding: 14px; background: var(--c-soft); border-radius: 8px; }
+.case-stats { display: flex; gap: 24px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--c-border); }
+.case-stat-num { font-size: 18px; font-weight: 700; }
+.case-stat-key { font-size: 11px; color: var(--c-faint); margin-top: 2px; letter-spacing: 1px; }
+
+.service-card { padding: 32px; }
+.service-num { font-size: 13px; color: var(--c-faint); font-weight: 600; letter-spacing: 1px; }
+.service-title { font-size: 24px; font-weight: 700; margin-top: 16px; letter-spacing: -.5px; }
+.service-sub { font-size: 14px; color: var(--c-muted); margin-top: 6px; }
+.service-from { font-size: 12px; color: var(--c-faint); margin-top: 14px; }
+.service-arrow { font-size: 13px; color: #000; margin-top: 24px; font-weight: 600; }
+
+.faq-q { font-size: 18px; font-weight: 700; letter-spacing: -.3px; line-height: 1.4; }
+.faq-a { font-size: 14px; color: #444; margin-top: 12px; line-height: 1.7; }
+
+.partner-strip { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+.partner-logo { font-size: 14px; color: var(--c-faint); font-weight: 600; letter-spacing: .5px; }
+
+.final-cta { padding: 120px 0; }
+.final-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.h2-huge { font-size: 88px; font-weight: 700; letter-spacing: -3px; line-height: 1.02; margin-top: 14px; }
+.final-chip { padding: 10px 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 99px; font-size: 13px; color: rgba(255,255,255,.85); display: flex; align-items: center; gap: 8px; }
+.form-card { background: #fff; border-radius: 20px; padding: 32px; color: #000; }
+
+@media (max-width: 1024px) {
+  .hero-title { font-size: 60px; letter-spacing: -2px; }
+  .h2-huge { font-size: 60px; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .bento { grid-template-columns: 1fr 1fr; }
+  .bento-feature { grid-row: span 1; grid-column: span 2; }
+  .final-grid { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 768px) {
+  .hero { padding: 64px 0 56px; }
+  .hero-title { font-size: 40px; letter-spacing: -1.5px; line-height: 1.05; }
+  .hero-lede { font-size: 16px; }
+  .hero-micro { gap: 16px; }
+  .big-num-row { grid-template-columns: 1fr 1fr; gap: 16px; padding: 24px 0; }
+  .big-num-cell:nth-child(2) { border-right: none; }
+  .big-num { font-size: 40px; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .bento { grid-template-columns: 1fr; }
+  .bento-feature { grid-column: span 1; }
+  .bento-num { font-size: 48px; }
+  .h2-huge { font-size: 44px; letter-spacing: -1.5px; }
+}
+</style>

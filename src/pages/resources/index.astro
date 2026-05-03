@@ -1,0 +1,176 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ARTICLES, ART_CATEGORIES } from '../../data/articles.js';
+
+const featured = ARTICLES.filter(a => a.featured);
+---
+<Base title="资源中心 · Maginex 留学" description="前 USCIS 签证官 / 前 UC 招生官亲笔撰写。被开除、GPA 太低、F-1 失效、转学、RFE 应对 — 真问题真答案。">
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag"><span style="color:var(--c-green)">●</span> 由前招生官 / 前移民官亲笔撰写</div>
+      <h1 class="hero-title">真问题，<br/><span class="hl">真答案</span>。</h1>
+      <p class="hero-lede">被学校开除 / GPA 突然下滑 / 收到 RFE / 签证危机 — 这些半夜搜不到答案的问题，我们的顾问已经处理过几百次。<strong>文章全部由前 UC 招生官、前 USCIS 签证官亲笔撰写</strong>，不外包、不洗稿。</p>
+      <form class="search-box" onsubmit="event.preventDefault();const q=this.q.value;location.href='/resources/?q='+encodeURIComponent(q);">
+        <span style="color:#999;font-size:18px">⌕</span>
+        <input class="search-input" name="q" placeholder="试试搜：被开除、GPA 太低、RFE、OPT、转学..." />
+        <button type="submit" class="btn btn-primary" style="padding:8px 16px;font-size:13px">搜索</button>
+      </form>
+      <div class="kw-row">
+        <span style="font-size:12px;color:var(--c-faint)">热门：</span>
+        {['美本被开除怎么办','GPA 太低','F-1 失效','CC 转 UC','RFE 应对','OPT STEM 延期'].map(k => (
+          <a href={`/resources/?q=${encodeURIComponent(k)}`} class="kw-chip">{k}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="urgent-banner">
+    <div class="container urgent-inner">
+      <div style="display:flex;gap:14px;align-items:center">
+        <div style="font-size:28px">🚨</div>
+        <div>
+          <div style="font-size:17px;font-weight:700;color:#991b1b">遇到紧急情况？</div>
+          <div style="font-size:13px;color:#7f1d1d;margin-top:2px">被开除 / suspend / 收到 RFE / I-20 失效 — 24 小时内真人回复</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <a class="btn" style="background:#fff;border:1px solid #fecaca"><span style="color:var(--c-wechat)">●</span> 微信急救</a>
+        <a href="/contact/" class="btn" style="background:#dc2626;color:#fff">立即免费咨询 →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">FEATURED · 必读</div>
+        <h2 class="h2">这个月，<span class="hl">最多人在搜</span>的两个问题。</h2>
+      </div>
+      <div class="grid-2">
+        {featured.map(a => (
+          <a href={`/resources/${a.slug}/`} class="card feat-card">
+            <span class="cat-badge" style={`background:${a.catColor}`}>
+              {a.tag && <span class="urgent-tag">● {a.tag}</span>}
+              {a.cat}
+            </span>
+            <h3 class="feat-title">{a.title}</h3>
+            <p class="feat-excerpt">{a.excerpt}</p>
+            <div class="art-meta">
+              <span>{a.author}</span><span class="dot">·</span>
+              <span>{a.readTime}</span><span class="dot">·</span>
+              <span>{a.views} 浏览</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;margin-top:18px">阅读全文 →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="cat-tabs">
+        {ART_CATEGORIES.map((c, i) => (
+          <button class={`cat-tab${i===0?' active':''}`} data-cat={c.id}>
+            {c.name}<span class="cat-count">{c.count}</span>
+          </button>
+        ))}
+      </div>
+      <div class="art-list">
+        {ARTICLES.map(a => (
+          <a href={`/resources/${a.slug}/`} class="art-item" data-cat={a.catKey}>
+            <div style="flex:1">
+              <span class="cat-badge-sm" style={`color:${a.catColor};border-color:${a.catColor}`}>{a.cat}</span>
+              <h3 class="art-title">{a.title}</h3>
+              <p class="art-excerpt">{a.excerpt}</p>
+              <div class="art-meta">
+                <span>{a.author}</span><span class="dot">·</span>
+                <span>{a.date}</span><span class="dot">·</span>
+                <span>{a.readTime}</span><span class="dot">·</span>
+                <span>{a.views} 浏览</span>
+              </div>
+            </div>
+            <div style="color:#ccc;font-size:24px">→</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-box section-dark" style="border-radius:24px;padding:56px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+        <div>
+          <div class="eyebrow" style="color:rgba(255,255,255,.5)">WHEN ARTICLES AREN'T ENOUGH</div>
+          <h2 class="h2" style="color:#fff;margin-top:14px">文章解决不了的，<br/><span class="hl">真人顾问可以</span>。</h2>
+          <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:18px;max-width:520px">写文章的人，就是接你电话的人。没有客服中转，没有销售包装。</p>
+        </div>
+        <a href="/contact/" class="btn btn-primary btn-lg">30 分钟免费咨询 →</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.hero { padding: 88px 0 64px; background: linear-gradient(180deg, #fff, #fafafa); }
+.hero-inner { max-width: 880px; margin: 0 auto; padding: 0 var(--pad-x); text-align: center; }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: #fff; border: 1px solid var(--c-border); border-radius: 99px; font-size: 13px; }
+.hero-title { font-size: 84px; font-weight: 700; line-height: 1.04; letter-spacing: -3px; margin-top: 24px; }
+.hero-lede { font-size: 18px; line-height: 1.7; color: #444; margin-top: 28px; max-width: 680px; margin-left: auto; margin-right: auto; }
+.search-box { display: flex; gap: 12px; align-items: center; padding: 14px 18px; background: #fff; border: 1px solid var(--c-border); border-radius: 14px; margin-top: 36px; box-shadow: 0 4px 24px rgba(0,0,0,.04); }
+.search-input { flex: 1; border: none; outline: none; font-size: 16px; background: transparent; font-family: inherit; }
+.kw-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: center; margin-top: 18px; }
+.kw-chip { padding: 6px 12px; background: #fff; border: 1px solid var(--c-border); border-radius: 99px; font-size: 12px; color: #333; }
+
+.urgent-banner { background: #fef2f2; border-top: 1px solid #fecaca; border-bottom: 1px solid #fecaca; padding: 18px 0; }
+.urgent-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+.feat-card { padding: 32px; }
+.cat-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 99px; font-size: 12px; color: #fff; font-weight: 600; }
+.urgent-tag { background: #fff; color: #dc2626; padding: 1px 6px; border-radius: 6px; font-size: 10px; }
+.feat-title { font-size: 28px; font-weight: 700; margin-top: 18px; letter-spacing: -.5px; line-height: 1.25; }
+.feat-excerpt { font-size: 15px; color: #555; margin-top: 14px; line-height: 1.6; }
+.art-meta { display: flex; gap: 8px; font-size: 12px; color: var(--c-faint); margin-top: 18px; flex-wrap: wrap; align-items: center; }
+.dot { color: #ddd; }
+
+.cat-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+.cat-tab { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fff; border: 1px solid var(--c-border); border-radius: 99px; font-size: 13px; color: var(--c-muted); cursor: pointer; font-weight: 500; }
+.cat-tab.active { background: #000; color: #fff; border-color: #000; }
+.cat-count { font-size: 11px; padding: 2px 7px; background: rgba(0,0,0,.08); border-radius: 99px; }
+.cat-tab.active .cat-count { background: rgba(255,255,255,.15); }
+
+.art-list { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--c-border); border-radius: 16px; overflow: hidden; }
+.art-item { display: flex; align-items: center; padding: 24px; border-bottom: 1px solid var(--c-border); gap: 24px; transition: background .15s; }
+.art-item:last-child { border-bottom: none; }
+.art-item:hover { background: var(--c-soft); }
+.cat-badge-sm { display: inline-block; padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1px solid; letter-spacing: .3px; }
+.art-title { font-size: 20px; font-weight: 700; margin-top: 10px; letter-spacing: -.3px; line-height: 1.4; }
+.art-excerpt { font-size: 14px; color: var(--c-muted); margin-top: 8px; line-height: 1.6; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+@media (max-width: 768px) {
+  .hero { padding: 56px 0 40px; }
+  .hero-title { font-size: 44px; letter-spacing: -1.5px; }
+  .hero-lede { font-size: 15px; }
+  .urgent-inner { flex-direction: column; align-items: flex-start; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .feat-title { font-size: 22px; }
+  .art-title { font-size: 17px; }
+  .cta-box { padding: 32px !important; }
+  .cta-box .h2 { font-size: 32px !important; }
+}
+</style>
+
+<script>
+const tabs = document.querySelectorAll('.cat-tab');
+const items = document.querySelectorAll('.art-item');
+tabs.forEach(t => t.addEventListener('click', () => {
+  tabs.forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  const cat = t.getAttribute('data-cat');
+  items.forEach(i => {
+    i.style.display = (cat === 'all' || i.getAttribute('data-cat') === cat) ? '' : 'none';
+  });
+}));
+</script>

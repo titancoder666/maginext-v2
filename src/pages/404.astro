@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="404 · 页面不存在">
+  <section style="padding:120px 0;text-align:center">
+    <div class="container">
+      <div style="font-size:14px;color:#999;letter-spacing:3px;font-weight:600">404 · NOT FOUND</div>
+      <h1 style="font-size:96px;font-weight:700;letter-spacing:-3px;line-height:1;margin-top:24px">页面<br/><span class="hl">迷路了</span>。</h1>
+      <p style="font-size:18px;color:#666;margin-top:24px;max-width:480px;margin-left:auto;margin-right:auto">你要找的页面可能已经被删除、改名了，或者链接有误。</p>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:40px;flex-wrap:wrap">
+        <a href="/" class="btn btn-primary btn-lg">回首页 →</a>
+        <a href="/resources/" class="btn btn-ghost btn-lg">去资源中心</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+@media (max-width: 768px) { h1 { font-size: 56px !important; } }
+</style>

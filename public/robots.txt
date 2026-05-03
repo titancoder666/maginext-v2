@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maginext.com/sitemap-index.xml

@@ -1,0 +1,147 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ARTICLES } from '../../data/articles.js';
+import { ARTICLE_CONTENT } from '../../data/article-content.js';
+
+export async function getStaticPaths() {
+  const { ARTICLES } = await import('../../data/articles.js');
+  return ARTICLES.map(a => ({ params: { slug: a.slug }, props: { article: a } }));
+}
+
+const { article } = Astro.props;
+const content = ARTICLE_CONTENT[article.slug] || { toc: [], body: '<p>内容编辑中</p>' };
+const related = ARTICLES.filter(x => x.slug !== article.slug && x.cat === article.cat).slice(0, 3);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.title,
+  "description": article.excerpt,
+  "author": { "@type": "Person", "name": article.author.split('·')[0].trim() },
+  "datePublished": article.date,
+  "publisher": { "@type": "Organization", "name": "Maginex Education" },
+};
+---
+<Base title={`${article.title} · Maginex 资源中心`} description={article.excerpt}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)}></script>
+
+  <article class="art-root">
+    <div class="art-hero">
+      <div class="crumb"><a href="/">首页</a> / <a href="/resources/">资源中心</a> / <span>{article.cat}</span></div>
+      <span class="cat-badge" style={`background:${article.catColor};margin-top:24px`}>
+        {article.tag && <span class="urgent-tag">● {article.tag}</span>}
+        {article.cat}
+      </span>
+      <h1 class="art-h1">{article.title}</h1>
+      <p class="art-lede">{article.excerpt}</p>
+      <div class="byline">
+        <div class="byline-avatar">{article.author.charAt(0)}</div>
+        <div>
+          <div style="font-size:14px;font-weight:600">{article.author}</div>
+          <div style="font-size:12px;color:#999;margin-top:2px">{article.date} · {article.readTime} 阅读 · {article.views} 浏览</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="art-body">
+      <aside class="toc">
+        <div style="font-size:11px;letter-spacing:2px;color:#999;font-weight:600;margin-bottom:14px">本文目录</div>
+        {content.toc.map((t, i) => <a href={`#s${i+1}`} class="toc-link">{i+1}. {t}</a>)}
+        <div class="toc-cta">
+          <div style="font-size:12px;font-weight:600;margin-bottom:8px">遇到紧急情况？</div>
+          <a href="/contact/" class="btn" style="width:100%;background:#dc2626;color:#fff;padding:10px;border-radius:8px;font-size:13px;font-weight:600">微信急救 →</a>
+        </div>
+      </aside>
+
+      <div class="prose" set:html={content.body}></div>
+    </div>
+
+    <div class="author-box">
+      <div class="auth-avatar">{article.author.charAt(0)}</div>
+      <div>
+        <div style="font-size:11px;color:#999;letter-spacing:2px;font-weight:600">关于作者</div>
+        <div style="font-size:18px;font-weight:700;margin-top:6px">{article.author}</div>
+        <div style="display:flex;gap:10px;margin-top:14px">
+          <a class="btn btn-ghost" style="padding:8px 14px;font-size:12px">查看 LinkedIn ↗</a>
+          <a href="/contact/" class="btn btn-primary" style="padding:8px 14px;font-size:12px">预约 1v1 →</a>
+        </div>
+      </div>
+    </div>
+
+    {related.length > 0 && (
+      <div class="related">
+        <div class="eyebrow">RELATED · 你可能还想看</div>
+        <h3 style="font-size:32px;font-weight:700;letter-spacing:-1px;margin:12px 0 32px">同类文章</h3>
+        <div class="related-grid">
+          {related.map(r => (
+            <a href={`/resources/${r.slug}/`} class="card">
+              <span class="cat-badge-sm" style={`color:${r.catColor};border-color:${r.catColor}`}>{r.cat}</span>
+              <h4 style="font-size:17px;font-weight:700;margin-top:14px;line-height:1.4;letter-spacing:-.3px">{r.title}</h4>
+              <p style="font-size:13px;color:var(--c-muted);margin-top:10px;line-height:1.6">{r.excerpt}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </article>
+</Base>
+
+<style is:global>
+.art-root { max-width: 1080px; margin: 0 auto; padding: 48px var(--pad-x) 80px; }
+.art-hero { border-bottom: 1px solid var(--c-border); padding-bottom: 36px; margin-bottom: 48px; }
+.crumb { font-size: 13px; color: #666; }
+.crumb a { color: #666; }
+.crumb span { color: #999; }
+.art-h1 { font-size: 56px; font-weight: 700; letter-spacing: -2px; line-height: 1.1; margin-top: 18px; }
+.art-lede { font-size: 20px; color: #444; line-height: 1.6; margin-top: 24px; max-width: 780px; }
+.byline { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+.byline-avatar { width: 48px; height: 48px; border-radius: 99px; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 18px; }
+.cat-badge-sm { display: inline-block; padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 600; border: 1px solid; letter-spacing: .3px; }
+
+.art-body { display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+.toc { position: sticky; top: 90px; align-self: start; }
+.toc-link { display: block; font-size: 13px; color: #666; padding: 7px 0; border-bottom: 1px solid #f5f5f5; }
+.toc-cta { margin-top: 24px; padding: 18px; background: #fef2f2; border-radius: 12px; border: 1px solid #fecaca; }
+
+.prose { max-width: 720px; }
+.prose p { font-size: 16px; line-height: 1.85; color: #333; margin-bottom: 18px; }
+.prose .lead { font-size: 18px; line-height: 1.8; }
+.prose h2 { font-size: 30px; font-weight: 700; letter-spacing: -.5px; margin-top: 48px; margin-bottom: 18px; }
+.prose ul, .prose ol { font-size: 16px; line-height: 1.85; color: #333; padding-left: 24px; margin-bottom: 18px; }
+.prose hr { border: none; border-top: 1px solid var(--c-border); margin: 48px 0; }
+.prose code { background: #f5f5f5; padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+.prose .callout { border-left: 4px solid var(--c-accent); background: var(--c-soft); padding: 18px 24px; margin: 24px 0; font-size: 15px; line-height: 1.7; }
+.prose .opt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+.prose .opt-card { padding: 20px; background: var(--c-soft); border-radius: 12px; border: 1px solid var(--c-border); }
+.prose .opt-num { font-size: 11px; color: #999; letter-spacing: 2px; font-weight: 600; }
+.prose .opt-title { font-size: 16px; font-weight: 700; margin-top: 8px; }
+.prose .opt-desc { font-size: 13px; color: #666; margin-top: 8px; line-height: 1.6; }
+.prose .mid-cta { display: flex; align-items: center; gap: 24px; padding: 32px; background: #000; color: #fff; border-radius: 16px; margin: 48px 0; }
+.prose .case-box { padding: 24px; background: var(--c-soft); border-radius: 12px; border: 1px solid var(--c-border); margin: 24px 0; }
+.prose .case-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.prose .case-init { width: 42px; height: 42px; border-radius: 99px; background: #1a1a1a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: Georgia, serif; }
+.prose .checklist { padding: 24px; background: var(--c-soft); border-radius: 12px; border: 1px solid var(--c-border); margin: 24px 0; }
+.prose .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--c-border); font-size: 15px; line-height: 1.6; }
+.prose .check-item:last-child { border-bottom: none; }
+.prose .check-num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 6px; background: #000; color: var(--c-accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+
+.author-box { display: flex; gap: 18px; padding: 24px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 14px; margin-top: 48px; max-width: 720px; margin-left: 268px; }
+.auth-avatar { width: 64px; height: 64px; border-radius: 99px; background: #2d3a4f; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: Georgia, serif; font-size: 22px; flex-shrink: 0; }
+
+.related { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--c-border); }
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+@media (max-width: 1024px) {
+  .art-body { grid-template-columns: 1fr; }
+  .toc { position: static; }
+  .author-box { margin-left: 0; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .art-h1 { font-size: 36px; letter-spacing: -1px; }
+  .art-lede { font-size: 17px; }
+  .prose h2 { font-size: 24px; }
+  .prose .opt-grid { grid-template-columns: 1fr; }
+  .prose .mid-cta { flex-direction: column; padding: 24px; }
+}
+</style>
