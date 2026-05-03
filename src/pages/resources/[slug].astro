@@ -49,7 +49,7 @@ const jsonLd = {
         {content.toc.map((t, i) => <a href={`#s${i+1}`} class="toc-link">{i+1}. {t}</a>)}
         <div class="toc-cta">
           <div style="font-size:12px;font-weight:600;margin-bottom:8px">遇到紧急情况？</div>
-          <a href="/contact/" class="btn" style="width:100%;background:#dc2626;color:#fff;padding:10px;border-radius:8px;font-size:13px;font-weight:600">微信急救 →</a>
+          <button type="button" data-wechat-cta="article-toc" class="btn" style="width:100%;background:#dc2626;color:#fff;padding:10px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit">微信急救 →</button>
         </div>
       </aside>
 
@@ -62,8 +62,8 @@ const jsonLd = {
         <div style="font-size:11px;color:#999;letter-spacing:2px;font-weight:600">关于作者</div>
         <div style="font-size:18px;font-weight:700;margin-top:6px">{article.author}</div>
         <div style="display:flex;gap:10px;margin-top:14px">
-          <a class="btn btn-ghost" style="padding:8px 14px;font-size:12px">查看 LinkedIn ↗</a>
-          <a href="/contact/" class="btn btn-primary" style="padding:8px 14px;font-size:12px">预约 1v1 →</a>
+          <button type="button" data-wechat-cta="article-author-box" class="btn btn-primary" style="padding:8px 14px;font-size:12px;border:none;cursor:pointer;font-family:inherit">微信咨询 →</button>
+          <a href="/contact/" class="btn btn-ghost" style="padding:8px 14px;font-size:12px">填表预约</a>
         </div>
       </div>
     </div>

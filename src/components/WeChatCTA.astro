@@ -1,0 +1,157 @@
+---
+import { SITE } from '../data/site.js';
+---
+<div class="wechat-modal" id="wechat-modal" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-title" aria-hidden="true">
+  <div class="wechat-modal-backdrop" data-wechat-close></div>
+  <div class="wechat-modal-card" role="document">
+    <button class="wechat-modal-close" aria-label="关闭" data-wechat-close>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <div class="wechat-modal-tag"><span style="color:var(--c-wechat)">●</span> 真人顾问 · 24h 内回复</div>
+    <h3 id="wechat-modal-title" class="wechat-modal-title">扫码加微信，<br/>直接和顾问聊。</h3>
+    <p class="wechat-modal-lede">不会群发短信 · 不会催签约 · 不会卖你信息</p>
+
+    <div class="wechat-modal-qr">
+      <img src="/qr/wechat.png" alt="Maginex 微信二维码" width="240" height="240" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <div class="wechat-qr-fallback" style="display:none">
+        <div style="font-size:14px;color:#666;line-height:1.6">二维码图片即将就位<br/>请直接搜索微信号 ↓</div>
+      </div>
+    </div>
+
+    <div class="wechat-modal-id-row">
+      <div class="wechat-modal-id-label">微信号</div>
+      <div class="wechat-modal-id-val" id="wechat-id-val">{SITE.wechat}</div>
+      <button class="wechat-modal-copy" id="wechat-copy-btn" type="button" aria-label="复制微信号">
+        <span class="copy-default">复制</span>
+        <span class="copy-done" style="display:none">已复制 ✓</span>
+      </button>
+    </div>
+
+    <div class="wechat-modal-hint">
+      <div>📱 <strong>手机端</strong>：长按二维码 → 识别图中二维码 → 加好友</div>
+      <div>💻 <strong>电脑端</strong>：打开微信扫一扫，或复制微信号搜索</div>
+    </div>
+
+    <div class="wechat-modal-alt">
+      <a href={`mailto:${SITE.email}`} class="wechat-modal-alt-link">{SITE.email}</a>
+      <span style="color:#ddd">·</span>
+      <a href="/contact/" class="wechat-modal-alt-link">填表预约</a>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ wechatId: SITE.wechat }}>
+  (function () {
+    const modal = document.getElementById('wechat-modal');
+    if (!modal) return;
+    const idVal = document.getElementById('wechat-id-val');
+    const copyBtn = document.getElementById('wechat-copy-btn');
+
+    function open(source) {
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      // GA4 event (no-op if gtag unavailable)
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'wechat_cta_click', { source: source || 'unknown' });
+      }
+      // Microsoft Clarity custom tag
+      if (typeof window.clarity === 'function') {
+        window.clarity('event', 'wechat_cta_click');
+        window.clarity('set', 'cta_source', source || 'unknown');
+      }
+    }
+    function close() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Open: any element with [data-wechat-cta]
+    document.addEventListener('click', function (e) {
+      const trigger = e.target.closest('[data-wechat-cta]');
+      if (trigger) {
+        e.preventDefault();
+        open(trigger.getAttribute('data-wechat-cta') || 'unknown');
+        return;
+      }
+      // Close: backdrop or close button
+      const closer = e.target.closest('[data-wechat-close]');
+      if (closer) { e.preventDefault(); close(); }
+    });
+
+    // Esc to close
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) close();
+    });
+
+    // Copy WeChat ID
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        const text = idVal ? idVal.textContent.trim() : wechatId;
+        const done = function () {
+          copyBtn.querySelector('.copy-default').style.display = 'none';
+          copyBtn.querySelector('.copy-done').style.display = 'inline';
+          setTimeout(function () {
+            copyBtn.querySelector('.copy-default').style.display = 'inline';
+            copyBtn.querySelector('.copy-done').style.display = 'none';
+          }, 2000);
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'wechat_id_copy');
+          }
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () {
+            // Fallback: select text
+            const r = document.createRange(); r.selectNode(idVal);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(r);
+            try { document.execCommand('copy'); done(); } catch (_) {}
+            window.getSelection().removeAllRanges();
+          });
+        } else {
+          const r = document.createRange(); r.selectNode(idVal);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(r);
+          try { document.execCommand('copy'); done(); } catch (_) {}
+          window.getSelection().removeAllRanges();
+        }
+      });
+    }
+  })();
+</script>
+
+<style>
+.wechat-modal { position: fixed; inset: 0; z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+.wechat-modal.open { display: flex; }
+.wechat-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.55); backdrop-filter: blur(4px); animation: wxFadeIn .2s ease; }
+.wechat-modal-card { position: relative; width: 100%; max-width: 420px; background: #fff; border-radius: 24px; padding: 36px 32px 28px; box-shadow: 0 20px 80px rgba(0,0,0,.3); animation: wxSlideUp .25s cubic-bezier(.2,.9,.3,1.1); max-height: calc(100vh - 40px); overflow-y: auto; }
+.wechat-modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border: none; background: #f5f5f5; border-radius: 99px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #555; }
+.wechat-modal-close:hover { background: #ebebeb; color: #000; }
+.wechat-modal-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 99px; font-size: 12px; color: #166534; font-weight: 500; }
+.wechat-modal-title { font-size: 28px; font-weight: 700; line-height: 1.2; letter-spacing: -.5px; margin-top: 16px; }
+.wechat-modal-lede { font-size: 13px; color: var(--c-muted); margin-top: 10px; line-height: 1.6; }
+.wechat-modal-qr { margin-top: 24px; padding: 20px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; min-height: 240px; }
+.wechat-modal-qr img { display: block; width: 240px; height: 240px; image-rendering: pixelated; }
+.wechat-modal-id-row { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 14px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 12px; }
+.wechat-modal-id-label { font-size: 11px; color: #999; letter-spacing: 1px; font-weight: 600; }
+.wechat-modal-id-val { font-size: 15px; font-weight: 600; flex: 1; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.wechat-modal-copy { padding: 7px 14px; background: #000; color: #fff; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.wechat-modal-copy:hover { background: #1a1a1a; }
+.wechat-modal-hint { margin-top: 18px; padding: 14px; background: #fefce8; border: 1px solid #fef08a; border-radius: 12px; font-size: 12px; line-height: 1.8; color: #713f12; }
+.wechat-modal-alt { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 18px; font-size: 12px; color: var(--c-muted); }
+.wechat-modal-alt-link { color: var(--c-muted); text-decoration: underline; text-underline-offset: 2px; }
+.wechat-modal-alt-link:hover { color: #000; }
+
+@keyframes wxFadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes wxSlideUp { from { opacity: 0; transform: translateY(20px) scale(.97) } to { opacity: 1; transform: none } }
+
+@media (max-width: 480px) {
+  .wechat-modal { padding: 0; align-items: flex-end; }
+  .wechat-modal-card { max-width: 100%; border-radius: 24px 24px 0 0; padding: 32px 24px 100px; }
+  .wechat-modal-title { font-size: 22px; }
+  .wechat-modal-qr img { width: 200px; height: 200px; }
+}
+</style>

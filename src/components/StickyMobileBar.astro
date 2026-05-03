@@ -1,0 +1,83 @@
+---
+// Mobile-only sticky bottom bar — always-visible WeChat CTA
+---
+<div class="sticky-mobile-bar" role="complementary" aria-label="快速联系">
+  <a href="tel:" class="sticky-bar-btn sticky-bar-secondary" aria-label="电话">
+    <span style="font-size:13px;color:#666">急问？</span>
+    <span style="font-size:14px;font-weight:600;color:#000">填表 →</span>
+    <span class="sticky-bar-ghost-link" aria-hidden="true"></span>
+  </a>
+  <button type="button" class="sticky-bar-btn sticky-bar-primary" data-wechat-cta="sticky-bar">
+    <span class="sticky-bar-dot"></span>
+    <span>立即微信咨询</span>
+    <span style="margin-left:6px">→</span>
+  </button>
+</div>
+
+<script is:inline>
+  // Convert the "填表" link into a real link to /contact/ (avoids hydration mismatch)
+  document.addEventListener('DOMContentLoaded', function () {
+    const fillBtn = document.querySelector('.sticky-mobile-bar .sticky-bar-secondary');
+    if (fillBtn) {
+      fillBtn.setAttribute('href', '/contact/');
+      fillBtn.removeAttribute('aria-label');
+    }
+  });
+</script>
+
+<style>
+.sticky-mobile-bar {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 100;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(255,255,255,.96);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-top: 1px solid var(--c-border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,.06);
+  gap: 10px;
+}
+.sticky-bar-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+}
+.sticky-bar-secondary {
+  flex: 0 0 38%;
+  background: #fff;
+  border: 1px solid var(--c-border);
+  color: #000;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+}
+.sticky-bar-primary {
+  background: #000;
+  color: #fff;
+  font-size: 15px;
+}
+.sticky-bar-primary:active { transform: scale(.98); }
+.sticky-bar-dot {
+  width: 8px; height: 8px; border-radius: 99px;
+  background: var(--c-wechat);
+  box-shadow: 0 0 0 3px rgba(26,173,25,.25);
+}
+
+@media (max-width: 768px) {
+  .sticky-mobile-bar { display: flex; }
+  /* push body up to avoid bar overlap on long scroll */
+  body { padding-bottom: 76px; }
+  body.has-no-mobile-bar { padding-bottom: 0; }
+}
+</style>

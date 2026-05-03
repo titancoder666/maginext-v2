@@ -17,8 +17,8 @@ import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } fro
         我们坐在过录取桌的另一端 — 8 年、12,000 份申请。
       </p>
       <div class="hero-ctas">
-        <a href="/contact/" class="btn btn-primary btn-lg">免费 30 分钟评估 <span style="margin-left:8px">→</span></a>
-        <a href="/contact/" class="btn btn-ghost btn-lg"><span style="color:var(--c-wechat); margin-right:8px">●</span>微信直聊顾问</a>
+        <button type="button" class="btn btn-primary btn-lg" data-wechat-cta="hero-primary"><span style="color:var(--c-wechat); margin-right:8px">●</span>微信直聊顾问 <span style="margin-left:8px">→</span></button>
+        <a href="/contact/" class="btn btn-ghost btn-lg">填表预约（30 分钟评估）</a>
       </div>
       <div class="hero-micro">
         {['不录取退全款','公对公转账','文书绝不代写','合同律所公证'].map(t => (
@@ -229,8 +229,8 @@ import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } fro
           <h2 class="h2-huge">30 分钟。<br/>真人顾问。<br/><span class="hl">0 销售。</span></h2>
           <p style="font-size:17px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:24px;max-width:480px">填完下面的表单，由我们的真实顾问 — 不是销售 — 在 24 小时内回复你。我们不会群发短信，不会催签约，不会卖你信息。</p>
           <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap">
-            <div class="final-chip"><span style="color:var(--c-wechat)">●</span> 微信 {SITE.wechat}</div>
-            <div class="final-chip"><span style="color:#25d366">●</span> WhatsApp {SITE.whatsapp}</div>
+            <button type="button" class="final-chip" data-wechat-cta="final-cta-chip" style="border:1px solid rgba(255,255,255,.18);cursor:pointer;font-family:inherit"><span style="color:var(--c-wechat)">●</span> 扫码加微信 {SITE.wechat}</button>
+            <a href={`https://wa.me/${SITE.whatsapp.replace(/[^\d]/g,'')}`} target="_blank" rel="noopener" class="final-chip"><span style="color:#25d366">●</span> WhatsApp {SITE.whatsapp}</a>
           </div>
         </div>
         <form class="form-card" action="https://formspree.io/f/REPLACE_ME" method="POST">

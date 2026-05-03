@@ -12,11 +12,11 @@ import { SITE } from '../data/site.js';
           不会群发短信，不会催签约，不会卖你信息。免费的 30 分钟咨询永远开放 — 无论你最后签不签约。
         </p>
         <div class="contact-channels">
-          <div class="contact-ch">
-            <div class="ch-label">WeChat</div>
+          <button type="button" data-wechat-cta="contact-channel" class="contact-ch contact-ch-wechat" style="text-align:left;border:1px solid var(--c-border);cursor:pointer;font-family:inherit;background:#fff">
+            <div class="ch-label">WeChat <span style="color:var(--c-wechat);margin-left:4px">●</span></div>
             <div class="ch-val">{SITE.wechat}</div>
-            <div class="ch-help">写一句"想聊 + 你的具体问题"，会优先安排</div>
-          </div>
+            <div class="ch-help">点击 → 显示二维码 / 复制微信号</div>
+          </button>
           <div class="contact-ch">
             <div class="ch-label">WhatsApp</div>
             <div class="ch-val">{SITE.whatsapp}</div>
