@@ -26,9 +26,14 @@ export const SITE = {
   // 社交媒体 QR 路径 — 留空字符串则 footer 该格不渲染。
   // 业主把图放到 public/qr/ 后，把对应的 path 填进来即可显示。
   qrFiles: {
-    wechat: '/qr/wechat.png',  // 已就位（Maginex 向导）
-    xiaohongshu: '',           // TODO: public/qr/xiaohongshu.png 放好后填 '/qr/xiaohongshu.png'
-    publicAccount: '',         // TODO: public/qr/wechat-mp.png 放好后填 '/qr/wechat-mp.png'
+    wechat: '/qr/wechat.png',                 // Maginex 向导（顾问私人号 livinginthepresent007s）
+    xiaohongshu: '/qr/xiaohongshu.png',       // 小红书号 9725378613「迈进国际 Maginex」
+    publicAccount: '',                        // TODO: 公众号未注册；注册后放 public/qr/wechat-mp.png 并填 '/qr/wechat-mp.png'
+  },
+  // 小红书账号信息（footer + 资源中心可引用）
+  xiaohongshu: {
+    id: '9725378613',
+    name: '迈进国际 Maginex',
   },
 };
 
