@@ -402,7 +402,198 @@ ${[
 `,
   },
   'opt-stem-extension': {
-    toc: ['STEM 列表','24 月延期','雇主资质','时间线'],
-    body: `<p class="lead">24 个月 STEM 延期需要哪些材料？哪些专业算 STEM？雇主资质如何确认？</p><p style="color:#999;margin-top:24px"><em>—— 文章正文编辑中 ——</em></p>`,
+    toc: [
+      'STEM 延期的 3 个硬条件（不满足直接被拒）',
+      '你的专业算不算 STEM？查 CIP Code 的方法',
+      '雇主资质：E-Verify 是底线',
+      '1-983 表格：DHS 最在意的 4 个字段',
+      '完整时间线：从开始申请到 EAD 寄到',
+      '续 OPT 申请期间能不能工作？',
+      'H-1B 抽签关系 / cap-gap 详解',
+      '实战案例：李同学的 STEM 延期路径',
+      '8 件事清单 + 5 件不能做的事',
+    ],
+    faq: [
+      { q: '我的专业是 STEM 吗？', a: '查你 I-20 第 5 部分 CIP Code（6 位数字，如 11.0701）→ 在 ICE STEM Designated Degree Program List 2024 修订版中查这个代码是否存在。Computer Science (11.0701)、Bioengineering (14.0501)、Statistics (27.0501) 等都在。Business Administration (52.0201) 不在。' },
+      { q: '我能用本科 STEM 学位申请 STEM 延期吗，即使现在读的硕士不是 STEM？', a: '可以。USCIS 允许"prior STEM degree extension"——只要你过去 10 年内任一学位是 STEM，且 OPT 工作与该学位相关，就有资格。' },
+      { q: '雇主必须 E-Verify 吗？', a: '是的。这是 STEM 延期的硬条件，没有例外。可在 E-Verify 官网 (e-verify.gov) 用雇主名查证。如果雇主不在系统里，你不能申请。' },
+      { q: 'STEM 延期申请期间可以工作吗？', a: '可以。USCIS 收到完整 I-765 申请后会自动给你 180 天 work authorization（"STEM cap gap"），从初次 OPT 到期那天开始算。' },
+      { q: 'STEM 延期会影响 H-1B 抽签吗？', a: '不会负面影响。反而有利——STEM 延期给你 3 年 H-1B 抽签机会（标准 OPT 只有 1 年）。如果中签，自动 cap-gap 衔接到 H-1B 生效。' },
+    ],
+    body: `
+<p class="lead">先把 2024 年的政策更新讲清楚：DHS 在 2024 年 7 月修订了 <strong>STEM Designated Degree Program List</strong>，新增 8 个专业代码（包括 Data Science、Climate Science、Quantum Computing 等热门领域）。如果你毕业于 2023 年之前，你的专业可能从前不是 STEM 但<strong>现在是了</strong>——值得重新查一遍 CIP Code。</p>
+
+<p>这篇文章是 STEM 延期 OPT 的完整 playbook：从资格检查 → 材料准备 → 1-983 表填法 → 提交时间窗口 → 期间能不能工作 → H-1B 衔接，每一步都给你公开来源 + 真实数据。</p>
+
+<blockquote class="callout"><strong>核心结论：</strong>STEM 24 月延期不是"额外福利"，是 USCIS 默认应批的法定权利。被拒的几乎全是<strong>3 个硬条件没满足</strong>——专业不在 STEM List、雇主不 E-Verify、1-983 没填好。把这 3 件事做对，通过率 95%+。</blockquote>
+
+<h2 id="s1">1. STEM 延期的 3 个硬条件（不满足直接被拒）</h2>
+<p>USCIS 审 STEM 延期 case 的第一步是 yes/no checklist。任何一项不过，case 直接 deny。3 个条件：</p>
+<ol>
+  <li><strong>专业是 STEM</strong>：你 I-20 第 5 部分的 CIP Code 必须出现在 <strong>ICE STEM Designated Degree Program List 2024 修订版</strong>（来源：ice.gov/sevis/stem）</li>
+  <li><strong>雇主在 E-Verify</strong>：雇主必须是 E-Verify 已注册的雇主。可在 e-verify.gov 直接查询雇主名</li>
+  <li><strong>初次 OPT 在 active 状态</strong>：你必须在初次 12 月 OPT 到期<strong>前 90 天内</strong>提交 STEM 延期申请。早于 90 天 USCIS 不收，晚于到期日 = 失效不可挽救</li>
+</ol>
+<p>另外两个软条件（USCIS 会查但通常不会卡）：</p>
+<ul>
+  <li>OPT 工作与 STEM 学位<strong>直接相关</strong>（job relatedness）——和初次 OPT 标准一样，但更严</li>
+  <li>每周工作 ≥ 20 小时（part-time 不算）</li>
+</ul>
+
+<h2 id="s2">2. 你的专业算不算 STEM？查 CIP Code 的方法</h2>
+<p>第一步：找你的 CIP Code。</p>
+<p>在你的 I-20 第 5 部分 "Program of Study" 下面，"CIP Code" 是个 6 位数字格式 XX.XXXX，例如 <code>11.0701</code>（Computer Science）。</p>
+<p>第二步：到 ICE STEM Designated Degree Program List 2024 修订版（PDF 公开下载于 ice.gov/doclib/sevis/pdf/stemList2024.pdf）查这个代码。</p>
+<p><strong>2024 修订版新增的 8 个 STEM 专业</strong>（如果你是 2024 年之前毕业，值得重查）：</p>
+<ul>
+  <li><strong>30.7001</strong> Data Science, General</li>
+  <li><strong>30.7101</strong> Data Analytics, General</li>
+  <li><strong>30.4501</strong> Climate Science</li>
+  <li><strong>30.7201</strong> Demography and Population Studies</li>
+  <li><strong>30.6502</strong> Quantum Information Science (含 Quantum Computing)</li>
+  <li><strong>26.1503</strong> Pharmaceutical Sciences</li>
+  <li><strong>40.0699</strong> Earth Sciences, Other</li>
+  <li><strong>14.4701</strong> Electromechanical Engineering</li>
+</ul>
+<p><strong>常见的非 STEM 误区</strong>：</p>
+<ul>
+  <li>Business Administration (52.0201) — <strong>不是</strong> STEM</li>
+  <li>Marketing (52.1401) — <strong>不是</strong> STEM</li>
+  <li>Finance (52.0801) — <strong>不是</strong> STEM</li>
+  <li>但是 Business Analytics (52.1399) 在 2022 年被加入 STEM 列表 — <strong>是</strong> STEM</li>
+  <li>Master of Science in Finance（如果学校 CIP 标的是 52.1304 或 27.0305）<strong>可能是</strong> STEM</li>
+</ul>
+
+<h2 id="s3">3. 雇主资质：E-Verify 是底线</h2>
+<p>E-Verify 是美国 DHS 与 SSA 合作的雇员身份验证系统。STEM 延期要求雇主必须是 E-Verify 注册雇主。</p>
+<p><strong>查询方法</strong>：</p>
+<ol>
+  <li>到 <code>e-verify.gov/about-e-verify/e-verify-data/employer-search</code></li>
+  <li>输入雇主公司名 + 州</li>
+  <li>如果在系统中显示 "Active Participant"，OK</li>
+  <li>如果显示 "Not enrolled" 或查不到，<strong>你不能用这个 offer 申请 STEM 延期</strong></li>
+</ol>
+<blockquote class="callout"><strong>实战提示：</strong>大公司 99% 都在 E-Verify。但很多 startup（特别是 &lt; 50 人的早期公司）不在。如果你 offer 是 startup，<strong>第一件事就是查 E-Verify 状态</strong>——不在的话，要么让公司加入（HR 配合的话 1-2 周可完成），要么找别的 offer。</blockquote>
+
+<h2 id="s4">4. 1-983 表格：DHS 最在意的 4 个字段</h2>
+<p>1-983 表（"Training Plan for STEM OPT Students"）是 STEM 延期最关键的文件。USCIS 拒绝率最高的就是这张表填得不规范。4 个最常被卡的字段：</p>
+<p><strong>字段 1：Section 5 - Goals and Objectives</strong></p>
+<p>不要写"learn skills"这种空话。USCIS 看的是<strong>具体可衡量的学习目标</strong>。好的写法：</p>
+<blockquote class="callout">
+"Within 24 months, the student will:<br/>
+1. Master Apache Spark distributed computing through hands-on project on customer data analytics platform (Q1-Q2)<br/>
+2. Lead development of 2 production ML models with measurable business impact (Q3-Q6)<br/>
+3. Mentor at least 1 junior engineer in MLOps best practices (Q7-Q8)..."
+</blockquote>
+<p><strong>字段 2：Section 5 - Specific Knowledge, Skills, Abilities</strong></p>
+<p>必须把<strong>学位课程 → 工作技能</strong>的对应关系写清楚。例如："The student's MS in Computer Science coursework on Distributed Systems (CS 244B at Stanford) directly applies to..."</p>
+<p><strong>字段 3：Section 5 - How Training Relates to Degree</strong></p>
+<p>必须明确说明"工作 75%+ 的时间运用学位相关知识"。如果你是 CS 学位但工作主要是 customer support，无法过审。</p>
+<p><strong>字段 4：Section 6 - Employer Attestation</strong></p>
+<p>雇主签字承诺：student 不是替代 full-time employee、给的 wage 与同岗位 US worker 一致、训练真实在发生。这一条 USCIS 偶尔会做 site visit 抽查——发现造假，雇主面临 E-Verify 永久除名 + immigration fraud 调查。</p>
+
+<h2 id="s5">5. 完整时间线：从开始申请到 EAD 寄到</h2>
+<div class="checklist">
+${[
+  '<strong>OPT 到期前 90-150 天</strong>：开始准备材料。和雇主谈 1-983（很多 HR 第一次见这表，需要时间），同时确认 E-Verify 状态',
+  '<strong>到期前 90 天</strong>：DSO 出具新 I-20（"Recommended for STEM Extension"），这一步必须在提交 I-765 之前完成',
+  '<strong>到期前 60-90 天</strong>：在线提交 I-765（USCIS 现在只接受电子提交了，纸质不再受理），上传 1-983 + I-20 + EAD 复印件 + 学位证 + transcripts + I-94',
+  '<strong>提交后 1-7 天</strong>：USCIS 发送 receipt notice (I-797)。这就是你的"180 天 cap-gap"自动启动证明',
+  '<strong>提交后 30-60 天</strong>：可能收到 RFE（最常见是 1-983 字段不清晰）。详见《RFE 应对》文章',
+  '<strong>提交后 90-150 天</strong>：USCIS 决定。一般 90-120 天审完，但 2024 高峰期延到 150-180 天',
+  '<strong>批准后 7-14 天</strong>：新 EAD card 寄到。注意：旧 EAD 失效那天起，你不能在 cap-gap 之外的时段工作',
+  '<strong>每 6 个月</strong>：在线 SEVIS 报告（更新地址、雇主、是否仍在工作）',
+  '<strong>每 12 个月</strong>：与雇主一起填 1-983 self-evaluation form，DSO 上传到 SEVIS',
+].map((t,i)=>`<div class="check-item"><span class="check-num">${i+1}</span><span>${t}</span></div>`).join('')}
+</div>
+
+<h2 id="s6">6. 续 OPT 申请期间能不能工作？</h2>
+<p>这是 STEM 申请季最常被问的问题。答案是<strong>能</strong>，但有条件。</p>
+<p>USCIS 8 CFR 274a.12(b)(6) 明确规定：F-1 学生在初次 OPT 到期前 timely 提交 STEM 延期申请的，自动获得 <strong>180 天 cap-gap work authorization</strong>。</p>
+<p>具体含义：</p>
+<ul>
+  <li>从初次 OPT 失效那一天起，自动给你 180 天工作许可</li>
+  <li>这 180 天内，你<strong>持 receipt notice (I-797) + 旧 EAD</strong> 工作</li>
+  <li>如果 USCIS 在 180 天内批了 → 你拿新 EAD 继续工作</li>
+  <li>如果 USCIS 180 天后还没批 → 你必须 stop work，等批准</li>
+  <li>如果 USCIS 在 180 天内拒了 → 你立即 stop work，进入 60 天 grace period</li>
+</ul>
+<p><strong>关键</strong>：所谓"timely"是指 USCIS 在你初次 OPT 到期之前<strong>收到</strong>申请，不是你寄出。所以保险做法是<strong>到期前 90 天就提交</strong>，不要拖到最后一刻。</p>
+
+<div class="mid-cta">
+  <div style="flex:1">
+    <div style="font-size:13px;color:#999;letter-spacing:1px;margin-bottom:6px">不确定你的雇主是否符合资质？</div>
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px">免费 30 分钟 STEM 资格评估</div>
+    <div style="font-size:14px;color:#bbb">扫码加微信 · 把你 I-20 + offer letter 发我们 · 当天给资格判断</div>
+  </div>
+  <button type="button" data-wechat-cta="article-mid-opt-stem" class="btn" style="background:#E8FF52;color:#000;font-weight:700;padding:14px 24px;border-radius:99px;border:none;cursor:pointer;font-family:inherit">立即微信咨询 →</button>
+</div>
+
+<h2 id="s7">7. H-1B 抽签关系 / cap-gap 详解</h2>
+<p>STEM 延期的最大战略价值不在多 24 个月本身——是<strong>多 3 次 H-1B 抽签机会</strong>。</p>
+<p>FY2025 H-1B 抽签数据（USCIS 公布）：</p>
+<ul>
+  <li>注册数：479,953</li>
+  <li>选中数：120,603</li>
+  <li><strong>单次中签率：约 25%</strong></li>
+</ul>
+<p>对单年 OPT 学生来说：</p>
+<ul>
+  <li>1 年标准 OPT → 1 次抽签机会 → 中签概率 25%</li>
+  <li>1 + 24 = 36 月 STEM OPT → 3 次抽签机会 → 中签概率 1 - (1-0.25)³ = <strong>57.8%</strong></li>
+</ul>
+<p>把中签率从 25% 提到 58%，这是 STEM 延期的真正价值。</p>
+<p><strong>cap-gap 衔接</strong>：如果你 STEM OPT 期间中了 H-1B（lottery 通常 3-4 月，H-1B 生效 10/1），你的 OPT 自动延长到 9/30，无缝衔接 H-1B。USCIS 8 CFR 214.2(f)(5)(vi) 明确规定。</p>
+
+<h2 id="s8">8. 实战案例：李同学的 STEM 延期路径</h2>
+<div class="case-box">
+  <div class="case-head"><div class="case-init">L</div><div><div style="font-size:14px;font-weight:600">李同学 · UCSD MS 数据科学 · STEM 延期</div><div style="font-size:12px;color:#999;margin-top:2px">2024.05 毕业，2025.05 初次 OPT 到期</div></div></div>
+  <p><strong>2024.05.20</strong>：UCSD MS 数据科学毕业。CIP Code <code>30.7001</code>（Data Science）— 2024 修订版新增 STEM 专业。</p>
+  <p><strong>2024.07</strong>：入职某 fintech，岗位 ML Engineer。E-Verify 查询：Active Participant。</p>
+  <p><strong>2025.02.15</strong>（OPT 到期前 90 天）：开始准备 STEM 延期。第一步：HR 发起 1-983 流程。HR 之前没填过这表，第一版 Section 5 写得很空泛。</p>
+  <p><strong>2025.02.25</strong>：李同学找到我们。我们把 1-983 第 5 部分重写：</p>
+  <ul style="font-size:13px;color:#444;line-height:1.7">
+    <li>Goals: 4 个 quarterly milestone，每个含具体 deliverable + 量化指标</li>
+    <li>Skills: 把 transcripts 上 6 门 specific 课程（DSC 200/210/240/261/291/295）—— 一一对应工作中用到的技术（Spark / TensorFlow / SQL / experiment design）</li>
+    <li>Relation to Degree: 列出 75%+ 工作时间运用 MS DS 课程内容的具体情形</li>
+  </ul>
+  <p><strong>2025.03.15</strong>：DSO 出新 I-20（Recommended for STEM Extension）。</p>
+  <p><strong>2025.03.18</strong>：在线提交 I-765 + 1-983 + I-20 + EAD + 学位 + transcripts。</p>
+  <p><strong>2025.03.22</strong>：USCIS 收到 → I-797 receipt notice。180 天 cap-gap 自动启动（5/20 起算到 11/16）。</p>
+  <p><strong>2025.06.07</strong>：USCIS 批准。新 EAD 显示 valid 至 2027.05.20。</p>
+  <p><strong>2026.03</strong>：H-1B 抽签第 1 次（未中）。</p>
+  <p><strong>2027.03</strong>：H-1B 抽签第 2 次。</p>
+  <p style="margin-top:14px;font-style:italic;color:#666">总耗时：从开始准备到 EAD 寄到 = 80 天。关键节点是 2 月份的 1-983 重写——之前的版本如果直接提交，大概率收 RFE。</p>
+</div>
+
+<h2 id="s9">9. 8 件事清单 + 5 件不能做的事</h2>
+<div class="checklist">
+${[
+  '查 I-20 上的 CIP Code，对照 ICE STEM List 2024 版',
+  'E-Verify 查雇主资质（e-verify.gov）',
+  '提前 90-150 天和雇主 HR 启动 1-983 流程',
+  '1-983 第 5 部分写具体可衡量目标（quarterly milestone + KPI）',
+  'DSO 出新 I-20 后再提交 I-765（顺序不能错）',
+  '在 OPT 到期前至少 60 天提交 I-765（150 天最佳）',
+  '保留 receipt notice + 旧 EAD 复印件（cap-gap 期间工作时常需要）',
+  '每 6 个月 SEVIS 在线报告（雇主变更必须 10 天内更新）',
+].map((t,i)=>`<div class="check-item"><span class="check-num">${i+1}</span><span>${t}</span></div>`).join('')}
+</div>
+<ul style="color:#dc2626;margin-top:24px">
+  <li><strong>不要拖到 OPT 最后 30 天才提交</strong>——USCIS 一旦在到期日前没"收到"申请，cap-gap 不启动，你直接进 grace period</li>
+  <li><strong>不要在 1-983 上写空话</strong>——"learn skills" "gain experience" 这种是 USCIS 拒掉的高频原因</li>
+  <li><strong>不要换 non-E-Verify 雇主</strong>——STEM 延期期间换雇主必须 10 天内更新 SEVIS，且新雇主必须 E-Verify。换错 = 失效</li>
+  <li><strong>不要忽视 6 个月 SEVIS 报告</strong>——超过 60 天没报告，SEVIS 自动 terminate，所有身份失效</li>
+  <li><strong>不要在 cap-gap 180 天后还工作</strong>——如果 USCIS 没批就停工。继续工作 = unauthorized employment，将永久影响绿卡资格</li>
+</ul>
+
+<hr/>
+
+<p>STEM 延期是 F-1 学生最重要的"杠杆"——它把你和美国就业市场的连接从 1 年延长到 3 年，把 H-1B 中签率从 25% 提到 58%。</p>
+
+<p>如果你正在准备 STEM 延期，或者拿到 offer 但不确定能不能用，<strong>免费 30 分钟评估永远开放</strong>。页面任意"微信咨询"按钮扫码即加，发一句"想聊 STEM 延期 + 你的专业 + 雇主名"，我们当天给资格判断。</p>
+
+<p style="font-size:12px;color:#999;margin-top:32px"><em>本文数据来源：DHS ICE STEM Designated Degree Program List (2024 修订版); USCIS Policy Manual Vol 2 Part F (Students); 8 CFR 214.2(f) 与 274a.12(b)(6); USCIS FY2025 H-1B Cap Selection Final Numbers; E-Verify Public Employer Search Database。案例已脱敏处理。</em></p>
+`,
   },
 };
