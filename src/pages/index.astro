@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import EmergencyGrid from '../components/EmergencyGrid.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
 import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } from '../data/site.js';
 
 const faqJsonLd = {
@@ -26,25 +28,25 @@ const orgJsonLd = {
 <Base>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(orgJsonLd)}></script>
-  <!-- Hero -->
+  <!-- Hero — emergency-first -->
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-tag">
-        <span class="hero-tag-dot"></span>
-        前 UC Berkeley 招生官 · 前 USCIS 签证官 · 实名团队
+        <span class="hero-tag-dot hero-tag-dot-urgent"></span>
+        持牌移民律师 + 前 USCIS 政策顾问 · 24h 待命
       </div>
-      <h1 class="hero-title">留学申请，<br/>交给真正<span class="hl">懂的人</span>。</h1>
+      <h1 class="hero-title">身份危机？<br/>24 小时内<br/><span class="hl">有人接你电话</span>。</h1>
       <p class="hero-lede">
-        Maginex 由前美国大学招生官与前移民局官员组成。
-        我们不是"金牌顾问培训班"。
-        我们坐在过录取桌的另一端 — 8 年、12,000 份申请。
+        Reinstatement · 紧急转学 · OPT/H-1B RFE · 学术 dismissal 申诉 · B 转 F 身份转换
+        <br/>
+        每一项都对应具体的法律条文 + 时间窗口。Maginex 团队处理过 400+ 起留学生急救 case。
       </p>
       <div class="hero-ctas">
-        <button type="button" class="btn btn-primary btn-lg" data-wechat-cta="hero-primary"><span style="color:var(--c-wechat); margin-right:8px">●</span>微信直聊顾问 <span style="margin-left:8px">→</span></button>
-        <a href="/contact/" class="btn btn-ghost btn-lg">填表预约（30 分钟评估）</a>
+        <button type="button" class="btn btn-primary btn-lg" data-wechat-cta="hero-primary"><span style="color:var(--c-wechat); margin-right:8px">●</span>立即微信咨询 <span style="margin-left:8px">→</span></button>
+        <a href="#emergency" class="btn btn-ghost btn-lg">先看 6 类急救场景</a>
       </div>
       <div class="hero-micro">
-        {['不录取退全款','公对公转账','文书绝不代写','合同律所公证'].map(t => (
+        {['24h 真人回复','公对公转账','合同律所公证','案件失败退服务费'].map(t => (
           <div class="hero-micro-item"><span class="hero-micro-icon">✓</span>{t}</div>
         ))}
       </div>
@@ -58,6 +60,9 @@ const orgJsonLd = {
       </div>
     </div>
   </section>
+
+  <EmergencyGrid />
+  <ProcessSteps />
 
   <!-- Promises -->
   <section class="section">
@@ -80,12 +85,13 @@ const orgJsonLd = {
     </div>
   </section>
 
-  <!-- Advisors -->
+  <!-- Advisors / Team -->
   <section class="section section-soft">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow">TEAM · 顾问团队</div>
-        <h2 class="h2">你能在 LinkedIn<br/><span class="hl">搜到他们每一个人</span>。</h2>
+        <div class="eyebrow">TEAM · 团队结构</div>
+        <h2 class="h2">持牌律师 + 学术规划师 +<br/><span class="hl">USCIS 政策研究组</span>。</h2>
+        <p class="sub">急救场景由持牌移民律师主导（AILA 会员）；学术与申请规划由前美国大学招生 / 文书顾问组负责。下图为团队职能展示，签约后会列明你 case 的具体对接成员。</p>
       </div>
       <div class="grid-4">
         {ADVISORS.map(a => (
@@ -291,6 +297,8 @@ const orgJsonLd = {
 .hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 var(--pad-x); text-align: center; }
 .hero-tag { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; background: #fff; border: 1px solid var(--c-border); border-radius: 99px; font-size: 13px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
 .hero-tag-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--c-green); box-shadow: 0 0 0 4px rgba(34,197,94,.15); }
+.hero-tag-dot-urgent { background: #dc2626; box-shadow: 0 0 0 4px rgba(220,38,38,.15); animation: hero-pulse 2s ease-in-out infinite; }
+@keyframes hero-pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(220,38,38,.15); } 50% { box-shadow: 0 0 0 8px rgba(220,38,38,.05); } }
 .hero-title { font-size: 88px; font-weight: 700; line-height: 1.02; letter-spacing: -3.5px; margin-top: 32px; }
 .hero-lede { font-size: 20px; line-height: 1.6; color: #444; margin-top: 32px; max-width: 680px; margin-left: auto; margin-right: auto; }
 .hero-ctas { display: flex; gap: 12px; margin-top: 40px; justify-content: center; flex-wrap: wrap; }

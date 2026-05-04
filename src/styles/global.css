@@ -70,6 +70,11 @@ p { margin: 0; }
 .topbar { background: var(--c-soft-2); padding: 10px 32px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--c-muted); border-bottom: 1px solid var(--c-border); }
 .topbar .dot { width: 6px; height: 6px; border-radius: 99px; background: var(--c-green); display: inline-block; margin-right: 8px; }
 .topbar a { text-decoration: underline; }
+.topbar-emergency { background: #fef2f2; border-bottom: 1px solid #fecaca; color: #7f1d1d; }
+.topbar-emergency .dot-urgent { background: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.15); animation: tbar-pulse 2s ease-in-out infinite; }
+@keyframes tbar-pulse { 0%, 100% { box-shadow: 0 0 0 3px rgba(220,38,38,.15); } 50% { box-shadow: 0 0 0 6px rgba(220,38,38,.05); } }
+.topbar-cta { background: #dc2626; color: #fff; border: none; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
+.topbar-cta:hover { background: #b91c1c; }
 
 /* ─── Header ─── */
 .header { background: rgba(255,255,255,.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--c-border); position: sticky; top: 0; z-index: 50; }

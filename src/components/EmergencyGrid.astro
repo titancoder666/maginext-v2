@@ -1,0 +1,128 @@
+---
+import { EMERGENCY_SCENARIOS } from '../data/site.js';
+---
+<section class="emergency-section" id="emergency">
+  <div class="container">
+    <div class="emergency-head">
+      <div class="eyebrow"><span class="urgent-dot"></span> EMERGENCY · 急救场景</div>
+      <h2 class="emergency-h2">遇到这 6 类问题，<br/><span class="hl">直接微信咨询</span>。</h2>
+      <p class="emergency-sub">每一类都对应具体的法律条文 / 时间窗口 / 操作流程。点对应的格子读完整说明，或直接扫码 24h 内有真人回复。</p>
+    </div>
+
+    <div class="emergency-grid">
+      {EMERGENCY_SCENARIOS.map((s) => (
+        <article class="emergency-card" style={`--dot-color:${s.dotColor}`}>
+          <div class="emerg-head-row">
+            <span class="emerg-dot"></span>
+            <span class="emerg-type">{s.type}</span>
+          </div>
+
+          <h3 class="emerg-symptom">{s.symptom}</h3>
+
+          <div class="emerg-meta">
+            <div class="emerg-meta-item">
+              <span class="emerg-meta-label">响应</span>
+              <span class="emerg-meta-val">{s.responseTime}</span>
+            </div>
+            <div class="emerg-meta-item">
+              <span class="emerg-meta-label">已处理</span>
+              <span class="emerg-meta-val">{s.caseCount} 例</span>
+            </div>
+            <div class="emerg-meta-item">
+              <span class="emerg-meta-label">平均结案</span>
+              <span class="emerg-meta-val">{s.avgClose}</span>
+            </div>
+          </div>
+
+          <div class="emerg-cta-row">
+            <a href={s.href} class="emerg-cta-secondary">详细流程 →</a>
+            <button type="button" data-wechat-cta={s.cta} class="emerg-cta-primary">
+              微信咨询 →
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="emergency-foot">
+      <span class="emerg-foot-text">不在这 6 类范围？</span>
+      <button type="button" data-wechat-cta="emergency-grid-other" class="emerg-foot-link">告诉我们你的具体情况 →</button>
+    </div>
+  </div>
+</section>
+
+<style>
+.emergency-section { padding: 80px 0; background: linear-gradient(180deg, #fafafa, #fff); border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border); }
+.emergency-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+.urgent-dot { display: inline-block; width: 8px; height: 8px; border-radius: 99px; background: #dc2626; margin-right: 6px; box-shadow: 0 0 0 4px rgba(220,38,38,.15); animation: pulse 2s ease-in-out infinite; vertical-align: middle; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(220,38,38,.15); } 50% { box-shadow: 0 0 0 8px rgba(220,38,38,.05); } }
+.emergency-h2 { font-size: 56px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-top: 18px; }
+.emergency-sub { font-size: 16px; color: var(--c-muted); line-height: 1.7; margin-top: 20px; }
+
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.emergency-card {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform .15s, box-shadow .15s, border-color .15s;
+  position: relative;
+}
+.emergency-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.06);
+  border-color: var(--dot-color);
+}
+
+.emerg-head-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.emerg-dot { width: 10px; height: 10px; border-radius: 99px; background: var(--dot-color); flex-shrink: 0; }
+.emerg-type { font-size: 12px; font-weight: 600; letter-spacing: .5px; color: var(--c-muted); text-transform: uppercase; }
+
+.emerg-symptom { font-size: 22px; font-weight: 700; line-height: 1.35; letter-spacing: -.4px; color: #111; min-height: 60px; }
+
+.emerg-meta { display: flex; flex-direction: column; gap: 6px; margin-top: 18px; padding: 14px; background: var(--c-soft); border-radius: 10px; }
+.emerg-meta-item { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 13px; }
+.emerg-meta-label { color: var(--c-faint); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+.emerg-meta-val { color: #111; font-weight: 600; text-align: right; }
+
+.emerg-cta-row { display: flex; gap: 10px; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--c-border); align-items: center; }
+.emerg-cta-secondary { font-size: 13px; color: #555; font-weight: 500; }
+.emerg-cta-secondary:hover { color: #000; }
+.emerg-cta-primary {
+  margin-left: auto;
+  padding: 10px 16px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .15s;
+}
+.emerg-cta-primary:hover { background: var(--dot-color); }
+
+.emergency-foot { text-align: center; margin-top: 48px; padding: 24px; background: #fff; border: 1px dashed var(--c-border); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.emerg-foot-text { font-size: 14px; color: var(--c-muted); margin-right: 8px; }
+.emerg-foot-link { background: none; border: none; padding: 0; font-size: 14px; font-weight: 600; color: #000; cursor: pointer; font-family: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 1024px) {
+  .emergency-grid { grid-template-columns: 1fr 1fr; }
+  .emergency-h2 { font-size: 44px; }
+}
+@media (max-width: 768px) {
+  .emergency-section { padding: 56px 0; }
+  .emergency-grid { grid-template-columns: 1fr; gap: 12px; }
+  .emergency-h2 { font-size: 32px; letter-spacing: -1px; }
+  .emerg-symptom { font-size: 19px; min-height: 0; }
+  .emergency-card { padding: 22px; }
+}
+</style>

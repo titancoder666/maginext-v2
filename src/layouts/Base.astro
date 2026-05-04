@@ -46,9 +46,9 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toStri
 <body>
 
 <!-- Top notification bar -->
-<div class="topbar">
-  <span><span class="dot"></span>2026 申请季正在签约 · 仅剩 <strong style="color:#000">17</strong> 个名额</span>
-  <a href="/services/">查看签约流程 →</a>
+<div class="topbar topbar-emergency">
+  <span><span class="dot dot-urgent"></span>紧急情况 · 凌晨 / 周末同样响应 · <strong style="color:#000">真人 24h 内回复</strong></span>
+  <button type="button" data-wechat-cta="topbar-emergency" class="topbar-cta">立即微信急救 →</button>
 </div>
 
 <!-- Header -->

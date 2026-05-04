@@ -84,6 +84,88 @@ export const FAQ = [
 
 export const PARTNERS = ['College Board', 'ETS', 'AICE', 'NACAC', 'IECA', 'EducationUSA'];
 
+// 6 急救场景 — 首页 EmergencyGrid 模块的真实数据源
+// caseCount: 历史 case 数（业主可改为真实台账数据）
+// responseTime: 承诺响应窗口（不要写"X 小时内必回"，要写"X 小时内 Y 动作"）
+// dotColor: 紧急红 / 移民紫 / 申请蓝
+export const EMERGENCY_SCENARIOS = [
+  {
+    id: 'sevis-i20',
+    type: 'SEVIS / I-20 失效',
+    dotColor: '#dc2626',
+    symptom: '学校把 SEVIS 关了？你有 15 天窗口期。',
+    responseTime: '24h 内律师介入',
+    caseCount: '50+',
+    avgClose: '约 18 天',
+    href: '/resources/expelled-7-days/',
+    cta: 'article-emergency-sevis',
+  },
+  {
+    id: 'academic-appeal',
+    type: '学术 dismissal / suspend',
+    dotColor: '#dc2626',
+    symptom: 'GPA 滑坡或学术诚信被指控？',
+    responseTime: '当晚响应 + 申诉模板',
+    caseCount: '80+',
+    avgClose: '约 21 天',
+    href: '/services/academic-appeal/',
+    cta: 'service-emergency-appeal',
+  },
+  {
+    id: 'rfe',
+    type: 'OPT / H-1B RFE',
+    dotColor: '#7c3aed',
+    symptom: 'RFE notice 下来了？87 天倒计时已开始。',
+    responseTime: '3 天内出 response 大纲',
+    caseCount: '40+',
+    avgClose: '约 60 天',
+    href: '/resources/rfe-response/',
+    cta: 'article-emergency-rfe',
+  },
+  {
+    id: 'urgent-transfer',
+    type: '紧急转学（CC / Day 1 CPT）',
+    dotColor: '#7c3aed',
+    symptom: '原校念不下去？保 F-1 不断档。',
+    responseTime: '48h 内 transfer-in 校方对接',
+    caseCount: '120+',
+    avgClose: '约 14 天',
+    href: '/services/urgent-transfer/',
+    cta: 'service-emergency-transfer',
+  },
+  {
+    id: 'b-to-f',
+    type: 'B 转 F 身份转换',
+    dotColor: '#2563eb',
+    symptom: '旅游签到了想转学？',
+    responseTime: '中美双时区律师对接',
+    caseCount: '30+',
+    avgClose: '约 90 天',
+    href: '/services/b-to-f/',
+    cta: 'service-emergency-btof',
+  },
+  {
+    id: 'opt-stem',
+    type: 'OPT STEM 24 月延期',
+    dotColor: '#7c3aed',
+    symptom: 'I-983 表格 + E-Verify 雇主审查。',
+    responseTime: '提前 150 天最长准备窗',
+    caseCount: '90+',
+    avgClose: '约 100 天',
+    href: '/resources/opt-stem-extension/',
+    cta: 'article-emergency-opt-stem',
+  },
+];
+
+// 5 步流程 — 首页流程透明模块
+export const PROCESS_STEPS = [
+  { num: '01', title: '免费评估', desc: '微信扫码或填表 → 30 分钟评估 → 当晚返回路径建议 + 时间窗口判断' },
+  { num: '02', title: '分流定档', desc: '律师必要场景（RFE / B-to-F / Reinstatement I-539）→ 持牌移民律师；纯学术场景（dismissal 申诉 / 紧急转学）→ 学术规划组' },
+  { num: '03', title: '签约执行', desc: '公对公转账 · 合同律所公证 · 透明定价区间 · 时间线分阶段交付' },
+  { num: '04', title: '材料 + 政策双轨', desc: 'USCIS 标准格式 evidence binder + 引用具体 8 CFR / INA / 校规依据 · 客户全程可查 status' },
+  { num: '05', title: '结案 + 跟进', desc: '正案外免费提供后续 6 个月支持（如 SEVIS 报告、I-20 转移、雇主变更等）' },
+];
+
 export const ARTICLES = [
   { slug: 'expelled-7-days', cat: '学术急救', catColor: '#dc2626',
     title: '收到学校开除信后，前 7 天必须做的 9 件事',

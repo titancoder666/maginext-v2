@@ -1,0 +1,38 @@
+---
+import { PROCESS_STEPS } from '../data/site.js';
+---
+<section class="process-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">PROCESS · 5 步全流程</div>
+      <h2 class="h2">从加微信到结案，<br/><span class="hl">每一步可见</span>。</h2>
+      <p class="sub">不当黑箱中介。每个阶段交付什么、收什么钱、走多久，签约前全部告诉你。</p>
+    </div>
+    <ol class="process-list">
+      {PROCESS_STEPS.map((s) => (
+        <li class="process-step">
+          <div class="proc-num">{s.num}</div>
+          <div class="proc-body">
+            <h3 class="proc-title">{s.title}</h3>
+            <p class="proc-desc">{s.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+.process-section { padding: 80px 0; background: #fff; }
+.process-list { list-style: none; padding: 0; margin: 48px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.process-step { display: flex; gap: 20px; padding: 24px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 14px; }
+.proc-num { font-size: 13px; font-weight: 700; color: var(--c-muted); letter-spacing: 2px; padding: 6px 10px; background: #fff; border: 1px solid var(--c-border); border-radius: 8px; align-self: flex-start; flex-shrink: 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.proc-body { flex: 1; }
+.proc-title { font-size: 18px; font-weight: 700; letter-spacing: -.3px; }
+.proc-desc { font-size: 13.5px; color: #444; line-height: 1.7; margin-top: 8px; }
+
+@media (max-width: 768px) {
+  .process-list { grid-template-columns: 1fr; gap: 10px; }
+  .process-step { padding: 18px; gap: 14px; }
+}
+</style>
