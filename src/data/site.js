@@ -5,7 +5,7 @@ export const SITE = {
   description: 'Maginex 由前 UC Berkeley 招生官与前 USCIS 签证官创办。8 年、12,000 份申请经验。不录取退全款，公对公转账。',
   url: 'https://maginext.com',
   email: 'hi@maginex.com',
-  wechat: 'Maginex6831',
+  wechat: 'livinginthepresent007s',
   whatsapp: '+1 626-949-3856',
   phone: '+1 626-949-3856',
   phones: {

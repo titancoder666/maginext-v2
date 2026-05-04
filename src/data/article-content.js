@@ -232,7 +232,7 @@ ${[
 
 <p>CC 转 UC 是一条<strong>有明确游戏规则的路径</strong>。你的 GPA 现在是多少不重要，重要的是你接下来 24 个月的具体动作。</p>
 
-<p>如果你想直接和我们的转学组聊聊你现在的具体情况——免费 30 分钟评估永远开放。<strong>微信扫码加 Maginex6831</strong>，写一句"想聊 CC 转 UC + 你目前 GPA 区间"，会优先安排。</p>
+<p>如果你想直接和我们的转学组聊聊你现在的具体情况——免费 30 分钟评估永远开放。<strong>页面任意"微信咨询"按钮扫码即加</strong>，写一句"想聊 CC 转 UC + 你目前 GPA 区间"，会优先安排。</p>
 
 <p style="font-size:12px;color:#999;margin-top:32px"><em>本文数据来源：UC Office of the President 2024 transfer admit data; UC Berkeley / UCLA Transfer Center 公开材料; California Community Colleges Chancellor's Office 公开报告; ASSIST.org articulation database。案例已脱敏处理 — 学生姓名、原校均已修改。</em></p>
 `,
@@ -396,7 +396,7 @@ ${[
 
 <p>RFE 是 USCIS 审查流程的一部分，不是终点。<strong>83.7%</strong> 是这个游戏的基础胜率——只要你按标准流程回应。</p>
 
-<p>如果你刚收到 RFE 不确定属于哪一类、要不要律师，<strong>免费 30 分钟评估永远开放</strong>。微信扫码加 <strong>Maginex6831</strong>，写一句"想聊 RFE + 你的申请类型（F-1/OPT/H-1B）"，会优先安排。</p>
+<p>如果你刚收到 RFE 不确定属于哪一类、要不要律师，<strong>免费 30 分钟评估永远开放</strong>。<strong>页面任意"微信咨询"按钮扫码即加</strong>，写一句"想聊 RFE + 你的申请类型（F-1/OPT/H-1B）"，会优先安排。</p>
 
 <p style="font-size:12px;color:#999;margin-top:32px"><em>本文数据来源：USCIS Office of Performance &amp; Quality FY2023 Quarterly Data; USCIS Policy Manual Volume 1 (Adjudication Standards); 8 CFR 214.2(f) (F-1 regulations); AILA Practice Pointer (RFE Response Best Practices)。案例已脱敏处理 — 学生姓名、雇主、具体专业课程编号均为示意。</em></p>
 `,
