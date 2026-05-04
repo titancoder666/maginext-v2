@@ -259,7 +259,7 @@ export const PROCESS_STEPS = [
 ];
 
 export const ARTICLES = [
-  { slug: 'expelled-7-days', cat: '学术急救', catColor: '#dc2626',
+  { slug: 'expelled-7-days', cat: '学术急救', catColor: '#dc2626', emergency: true,
     title: '收到学校开除信后，前 7 天必须做的 9 件事',
     excerpt: '收到 dismissal letter 不等于身份立即失效。你有一个 15 天的关键窗口期 — 这篇是前 USCIS 签证官给的步骤清单。',
     author: 'Michael R. · 前 USCIS 资深审查官', date: '2026.04.18', readTime: '12 分钟', views: '23,481',
@@ -271,7 +271,7 @@ export const ARTICLES = [
     author: 'Maginex 编辑部 · 转学组', date: '2026.04.10', readTime: '15 分钟', views: '41,209',
     featured: true,
     keywords: ['GPA 太低 转学', 'CC 转 UC', '美本低 GPA 救援', 'Community College 转 UC Berkeley', 'IGETC TAG'] },
-  { slug: 'rfe-response', cat: '签证身份', catColor: '#7c3aed',
+  { slug: 'rfe-response', cat: '签证身份', catColor: '#7c3aed', emergency: true,
     title: '收到 RFE 千万别慌：3 天内的标准应对流程',
     excerpt: 'USCIS 公布的数据：RFE 在合理应对下通过率 84%。但很多人 3 天内做错的事，会让这个数字归零。',
     author: 'Maginex 编辑部 · 移民法组', date: '2026.04.05', readTime: '14 分钟', views: '12,847',
@@ -281,7 +281,7 @@ export const ARTICLES = [
     excerpt: 'DHS 公布的 STEM Designated List 已更新到 2024 修订版，新增 8 个专业代码。这篇是从材料、雇主资质到 1-983 表的完整流程图。',
     author: 'Maginex 编辑部 · 移民法组', date: '2026.03.28', readTime: '18 分钟', views: '38,572',
     keywords: ['OPT STEM 延期', 'STEM extension', 'I-983 表格', 'STEM Designated Degree Program List', 'E-Verify 雇主', '24 月 OPT'] },
-  { slug: 'suspended-appeal', cat: '学术急救', catColor: '#dc2626',
+  { slug: 'suspended-appeal', cat: '学术急救', catColor: '#dc2626', emergency: true,
     title: '被 Suspend 后，申诉信怎么写才能成功？(附模板)',
     excerpt: '我们整理了过去 3 年成功申诉的 47 封信，提炼出 5 个共性结构。',
     author: 'Emily Wang · 资深文书导师', date: '2026.03.20', readTime: '14 分钟', views: '19,283',
@@ -291,7 +291,7 @@ export const ARTICLES = [
     excerpt: '我们 2025 年签约的 6 位"高三决定派"中，4 位录取了 Top 30。这是他们做对的事。',
     author: 'Dr. Sarah Chen', date: '2026.03.12', readTime: '22 分钟', views: '67,491',
     keywords: ['高三决定留学', '美本临时申请', '速申 Top 30'] },
-  { slug: 'i20-transfer', cat: '签证身份', catColor: '#7c3aed',
+  { slug: 'i20-transfer', cat: '签证身份', catColor: '#7c3aed', emergency: true,
     title: 'I-20 转学不会 SEVIS 失效：转学时间线详解',
     excerpt: '从填 transfer-in form 到拿到新 I-20，每一步的时间窗口和坑。',
     author: 'Michael R.', date: '2026.02.28', readTime: '11 分钟', views: '8,142',
@@ -310,7 +310,8 @@ export const ARTICLES = [
 
 export const CATEGORIES = [
   { id: 'all', name: '全部文章' },
-  { id: '学术急救', name: '🚨 学术急救', color: '#dc2626' },
+  { id: '__emergency__', name: '🚨 全部急救', color: '#dc2626' },
+  { id: '学术急救', name: '学术急救', color: '#dc2626' },
   { id: '签证身份', name: '签证 / 身份', color: '#7c3aed' },
   { id: '转学', name: '转学', color: '#2563eb' },
   { id: '美本申请', name: '美本申请', color: '#0891b2' },

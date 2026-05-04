@@ -78,9 +78,12 @@ const featured = ARTICLES.filter(a => a.featured);
       </div>
       <div class="art-list">
         {ARTICLES.map(a => (
-          <a href={`/resources/${a.slug}/`} class="art-item" data-cat={a.catKey}>
+          <a href={`/resources/${a.slug}/`} class="art-item" data-cat={a.catKey} data-emergency={a.emergency ? 'true' : 'false'}>
             <div style="flex:1">
-              <span class="cat-badge-sm" style={`color:${a.catColor};border-color:${a.catColor}`}>{a.cat}</span>
+              <span class="cat-badge-sm" style={`color:${a.catColor};border-color:${a.catColor}`}>
+                {a.emergency && <span style="color:#dc2626;margin-right:4px">●</span>}
+                {a.cat}
+              </span>
               <h3 class="art-title">{a.title}</h3>
               <p class="art-excerpt">{a.excerpt}</p>
               <div class="art-meta">
@@ -170,7 +173,11 @@ tabs.forEach(t => t.addEventListener('click', () => {
   t.classList.add('active');
   const cat = t.getAttribute('data-cat');
   items.forEach(i => {
-    i.style.display = (cat === 'all' || i.getAttribute('data-cat') === cat) ? '' : 'none';
+    let visible;
+    if (cat === 'all') visible = true;
+    else if (cat === '__emergency__') visible = i.getAttribute('data-emergency') === 'true';
+    else visible = i.getAttribute('data-cat') === cat;
+    i.style.display = visible ? '' : 'none';
   });
 }));
 </script>
