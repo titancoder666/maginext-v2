@@ -62,13 +62,105 @@ export const CASES = [
   { initials: 'F', surname: '冯同学', school: 'UPenn', major: '应用数学', year: '2024', gpa: '3.94', sat: '1550', from: 'Andover', quote: '美高 + 留学规划都在 Maginex。', bg: '#2d3748' },
 ];
 
+// 9 服务 · 分两层
+// Tier 1（紧急急救）= 高意图、短决策周期、律师驱动
+// Tier 2（常规咨询）= 长决策周期、规划驱动
+// pricingTier: $（5k 以下） / $$（5-15k） / $$$（15k 以上）
+//   抽象档位，签约前提供具体报价。具体数字业主可自定义到台账。
 export const SERVICES = [
-  { id: 'undergrad', title: '美本申请', sub: 'Top 30 / 藤校规划', from: '高一开始最佳' },
-  { id: 'master', title: '美硕申请', sub: 'CS / 商科 / 工程 / 文社科', from: '大三启动' },
-  { id: 'phd', title: '博士申请', sub: '套磁 / 科研 / RP 全程', from: '需 6–12 个月' },
-  { id: 'transfer', title: '美本转学', sub: 'CC 转 UC / 校际转学', from: '在读学生' },
-  { id: 'visa', title: '签证 / 身份', sub: 'F-1 / OPT / H-1B / 绿卡', from: '前移民官把关' },
-  { id: 'highschool', title: '美高申请', sub: '寄宿 / 走读 / SSAT', from: '初二起规划' },
+  // Tier 1 · 紧急急救
+  {
+    id: 'sevis-i20', tier: 'emergency', urgency: 'critical',
+    title: 'SEVIS / I-20 急救',
+    sub: 'Reinstatement (I-539) + 紧急转学 + DSO 协调',
+    scope: 'SEVIS 已 terminated 或即将 terminate，需在 15 天 grace 窗口内做出选择',
+    pricingTier: '$$',
+    timeline: '14-30 天',
+    from: '24h 内启动',
+    detailHref: '/resources/expelled-7-days/',
+  },
+  {
+    id: 'academic-appeal', tier: 'emergency', urgency: 'critical',
+    title: '学术 dismissal 申诉',
+    sub: 'Academic Probation / Suspension / Dismissal 应对',
+    scope: 'GPA 滑坡触发警告、被指控 honor code 违规、收到 dismissal letter',
+    pricingTier: '$$',
+    timeline: '14-21 天',
+    from: '当晚响应',
+    detailHref: '/services/academic-appeal/',
+  },
+  {
+    id: 'rfe-response', tier: 'emergency', urgency: 'high',
+    title: 'RFE 应对（F-1 / OPT / H-1B）',
+    sub: 'Type A 文件 / Type B 资格 / Type C 意图三类 RFE',
+    scope: 'USCIS 已发 RFE notice，87 天 response 倒计时已开始',
+    pricingTier: '$',
+    timeline: '30-60 天',
+    from: '3 天内出大纲',
+    detailHref: '/resources/rfe-response/',
+  },
+  {
+    id: 'urgent-transfer', tier: 'emergency', urgency: 'high',
+    title: '紧急转学（CC / Day 1 CPT）',
+    sub: '保 F-1 不断档 + Foothill / De Anza / Day 1 CPT 学校 list',
+    scope: '原校学不下去（dismissal / 财力 / 项目不合适），需保 F-1 status',
+    pricingTier: '$$',
+    timeline: '14-30 天',
+    from: '48h 内 transfer-in',
+    detailHref: '/services/urgent-transfer/',
+  },
+  {
+    id: 'b-to-f', tier: 'emergency', urgency: 'high',
+    title: 'B 转 F 身份转换',
+    sub: 'Change of Status (I-539) + preconceived intent 应对',
+    scope: '持 B-1/B-2 旅游签入境后想转 F-1 学习身份',
+    pricingTier: '$$',
+    timeline: '60-150 天',
+    from: '律师评估优先',
+    detailHref: '/services/b-to-f/',
+  },
+
+  // Tier 2 · 常规咨询
+  {
+    id: 'opt-stem', tier: 'standard', urgency: 'medium',
+    title: 'OPT STEM 24 月延期',
+    sub: 'I-983 撰写 + E-Verify 雇主审查 + cap-gap 衔接',
+    scope: 'OPT 即将到期，专业在 STEM 列表，雇主在 E-Verify',
+    pricingTier: '$',
+    timeline: '90-150 天',
+    from: 'OPT 到期前 90 天',
+    detailHref: '/resources/opt-stem-extension/',
+  },
+  {
+    id: 'undergrad', tier: 'standard', urgency: 'planning',
+    title: '美本申请',
+    sub: 'Top 30 / 藤校 / UC 系统全周期规划',
+    scope: '高一至高三在读，目标美国本科',
+    pricingTier: '$$$',
+    timeline: '12-24 个月',
+    from: '高一开始最佳',
+    detailHref: '/services/#undergrad',
+  },
+  {
+    id: 'master', tier: 'standard', urgency: 'planning',
+    title: '美硕申请',
+    sub: 'CS / 商科 / 工程 / 文社科 选校 + 文书 + 面试',
+    scope: '大三 / 大四 / 已毕业，目标美国硕士',
+    pricingTier: '$$$',
+    timeline: '6-12 个月',
+    from: '大三启动',
+    detailHref: '/services/#master',
+  },
+  {
+    id: 'transfer-planning', tier: 'standard', urgency: 'planning',
+    title: '转学规划（非紧急）',
+    sub: 'CC → UC 2 年 IGETC + TAG 布局，校际转学路径',
+    scope: '当前在读，主动规划转入更好学校（非危机驱动）',
+    pricingTier: '$$',
+    timeline: '12-24 个月',
+    from: '入读 CC 后第 1 学期',
+    detailHref: '/resources/gpa-low-transfer/',
+  },
 ];
 
 export const FAQ = [

@@ -1,41 +1,198 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SERVICES } from '../data/site.js';
+
+const tier1 = SERVICES.filter(s => s.tier === 'emergency');
+const tier2 = SERVICES.filter(s => s.tier === 'standard');
+
+const pricingMap = {
+  '$': '基础价位 · 5,000 美元以下',
+  '$$': '中段价位 · 5,000–15,000 美元区间',
+  '$$$': '高段价位 · 15,000 美元以上（含申请季全周期）',
+};
 ---
-<Base title="服务项目 · Maginex" description="美本 / 美硕 / 博士 / 转学 / 签证 — 全周期服务">
-  <section class="hero">
-    <div class="container" style="text-align:center;max-width:900px">
-      <div class="eyebrow">SERVICES · 服务项目</div>
-      <h1 style="font-size:72px;font-weight:700;letter-spacing:-2.5px;line-height:1.05;margin-top:14px">从美高到博士，<br/><span class="hl">全周期</span>。</h1>
-      <p style="font-size:18px;color:#444;line-height:1.7;margin-top:24px">每一项服务都有标准化流程、固定价格、写在合同里的承诺。</p>
+<Base title="服务项目 · Maginex" description="5 类身份急救（Reinstatement / 学术申诉 / RFE / 紧急转学 / B-to-F）+ 4 类常规咨询。每项服务标明法律依据 / 时间窗口 / 价位段。">
+  <section class="serv-hero">
+    <div class="container" style="text-align:center;max-width:880px">
+      <div class="eyebrow">SERVICES · 9 项服务，主次清晰</div>
+      <h1 class="serv-h1">先做<span class="hl">急救</span>，<br/>再谈<span class="hl">规划</span>。</h1>
+      <p class="serv-lede">5 类身份与学术急救服务（律师驱动），4 类常规留学咨询服务（规划驱动）。每一项都标明：法律依据 / 时间窗口 / 价位段 / 我们做什么 / 我们不做什么。</p>
     </div>
   </section>
+
   <section class="section">
     <div class="container">
-      <div class="serv-list">
-        {SERVICES.map((s, i) => (
-          <article id={s.id} class="card serv-row">
+      <div class="tier-head">
+        <div class="tier-tag tier-tag-urgent"><span class="urgent-dot"></span> Tier 1 · 紧急急救</div>
+        <h2 class="tier-h2">5 类急救场景，<span class="hl">律师驱动</span>。</h2>
+        <p class="tier-sub">这 5 类问题都有具体的法律时间窗口（15 天 / 87 天 / 60 天等）。错过窗口 = 自动 deny。第一步永远是免费 30 分钟评估，判断你的窗口期还剩多少。</p>
+      </div>
+      <div class="serv-grid">
+        {tier1.map((s, i) => (
+          <article id={s.id} class="serv-card serv-card-urgent">
             <div class="serv-num">0{i+1}</div>
-            <div style="flex:1">
-              <h2 style="font-size:32px;font-weight:700;letter-spacing:-.8px">{s.title}</h2>
-              <div style="font-size:16px;color:var(--c-muted);margin-top:8px">{s.sub}</div>
-              <div style="font-size:13px;color:#999;margin-top:16px">建议开始时间：{s.from}</div>
-              <a href="/contact/" class="btn btn-primary" style="margin-top:24px">咨询此服务 →</a>
+            <div class="serv-tier-badge"><span class="urgent-dot"></span> 紧急</div>
+            <h3 class="serv-title">{s.title}</h3>
+            <p class="serv-sub">{s.sub}</p>
+
+            <div class="serv-meta">
+              <div class="serv-meta-row"><span class="meta-k">适用</span><span class="meta-v">{s.scope}</span></div>
+              <div class="serv-meta-row"><span class="meta-k">响应</span><span class="meta-v">{s.from}</span></div>
+              <div class="serv-meta-row"><span class="meta-k">时间线</span><span class="meta-v">{s.timeline}</span></div>
+              <div class="serv-meta-row"><span class="meta-k">价位段</span><span class="meta-v">{s.pricingTier} · {pricingMap[s.pricingTier]}</span></div>
+            </div>
+
+            <div class="serv-cta-row">
+              <a href={s.detailHref} class="serv-cta-secondary">详细流程 →</a>
+              <button type="button" data-wechat-cta={`service-tier1-${s.id}`} class="serv-cta-primary">立即微信咨询 →</button>
             </div>
           </article>
         ))}
       </div>
     </div>
   </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="tier-head">
+        <div class="tier-tag tier-tag-standard">Tier 2 · 常规咨询</div>
+        <h2 class="tier-h2">4 类规划服务，<span class="hl">长决策周期</span>。</h2>
+        <p class="tier-sub">非危机驱动的留学路径规划。决策周期长（3-24 个月），定价高，签约前会反复评估。不会催签约，不录取退全款（条款已过律所公证）。</p>
+      </div>
+      <div class="serv-grid">
+        {tier2.map((s, i) => (
+          <article id={s.id} class="serv-card">
+            <div class="serv-num">0{tier1.length + i + 1}</div>
+            <h3 class="serv-title">{s.title}</h3>
+            <p class="serv-sub">{s.sub}</p>
+
+            <div class="serv-meta">
+              <div class="serv-meta-row"><span class="meta-k">适用</span><span class="meta-v">{s.scope}</span></div>
+              <div class="serv-meta-row"><span class="meta-k">建议启动</span><span class="meta-v">{s.from}</span></div>
+              <div class="serv-meta-row"><span class="meta-k">时间线</span><span class="meta-v">{s.timeline}</span></div>
+              <div class="serv-meta-row"><span class="meta-k">价位段</span><span class="meta-v">{s.pricingTier} · {pricingMap[s.pricingTier]}</span></div>
+            </div>
+
+            <div class="serv-cta-row">
+              <a href={s.detailHref} class="serv-cta-secondary">了解详情 →</a>
+              <button type="button" data-wechat-cta={`service-tier2-${s.id}`} class="serv-cta-primary">微信咨询 →</button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:880px">
+      <div class="serv-foot-card">
+        <div class="eyebrow">PRICING POLICY · 关于定价</div>
+        <h3 style="font-size:28px;font-weight:700;letter-spacing:-.5px;margin-top:14px">为什么不在网站上写具体数字？</h3>
+        <p style="font-size:15px;color:#444;line-height:1.8;margin-top:18px">每一个 case 的复杂度差距巨大——<strong>一个 RFE Type A 文件类</strong>和<strong>一个 H-1B specialty occupation Type C 意图类</strong>，工时差 5-10 倍。固定标价不诚实。</p>
+        <p style="font-size:15px;color:#444;line-height:1.8;margin-top:14px">所以我们只在网站上标"价位段"（$ / $$ / $$$）作为粗略参考，<strong>具体报价在免费 30 分钟评估后给出</strong>，并附文字版费用拆解（律师费 / 顾问费 / 文件成本 / 第三方费用）。</p>
+        <p style="font-size:15px;color:#444;line-height:1.8;margin-top:14px"><strong>始终不收的</strong>：评估费、首次咨询费、文书改稿费、合同变更费、退款手续费。</p>
+        <p style="font-size:15px;color:#444;line-height:1.8;margin-top:14px"><strong>退费规则</strong>：</p>
+        <ul style="font-size:15px;color:#444;line-height:1.9;padding-left:24px;margin-top:8px">
+          <li>申请类（Tier 2）：未达合同约定录取目标 → <strong>全额退款</strong>，公对公转账原路返回</li>
+          <li>急救类（Tier 1）：USCIS / 校方驳回未通过 → <strong>退服务费</strong>（律师 file fee 等第三方费用按规定不可退）</li>
+          <li>双轨条款已过北京 + 加州两地律所公证</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta section-dark">
+    <div class="container">
+      <div class="final-grid">
+        <div>
+          <div class="eyebrow" style="color:rgba(255,255,255,.5)">START · 第一步</div>
+          <h2 class="h2-huge">免费<br/>30 分钟<br/><span class="hl">评估</span>。</h2>
+          <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:24px;max-width:480px">把你的具体情况发给我们（dismissal letter / RFE notice / 当前 GPA / I-20 状态等），我们当晚返回路径建议 + 时间窗口判断。0 销售骚扰，0 信息转卖。</p>
+          <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap">
+            <button type="button" data-wechat-cta="services-final" class="btn btn-primary btn-lg" style="font-size:15px">立即微信咨询 →</button>
+            <a href="/contact/" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.2);font-size:15px">填表预约</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>
+
 <style>
-.hero { padding: 88px 0 56px; }
-.serv-list { display: flex; flex-direction: column; gap: 16px; }
-.serv-row { display: flex; gap: 32px; padding: 40px; }
-.serv-num { font-size: 64px; font-weight: 700; color: var(--c-faint); letter-spacing: -2px; line-height: 1; }
+.serv-hero { padding: 96px 0 56px; background: linear-gradient(180deg, #fff, #fafafa); }
+.serv-h1 { font-size: 72px; font-weight: 700; letter-spacing: -2.5px; line-height: 1.05; margin-top: 18px; }
+.serv-lede { font-size: 17px; color: #444; line-height: 1.7; margin-top: 26px; }
+
+.tier-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+.tier-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 99px; font-size: 12px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; }
+.tier-tag-urgent { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+.tier-tag-standard { background: var(--c-soft-2); border: 1px solid var(--c-border); color: var(--c-muted); }
+.urgent-dot { width: 8px; height: 8px; border-radius: 99px; background: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.15); animation: tier-pulse 2s ease-in-out infinite; display: inline-block; }
+@keyframes tier-pulse { 0%, 100% { box-shadow: 0 0 0 3px rgba(220,38,38,.15); } 50% { box-shadow: 0 0 0 6px rgba(220,38,38,.05); } }
+.tier-h2 { font-size: 44px; font-weight: 700; letter-spacing: -1.2px; line-height: 1.15; margin-top: 18px; }
+.tier-sub { font-size: 15px; color: var(--c-muted); line-height: 1.7; margin-top: 16px; }
+
+.serv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.serv-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: 18px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.serv-card-urgent { border-color: #fecaca; }
+.serv-card-urgent:hover { border-color: #dc2626; }
+
+.serv-num { font-size: 14px; font-weight: 700; color: var(--c-faint); letter-spacing: 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.serv-tier-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #fef2f2; border-radius: 99px; font-size: 11px; font-weight: 600; color: #991b1b; position: absolute; top: 24px; right: 24px; }
+
+.serv-title { font-size: 26px; font-weight: 700; letter-spacing: -.6px; margin-top: 14px; line-height: 1.25; }
+.serv-sub { font-size: 14px; color: var(--c-muted); margin-top: 8px; line-height: 1.6; }
+
+.serv-meta { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; padding: 16px; background: var(--c-soft); border-radius: 10px; }
+.serv-meta-row { display: flex; gap: 14px; font-size: 13px; line-height: 1.6; }
+.meta-k { color: var(--c-faint); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; flex-shrink: 0; min-width: 60px; padding-top: 2px; }
+.meta-v { color: #111; flex: 1; }
+
+.serv-cta-row { display: flex; gap: 12px; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--c-border); align-items: center; }
+.serv-cta-secondary { font-size: 13px; color: #555; font-weight: 500; }
+.serv-cta-primary {
+  margin-left: auto;
+  padding: 10px 18px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+.serv-card-urgent .serv-cta-primary { background: #dc2626; }
+.serv-card-urgent .serv-cta-primary:hover { background: #b91c1c; }
+
+.serv-foot-card { padding: 40px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 20px; }
+
+.final-cta { padding: 96px 0; }
+.final-grid { display: flex; align-items: center; justify-content: center; }
+.h2-huge { font-size: 76px; font-weight: 700; letter-spacing: -2.5px; line-height: 1.05; margin-top: 14px; }
+
+@media (max-width: 1024px) {
+  .serv-h1 { font-size: 52px; letter-spacing: -1.5px; }
+  .tier-h2 { font-size: 34px; }
+  .serv-grid { grid-template-columns: 1fr; }
+  .h2-huge { font-size: 56px; }
+}
 @media (max-width: 768px) {
-  .hero h1 { font-size: 40px !important; }
-  .serv-row { padding: 24px; gap: 16px; flex-direction: column; }
-  .serv-num { font-size: 32px; }
+  .serv-hero { padding: 56px 0 32px; }
+  .serv-h1 { font-size: 36px; letter-spacing: -1px; }
+  .tier-h2 { font-size: 26px; letter-spacing: -.5px; }
+  .serv-tier-badge { position: static; margin-top: 10px; align-self: flex-start; }
+  .serv-card { padding: 24px; }
+  .serv-foot-card { padding: 24px; }
+  .h2-huge { font-size: 40px; letter-spacing: -1px; }
 }
 </style>

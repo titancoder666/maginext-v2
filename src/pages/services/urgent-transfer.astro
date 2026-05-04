@@ -1,0 +1,214 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "紧急转学和正常转学有什么区别？", "acceptedAnswer": { "@type": "Answer", "text": "正常转学是规划性的——你提前 6-12 个月研究目标校、做 IGETC、写 PIQ，进入下一学年。紧急转学是 status 保护性的——你有 15 天 grace 窗口必须找到新校接收并完成 SEVIS transfer-in，否则 F-1 status 失效。两者目标完全不同：正常转学冲名校，紧急转学保 status 不断档。" } },
+    { "@type": "Question", "name": "Day 1 CPT 是什么？合法吗？", "acceptedAnswer": { "@type": "Answer", "text": "Day 1 CPT 是部分 SEVP 认证学校提供的项目——学生入学第一天就有 CPT 工作授权（无需先完成两学期）。USCIS 不禁止，但这些项目近年受到审查（Tampa University, Westcliff University 等案例）。合规的 Day 1 CPT 必须是真实学位项目（不是空挂学籍），课程出勤要求严格。如果学校只看重你交学费、不看你上课，是 high-risk 项目。" } },
+    { "@type": "Question", "name": "Community College 是降级吗？", "acceptedAnswer": { "@type": "Answer", "text": "不是。CC → UC 是加州 transfer 主路径——UC 系统每年录取的 transfer 学生 92% 来自 CC（UC OP 2024 数据）。Foothill / De Anza / Pasadena CC 等强校的 UC transfer 录取率高于 freshman direct admit。详见《CC 转 UC》文章。" } },
+    { "@type": "Question", "name": "原校 dismissal 后还能转去 4-year university 吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以但路径受限——多数 4-year 大学要求 transfer 学生 transcript 上无 academic dismissal 记录。最稳的路径：先 CC 1-2 学期 GPA 重置 → 再以 transfer 身份申 4-year。直接美本→美本紧急转学，能接收 dismissal 学生的学校通常排名较低，且要求你提供 dismissal 申诉记录。" } },
+  ],
+};
+
+const day1CPTSchools = [
+  { name: 'Trine University', state: 'IN', notes: 'MS / MBA 项目，洛杉矶 + 印第安纳分校' },
+  { name: 'Campbellsville University', state: 'KY', notes: 'MBA / MS Computer Science，全美多校区' },
+  { name: 'Sofia University', state: 'CA', notes: 'MA Counseling Psychology / MBA' },
+  { name: 'Westcliff University', state: 'CA', notes: 'MBA / Education / Business（近年受审查）' },
+  { name: 'Harrisburg University', state: 'PA', notes: 'MS Information Systems / Analytics' },
+  { name: 'New England College', state: 'NH', notes: 'MS Healthcare Admin / MBA' },
+];
+---
+<Base title="紧急转学服务（CC / Day 1 CPT） · Maginex" description="保 F-1 不断档的紧急转学。15 天 SEVIS grace 窗口 / 14-30 天 transfer-in 完成 / Foothill / De Anza / Day 1 CPT 学校 list 公开。">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
+
+  <section class="serv-page-hero">
+    <div class="container" style="max-width:880px">
+      <div class="crumb"><a href="/">首页</a> / <a href="/services/">服务</a> / <span>紧急转学</span></div>
+      <div class="serv-hero-tag"><span class="urgent-dot"></span> Tier 1 紧急 · 48h 内 transfer-in 启动</div>
+      <h1 class="serv-hero-h1">原校念不下去？<br/>F-1 status<span class="hl">不能断</span>。</h1>
+      <p class="serv-hero-lede">紧急转学和正常转学是两件事。前者目标是<strong>保 F-1 不断档</strong>（15 天 SEVIS grace 窗口决定一切）。后者是冲名校。如果你已收 dismissal / 学校念不下去 / 财务出问题，第一步永远是先稳住身份——14-30 天内完成 transfer-in 比"找好学校"重要得多。</p>
+      <div class="serv-hero-ctas">
+        <button type="button" data-wechat-cta="urgent-transfer-hero" class="btn btn-primary btn-lg" style="background:#dc2626"><span style="margin-right:8px">●</span>立即微信咨询 →</button>
+        <a href="/contact/" class="btn btn-ghost btn-lg">填表预约（30 分钟评估）</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">SCOPE · 适用场景</div>
+      <h2 class="sp-h2">这 4 类情况，我们处理过：</h2>
+      <div class="sp-scope-grid">
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">01</div>
+          <div class="sp-scope-title">Academic dismissal 后保 F-1</div>
+          <div class="sp-scope-desc">原校已 dismissed / suspended，需在 SEVIS 15 天 grace 内被新校接收 + transfer-in</div>
+        </div>
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">02</div>
+          <div class="sp-scope-title">财务断流，原校学费付不起</div>
+          <div class="sp-scope-desc">家庭财务突变 / 美国汇款受限，需转入更低成本的 CC 或公校继续 F-1</div>
+        </div>
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">03</div>
+          <div class="sp-scope-title">项目不合适 / 想换专业</div>
+          <div class="sp-scope-desc">原校项目质量差、原专业不适合、想从文转工 / 商转 CS 等大方向调整</div>
+        </div>
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">04</div>
+          <div class="sp-scope-title">OPT 后想继续读，需 Day 1 CPT 衔接</div>
+          <div class="sp-scope-desc">OPT 即将到期 + H-1B 未中签 + 想继续在美工作，通过 Day 1 CPT 项目延续合法工作授权</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">WHAT WE DO · 我们做什么</div>
+      <h2 class="sp-h2">从选校到 SEVIS 全闭环：</h2>
+      <ol class="sp-do-list">
+        <li><strong>新校选校（48h 内出 list）</strong>：根据你的 SEVIS 状态、GPA、专业、地理偏好，列 3-5 所"能接收紧急 transfer 且 transfer-in 流程快"的学校。包括加州 CC top 10（Foothill / De Anza / SMC / Pasadena CC 等），以及合规的 Day 1 CPT 学校</li>
+        <li><strong>新校 admission 申请</strong>：紧急时间表下的 application 提交（多数 CC 5-7 个工作日 admit，部分 4-year 紧急 review 14-21 天）</li>
+        <li><strong>原校 transfer-out form 协调</strong>：与原校 DSO 沟通 SEVIS release date 设定（这是原校 DSO 的权限，不是 USCIS）。<strong>谈得好可以拖 5-10 天 release date</strong>，给你更长 transfer 窗口</li>
+        <li><strong>Transfer-in form 提交 + 新 I-20 出具</strong>：新校 DSO 收到 transfer-in form + 学术录取后会签发新 I-20</li>
+        <li><strong>SEVIS transfer 时间线管理</strong>：旧 SEVIS record 状态变更为 "Transferred Out" + 新 SEVIS record 状态 "Initial / Active"——这一段时间窗口必须严丝合缝</li>
+        <li><strong>课程衔接策略</strong>：哪些原校学分可以 transfer credit，哪些需重修。ASSIST.org（CA 内）+ 各校 articulation database 查证</li>
+        <li><strong>跨州 + 国际 logistics</strong>：搬家 / 住宿 / 转户口 / 银行 / 保险等转校配套</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">WHAT WE DON'T DO · 我们不做什么（透明）</div>
+      <div class="sp-dont-card">
+        <ul class="sp-dont-list">
+          <li>❌ <strong>不帮你伪造 transcript / GPA</strong>——SEVIS transfer 流程中新校 DSO 会直接对接原校 records office，伪造的成绩单会被发现，触发 USCIS visa fraud finding（永久禁入美国）</li>
+          <li>❌ <strong>不推 high-risk Day 1 CPT 学校</strong>——某些 Day 1 CPT 学校近年被 ICE / SEVP 审查（如 University of Farmington 钓鱼站、部分 Tampa / Westcliff campus 政策受限）。我们只推有真实学术架构的学校</li>
+          <li>❌ <strong>不替你写"假离校原因信"</strong>——很多学生想把 dismissal 包装成"主动转学"——新校 DSO 看 transcript 一眼就知道。诚实陈述 + 转学动机 framing 才是真路径</li>
+          <li>❌ <strong>不保证 admit 到 Top 50 / UC 系统</strong>——紧急转学的核心目标是<strong>保 F-1 不断档</strong>，不是冲名校。如果你想冲 UC，第一步先去 CC，2 年后再申。详见《GPA 太低还有救吗》文章</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">LEGAL BASIS · 法律依据</div>
+      <h2 class="sp-h2">SEVIS transfer 规则与时间窗：</h2>
+      <ul class="sp-legal-list">
+        <li><strong>8 CFR 214.2(f)(8)</strong> · F-1 学生 SEVIS transfer-in 程序的核心法规。规定 release date / transfer-in form / 新 I-20 出具的时序</li>
+        <li><strong>USCIS Policy Manual Volume 2, Part F, Chapter 5</strong> · F-1 nonimmigrant students 的具体审批与维持 status 标准</li>
+        <li><strong>SEVP Policy Guidance 1004-04</strong> · 关于 F-1 transfer "Reasonable timeframe" 的官方解读（一般 ≤ 5 个月）</li>
+        <li><strong>8 CFR 214.2(f)(10)(i)</strong> · CPT 工作授权的 12-month full-time enrollment 标准（Day 1 CPT 项目须有合规架构绕过此条）</li>
+        <li><strong>ICE SEVP Field Representative 审查指南</strong> · 公开 PDF，列明 SEVP 现场访校时的合规检查清单</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">DAY 1 CPT · 部分公开学校列表</div>
+      <p style="font-size:14px;color:#666;line-height:1.7;margin-top:14px">以下学校公开提供 Day 1 CPT 项目（信息来源：各校 SEVP 注册数据 + 学校官网）。每所合规度不同，签约前必须 case-by-case 评估。</p>
+      <div class="sp-school-grid">
+        {day1CPTSchools.map(s => (
+          <div class="sp-school-card">
+            <div class="sp-school-name">{s.name}</div>
+            <div class="sp-school-state">{s.state}</div>
+            <div class="sp-school-notes">{s.notes}</div>
+          </div>
+        ))}
+      </div>
+      <p style="font-size:13px;color:#999;margin-top:16px;font-style:italic">列表非完整，且不构成推荐。具体学校适配需评估你的当前身份、专业、长期 H-1B 计划等多因素。</p>
+    </div>
+  </section>
+
+  <section class="serv-page-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">CASE · 实战案例</div>
+      <div class="case-box">
+        <div class="case-head">
+          <div class="case-init">W</div>
+          <div>
+            <div style="font-size:14px;font-weight:600">王同学 · UCSD 紧急转学 · 2024</div>
+            <div style="font-size:12px;color:#999;margin-top:2px">原校：某加州私校 · GPA 1.9 收 dismissal letter</div>
+          </div>
+        </div>
+        <p><strong>Day 0</strong>：王同学凌晨 3 点收到 dismissal letter。SEVIS 15 天 grace 倒计时启动。</p>
+        <p><strong>Day 1</strong>：免费 30 分钟评估。我们判断：申诉成功率不高（连续 2 学期 GPA &lt; 2.0），<strong>最优路径是保 F-1 → 紧急转 CC → 2 年后冲 UC</strong>。</p>
+        <p><strong>Day 2</strong>：选定 Foothill College（UCLA TAP 合作 + UC transfer rate 全 CA 第 1 + transfer-in 流程快）。</p>
+        <p><strong>Day 2-4</strong>：Foothill admission 申请提交。同时与原校 DSO 协商 SEVIS release date——成功推迟 5 天给王同学更多缓冲。</p>
+        <p><strong>Day 7</strong>：Foothill 发录取信。</p>
+        <p><strong>Day 8</strong>：transfer-in form 提交，新 I-20 出具。</p>
+        <p><strong>Day 12</strong>：SEVIS 状态从 "Transferred Out" 转为新校 "Initial"。F-1 status 无缝衔接。</p>
+        <p><strong>2024.01</strong>：王同学正式入读 Foothill。</p>
+        <p><strong>2026.03</strong>：UC Berkeley CS L&amp;S transfer admit（详见《GPA 太低还有救吗》文章李同学案例）。</p>
+        <p style="margin-top:14px;font-style:italic;color:#666">从 dismissal 到 SEVIS 重新 active：12 天。15 天 grace 窗口剩 3 天。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">PRICING · 价位段</div>
+      <h2 class="sp-h2">$$ · 5,000–15,000 美元区间</h2>
+      <p style="font-size:15px;color:#444;line-height:1.8;margin-top:18px">具体报价在 30 分钟免费评估后给出，按以下因素拆解：</p>
+      <ul style="font-size:14px;color:#444;line-height:1.9;padding-left:24px;margin-top:8px">
+        <li>转学路径（CC 转入 vs 4-year 转入 vs Day 1 CPT）</li>
+        <li>是否需要原校 SEVIS release date 协调</li>
+        <li>是否需要叠加 reinstatement (I-539) 路径</li>
+        <li>是否有跨州搬家 / 住宿协调需求</li>
+      </ul>
+      <p style="font-size:14px;color:#666;margin-top:18px"><strong>退费规则</strong>：如新校 admission 全部失败导致 SEVIS terminated → 退服务费 80%。学校 application fee / SEVIS transfer fee 等第三方费用按规定不可退。条款已过律所公证。</p>
+    </div>
+  </section>
+
+  <section class="serv-page-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">RESOURCES · 配对阅读</div>
+      <a href="/resources/expelled-7-days/" class="sp-resource-card">
+        <div style="font-size:11px;color:#999;letter-spacing:2px">学术急救 · 12 分钟阅读</div>
+        <div style="font-size:22px;font-weight:700;margin-top:10px;letter-spacing:-.4px">收到学校开除信后，前 7 天必须做的 9 件事</div>
+        <div style="font-size:14px;color:#666;margin-top:10px;line-height:1.6">15 天关键窗口期 + 紧急转学 / Reinstatement / 离境 三条路径对比。</div>
+        <div style="margin-top:14px;font-size:13px;font-weight:600">阅读全文 →</div>
+      </a>
+      <a href="/resources/gpa-low-transfer/" class="sp-resource-card" style="margin-top:14px">
+        <div style="font-size:11px;color:#999;letter-spacing:2px">转学 · 15 分钟阅读</div>
+        <div style="font-size:22px;font-weight:700;margin-top:10px;letter-spacing:-.4px">GPA 2.3 还有救吗？从 CC 到 UC 的真实路径</div>
+        <div style="font-size:14px;color:#666;margin-top:10px;line-height:1.6">UC 系统 92% transfer 录取来自 CC。IGETC + TAG + 选 CC 标准 + UC 申请季 3 个隐藏规则。</div>
+        <div style="margin-top:14px;font-size:13px;font-weight:600">阅读全文 →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="final-cta section-dark">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:center;text-align:center">
+        <div>
+          <h2 style="font-size:64px;font-weight:700;letter-spacing:-2px;line-height:1.05">SEVIS 在倒计时？<br/><span class="hl">今晚就启动。</span></h2>
+          <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:24px;max-width:560px;margin-left:auto;margin-right:auto">把 dismissal letter / SEVIS 状态截图微信发我们，48h 内出新校选校 list + transfer-in 时间线。</p>
+          <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;justify-content:center">
+            <button type="button" data-wechat-cta="urgent-transfer-final" class="btn btn-primary btn-lg" style="background:#dc2626">立即微信咨询 →</button>
+            <a href="/contact/" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.2)">填表预约</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+.sp-school-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 22px; }
+.sp-school-card { padding: 18px; background: #fff; border: 1px solid var(--c-border); border-radius: 10px; }
+.sp-school-name { font-size: 15px; font-weight: 700; letter-spacing: -.2px; }
+.sp-school-state { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--c-faint); margin-top: 4px; }
+.sp-school-notes { font-size: 12.5px; color: #555; margin-top: 8px; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .sp-school-grid { grid-template-columns: 1fr; }
+}
+</style>

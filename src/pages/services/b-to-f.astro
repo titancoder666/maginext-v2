@@ -1,0 +1,181 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "B 转 F 通过率高吗？", "acceptedAnswer": { "@type": "Answer", "text": "USCIS 不公布具体类别审批率，但 AILA 行业数据显示 B-1/B-2 → F-1 Change of Status 通过率约 55-70%。最大变量是 preconceived intent 的应对——能清晰证明 B 入境时无 F 意图、F 意图是后续合理形成的，通过率显著提高。" } },
+    { "@type": "Question", "name": "什么是 preconceived intent？", "acceptedAnswer": { "@type": "Answer", "text": "USCIS 审 Change of Status 时的核心标准——你以 B 旅游签入境时是否有「未声明的」留学意图。如果你入境时已经申请了某美校、已交了 deposit、或入境后短短几天就申请 F-1，USCIS 会推定你「用 B 签骗了入境」，进而拒 F-1 申请。这是一个 rebuttable presumption——可以用证据反驳。" } },
+    { "@type": "Question", "name": "B 转 F 期间能在美国待多久？", "acceptedAnswer": { "@type": "Answer", "text": "USCIS 收到 I-539 申请后给你 receipt notice (I-797)，从此你的 B 身份延展到 USCIS 决定为止（即「period of authorized stay」），不会因为 B 签 6 个月期限到期而 overstay。但你必须在 I-539 决定前不离境——离境 = 自动放弃 application。审批通常 3-6 个月。" } },
+    { "@type": "Question", "name": "如果 B 转 F 被拒，能怎么办？", "acceptedAnswer": { "@type": "Answer", "text": "拒了之后 30 天内必须离境（或转其他合法身份）。可选路径：(1) 离境后回国办 F-1 visa stamp 再入境；(2) Motion to Reopen / Reconsider（成本高，成功率 &lt; 30%）；(3) 转 H-4 / L-2 等家属身份。最重要的是——拒了不要硬撑超过 grace 期，否则 unlawful presence 累积超过 180 天将触发 3-year bar。" } },
+  ],
+};
+---
+<Base title="B 转 F 身份转换服务 · Maginex" description="B-1/B-2 旅游签转 F-1 学生签 Change of Status (I-539)。preconceived intent 应对 + 持牌律师 sign-off + 60-150 天审批管理。">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
+
+  <section class="serv-page-hero">
+    <div class="container" style="max-width:880px">
+      <div class="crumb"><a href="/">首页</a> / <a href="/services/">服务</a> / <span>B 转 F 身份转换</span></div>
+      <div class="serv-hero-tag"><span class="urgent-dot" style="background:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.15)"></span> Tier 1 紧急 · 律师驱动</div>
+      <h1 class="serv-hero-h1">人在美国，想转<br/><span class="hl">F-1 学生签</span>？</h1>
+      <p class="serv-hero-lede">B-1/B-2 → F-1 Change of Status (I-539) 是 USCIS 审查最严的 nonimmigrant 转换之一——核心是 <strong>preconceived intent</strong> 推定的反驳。处理过 30+ 例的我们知道：通过率 55-70% 不是看运气，是看材料 timeline 怎么搭。这件事必须律师介入。</p>
+      <div class="serv-hero-ctas">
+        <button type="button" data-wechat-cta="b-to-f-hero" class="btn btn-primary btn-lg"><span style="margin-right:8px">●</span>立即微信咨询 →</button>
+        <a href="/contact/" class="btn btn-ghost btn-lg">填表预约（30 分钟评估）</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">SCOPE · 适用场景</div>
+      <h2 class="sp-h2">这 4 类情况，B 转 F 是最合理路径：</h2>
+      <div class="sp-scope-grid">
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">01</div>
+          <div class="sp-scope-title">B 入境后被某美校录取</div>
+          <div class="sp-scope-desc">入境时无明确留学计划，旅行 / 探亲期间被某 program rolling admission 录取，决定留下读</div>
+        </div>
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">02</div>
+          <div class="sp-scope-title">短期项目转长期 degree</div>
+          <div class="sp-scope-desc">原本来美参加短期 conference / exchange / 训练营，遇到合适 degree 项目想转为正式学位</div>
+        </div>
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">03</div>
+          <div class="sp-scope-title">F-2 家属转 F-1 主签</div>
+          <div class="sp-scope-desc">配偶 F-1 期间已自己 enroll，想转独立 F-1 身份（不再依附配偶 status）</div>
+        </div>
+        <div class="sp-scope-card">
+          <div class="sp-scope-num">04</div>
+          <div class="sp-scope-title">VWP（Visa Waiver Program）转 F-1</div>
+          <div class="sp-scope-desc">注意：免签入境的 ESTA 不能直接转 F-1，必须先 Adjustment of Status 或离境重新办 F-1 签证</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">WHAT WE DO · 我们做什么</div>
+      <h2 class="sp-h2">律师 + 顾问双轨，每一步留 paper trail：</h2>
+      <ol class="sp-do-list">
+        <li><strong>Preconceived intent 风险评估（律师必做）</strong>：核对你 B 入境日期、申请美校的具体日期、付 deposit 的日期、与原境内学校 / 工作的关系。<strong>这一步决定 case 接不接</strong>——如果 timeline 太可疑，律师会建议你离境后回国办 F-1 stamp 而不是 file I-539</li>
+        <li><strong>I-539 申请材料组织</strong>：USCIS form I-539 + I-20 (新校签发) + 财务证明 + B 状态有效证明 + cover letter (preconceived intent rebuttal)</li>
+        <li><strong>Cover letter / legal brief 撰写</strong>：律师用 8 CFR 248 + USCIS Policy Manual Volume 7 Part B 的语言，论证：（A）你 B 入境时无 F 意图 & （B）F 意图是入境后<strong>合理</strong>形成的</li>
+        <li><strong>Timeline of intent 文件化</strong>：精确记录入境后每个关键决定的时间——什么时候开始考虑读书 / 什么时候首次接触学校 / 什么时候提交申请。这个时间线必须有客观证据（邮件 / 申请记录 / 学校通信）</li>
+        <li><strong>财务证明组织</strong>：USCIS 要求证明你能负担学费 + 1 年生活费，不能依赖未授权工作</li>
+        <li><strong>受理跟踪 + RFE 应对</strong>：USCIS 审 B-to-F case 时 RFE 概率约 30-40%，主要 RFE 类型是 preconceived intent rebuttal 不充分。我们在 RFE 出现后 7 天内出 supplemental brief</li>
+        <li><strong>Backup 路径同时设计</strong>：在 I-539 受理期间同步评估"如果拒了"的离境重新办 F-1 路径，保你不会卡在 unlawful presence 累积区</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">WHAT WE DON'T DO · 我们不做什么（透明）</div>
+      <div class="sp-dont-card">
+        <ul class="sp-dont-list">
+          <li>❌ <strong>不帮你伪造 timeline of intent</strong>——USCIS 通过 CBP 入境记录 + 学校 application timestamp 能交叉核对你的真实时间线。伪造 = 18 USC § 1001 false statements + 永久 immigration fraud finding</li>
+          <li>❌ <strong>不接"30 天内入境就申请"型 case</strong>——这种 timeline 在 USCIS 看来是 textbook preconceived intent。接了也大概率拒，反而浪费你 6 个月时间。我们会建议你离境回国办 F-1 stamp</li>
+          <li>❌ <strong>不推 fake school</strong>——必须真实有 SEVIS 注册的学校 + 真实学位项目。"挂学籍学校"被 ICE 抓后 case 全废</li>
+          <li>❌ <strong>不保证 100% 通过</strong>——B-to-F 行业平均通过率 55-70%。任何"保过"都是话术。我们能做的是把你的 case 推进到这个 range 的高端</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">LEGAL DEEP-DIVE · Preconceived Intent Doctrine</div>
+      <h2 class="sp-h2">USCIS 怎么判 "preconceived intent"？</h2>
+      <p style="font-size:15px;color:#444;line-height:1.8;margin-top:18px">这是 B-to-F 这件事的整个 game。USCIS 看 4 个 indicator：</p>
+      <ul class="sp-legal-list">
+        <li><strong>Indicator 1 · Time elapsed between entry and Change of Status filing</strong> · 入境到 file I-539 时间 &lt; 60 天 = 高度可疑；&lt; 30 天 = 几乎必然 RFE 或拒</li>
+        <li><strong>Indicator 2 · School application timestamp</strong> · 你 apply 学校的时间戳在入境前 = 强证据 preconceived intent；入境后才 first contact 学校 = 弱化推定</li>
+        <li><strong>Indicator 3 · Statement at port of entry</strong> · 你过海关时和 CBP 官员说的"访问目的"——CBP 系统留有完整记录。说"travel" 后突然 file I-539 = misrepresentation 嫌疑</li>
+        <li><strong>Indicator 4 · Pattern of prior visa use</strong> · 你过去 B 签使用记录——是否有反复短期入境 + 多次 COS 申请的 pattern</li>
+      </ul>
+      <h3 style="font-size:22px;font-weight:700;letter-spacing:-.4px;margin-top:32px">如何反驳 preconceived intent 推定？</h3>
+      <p style="font-size:15px;color:#444;line-height:1.8;margin-top:14px">反驳是<strong>叠加式</strong>的——单一证据没用，需要 4-7 个证据点共同构成<strong>合理且无 preconceived 意图的故事</strong>：</p>
+      <ul style="font-size:14.5px;color:#444;line-height:1.9;padding-left:24px;margin-top:8px">
+        <li>入境后某个具体事件 / 信息触发了留学想法（家庭重大变化、原境内学校项目取消、健康原因不能回原 program 等）</li>
+        <li>申请学校的时间戳明显在入境后</li>
+        <li>原境内的工作 / 学校文档显示你入境时仍有清晰的回国安排（被解雇 / 学校项目取消 / 家庭变故等是合理打破"回国安排"的事件）</li>
+        <li>财务来源在入境后才有变化（如家庭最近卖房 / 收到 inheritance / 配偶工作搬迁）</li>
+        <li>选择的学校 / 项目与你过去职业 / 学术背景的合理延续（避免"专门跨界跳到 F 签"的感觉）</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">LEGAL BASIS · 法律依据</div>
+      <ul class="sp-legal-list">
+        <li><strong>INA § 248</strong> · Change of Status 的法律基础</li>
+        <li><strong>8 CFR 248</strong> · COS 申请程序与审批标准</li>
+        <li><strong>USCIS Policy Manual Volume 7, Part B, Chapter 4</strong> · Change of Status 审批指引（含 preconceived intent 标准）</li>
+        <li><strong>9 FAM 401.1-3</strong> · State Department 领事手册中关于 B 签使用 vs F 签使用的区分</li>
+        <li><strong>Matter of Hosseinpour, 15 I&N Dec. 191 (BIA 1975)</strong> · 关于 nonimmigrant intent 的经典 BIA case，沿用至今</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="serv-page-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">CASE · 实战案例</div>
+      <div class="case-box">
+        <div class="case-head">
+          <div class="case-init">L</div>
+          <div>
+            <div style="font-size:14px;font-weight:600">林同学 · B-2 转 F-1 · 2024</div>
+            <div style="font-size:12px;color:#999;margin-top:2px">原境：上海 IT 工作 · 来美探亲触发转学</div>
+          </div>
+        </div>
+        <p><strong>2024.03</strong>：林同学持 B-2 来美探父母，原计划停留 2 个月。入境时 CBP 问"目的"答"探亲"。</p>
+        <p><strong>2024.04</strong>：父亲突发心脏病住院。家庭决定父母不再回国，林同学决定也留下并读硕士陪伴。</p>
+        <p><strong>2024.05.10</strong>：开始 research 美国 MS 项目（这是 paper trail 的起点）。</p>
+        <p><strong>2024.06</strong>：apply 加州某校 MS Computer Science（rolling admission）。</p>
+        <p><strong>2024.07.15</strong>：录取 + 收到 I-20。这时距入境已 4.5 个月——高于 60 天 minimum 警戒线。</p>
+        <p><strong>2024.07.20</strong>：找到我们。律师评估——case 可以接：（A）入境后有<strong>具体可证</strong>事件触发（父亲住院）；（B）apply 学校时间戳在入境后 2 个月；（C）入境到 file 时间 5 个月；（D）原境内 IT 工作之前就有 study abroad 想法但因家庭无人照顾未行动。</p>
+        <p><strong>2024.08</strong>：file I-539 + 完整 brief。Cover letter 30 页 + 12 个 evidence tab，覆盖 4 个 preconceived intent indicator 的反驳。</p>
+        <p><strong>2024.10</strong>：收到 RFE，要求补充 financial documentation + 父亲医疗证明翻译件。</p>
+        <p><strong>2024.11.20</strong>：递交 RFE response。</p>
+        <p><strong>2025.01.15</strong>：USCIS 批准。F-1 status 生效，新 SEVIS active。</p>
+        <p style="margin-top:14px;font-style:italic;color:#666">总耗时：5 个月 file 准备 + 5 个月 USCIS 审批 = 10 个月。期间持 receipt notice 合法停留，无 unlawful presence 风险。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="serv-page-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">PRICING · 价位段</div>
+      <h2 class="sp-h2">$$ · 5,000–15,000 美元区间</h2>
+      <p style="font-size:15px;color:#444;line-height:1.8;margin-top:18px">B-to-F 是律师驱动 case，价位区间因素：</p>
+      <ul style="font-size:14px;color:#444;line-height:1.9;padding-left:24px;margin-top:8px">
+        <li>case 复杂度（preconceived intent 风险等级）</li>
+        <li>是否预期 RFE（高风险 case 通常 RFE response 也含在合同内）</li>
+        <li>律师 file 费 + USCIS I-539 fee（$370）</li>
+        <li>是否需要新校 admission 协助（如尚未 admit）</li>
+      </ul>
+      <p style="font-size:14px;color:#666;margin-top:18px"><strong>退费规则</strong>：律师评估后判断 case 风险过高（&lt; 40% 通过率）建议你不接 → 退预付 100%。如 USCIS 拒 case → 退服务费 50%（律师 file fee + USCIS fee 不可退）。条款已过律所公证。</p>
+    </div>
+  </section>
+
+  <section class="final-cta section-dark">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:center;text-align:center">
+        <div>
+          <h2 style="font-size:64px;font-weight:700;letter-spacing:-2px;line-height:1.05">人在美国，<br/>想转 F-1？<br/><span class="hl">先做风险评估。</span></h2>
+          <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:24px;max-width:560px;margin-left:auto;margin-right:auto">把你入境日期 / 学校 admission 时间 / 当前 status 微信发我们，律师 30 分钟内出 preconceived intent 风险初判。</p>
+          <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;justify-content:center">
+            <button type="button" data-wechat-cta="b-to-f-final" class="btn btn-primary btn-lg">立即微信咨询 →</button>
+            <a href="/contact/" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.2)">填表预约</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
