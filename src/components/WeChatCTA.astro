@@ -13,10 +13,10 @@ import { SITE } from '../data/site.js';
     <p class="wechat-modal-lede">不会群发短信 · 不会催签约 · 不会卖你信息</p>
 
     <div class="wechat-modal-qr">
-      <img src="/qr/wechat.png" alt="Maginex 微信二维码" width="240" height="240" loading="lazy"
+      <img src="/qr/wechat.png" alt="Maginex 微信二维码 · 扫码加 Maginex6831 为好友" loading="lazy"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
       <div class="wechat-qr-fallback" style="display:none">
-        <div style="font-size:14px;color:#666;line-height:1.6">二维码图片即将就位<br/>请直接搜索微信号 ↓</div>
+        <div style="font-size:14px;color:#666;line-height:1.6">二维码加载失败<br/>请直接复制下方微信号搜索 ↓</div>
       </div>
     </div>
 
@@ -133,8 +133,8 @@ import { SITE } from '../data/site.js';
 .wechat-modal-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 99px; font-size: 12px; color: #166534; font-weight: 500; }
 .wechat-modal-title { font-size: 28px; font-weight: 700; line-height: 1.2; letter-spacing: -.5px; margin-top: 16px; }
 .wechat-modal-lede { font-size: 13px; color: var(--c-muted); margin-top: 10px; line-height: 1.6; }
-.wechat-modal-qr { margin-top: 24px; padding: 20px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; min-height: 240px; }
-.wechat-modal-qr img { display: block; width: 240px; height: 240px; image-rendering: pixelated; }
+.wechat-modal-qr { margin-top: 24px; padding: 16px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; min-height: 280px; }
+.wechat-modal-qr img { display: block; width: 100%; max-width: 320px; height: auto; max-height: 380px; object-fit: contain; }
 .wechat-modal-id-row { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 14px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 12px; }
 .wechat-modal-id-label { font-size: 11px; color: #999; letter-spacing: 1px; font-weight: 600; }
 .wechat-modal-id-val { font-size: 15px; font-weight: 600; flex: 1; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
@@ -152,6 +152,7 @@ import { SITE } from '../data/site.js';
   .wechat-modal { padding: 0; align-items: flex-end; }
   .wechat-modal-card { max-width: 100%; border-radius: 24px 24px 0 0; padding: 32px 24px 100px; }
   .wechat-modal-title { font-size: 22px; }
-  .wechat-modal-qr img { width: 200px; height: 200px; }
+  .wechat-modal-qr { min-height: 240px; padding: 12px; }
+  .wechat-modal-qr img { max-width: 280px; max-height: 340px; }
 }
 </style>
