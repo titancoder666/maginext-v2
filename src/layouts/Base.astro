@@ -101,57 +101,129 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toStri
   <slot />
 </main>
 
-<!-- Footer -->
-<footer class="footer">
+<!-- Footer — emergency-first IA, brand-centered with flanking QRs -->
+<footer class="footer footer-v2">
   <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="brand">
-          <span class="logo logo-dark">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M3 21V3L12 11L21 3V21" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- Hidden services columns（保留可访问性 SEO，视觉折叠到下方 nav）-->
+    <details class="footer-services">
+      <summary>查看完整服务列表</summary>
+      <div class="footer-services-grid">
+        <div>
+          <div class="footer-head">🚨 急救服务</div>
+          <a href="/services/#sevis-i20" class="footer-link">SEVIS / I-20 急救</a>
+          <a href="/services/academic-appeal/" class="footer-link">学术 dismissal 申诉</a>
+          <a href="/services/#rfe-response" class="footer-link">RFE 应对</a>
+          <a href="/services/urgent-transfer/" class="footer-link">紧急转学</a>
+          <a href="/services/b-to-f/" class="footer-link">B 转 F 身份</a>
+        </div>
+        <div>
+          <div class="footer-head">📋 规划服务</div>
+          <a href="/services/#opt-stem" class="footer-link">OPT STEM 延期</a>
+          <a href="/services/#undergrad" class="footer-link">美本申请</a>
+          <a href="/services/#master" class="footer-link">美硕申请</a>
+          <a href="/services/#transfer-planning" class="footer-link">转学规划</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- Top: brand center, QRs flanking -->
+    <div class="footer-top">
+      <div class="footer-qr-stack footer-qr-left">
+        <a href="/contact/" class="footer-qr-card" aria-label="微信咨询二维码">
+          <img src={SITE.qrFiles.wechat} alt="Maginex 向导 微信咨询二维码" loading="lazy" />
+          <span class="footer-qr-caption">扫码 · 微信咨询</span>
+        </a>
+      </div>
+
+      <div class="footer-brand-center">
+        <div class="footer-brand-row">
+          <span class="logo logo-dark" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M3 21V3L12 11L21 3V21" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
             </svg>
           </span>
-          <span class="brand-name">maginex</span>
+          <span class="footer-brand-name">Maginex</span>
+          <span class="footer-brand-en">EDUCATION</span>
         </div>
-        <p class="footer-tag">由前 UC 招生官与前移民局官员创办。每年限招 60 位学员。公对公转账 · 不录取退全款。</p>
+        <p class="footer-tagline">{SITE.sloganLong}</p>
+        <p class="footer-mini">实战 8 年 · 400+ 急救 case · 公对公转账 · 不录取退全款 · 案件失败退服务费</p>
+
+        <nav class="footer-nav-row" aria-label="footer nav">
+          <a href="/services/">服务项目</a>
+          <a href="/consultants/">团队结构</a>
+          <a href="/cases/">学生案例</a>
+          <a href="/resources/">资源中心</a>
+          <a href="/#emergency">急救场景</a>
+          <a href="/contact/">联系咨询</a>
+        </nav>
+
+        <div class="footer-contact-row">
+          <div class="footer-contact-item">
+            <span class="footer-contact-k">电话</span>
+            <span class="footer-contact-v">🇺🇸 {SITE.phones.us[0]} <span class="dim">/</span> 🇨🇳 {SITE.phones.cn[0]}</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-k">邮箱</span>
+            <a href={`mailto:${SITE.email}`} class="footer-contact-v">{SITE.email}</a>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-k">办公地</span>
+            <span class="footer-contact-v">{SITE.offices.us} · {SITE.offices.cn}</span>
+          </div>
+        </div>
       </div>
-      <div>
-        <div class="footer-head">急救服务</div>
-        <a href="/services/#sevis-i20" class="footer-link">SEVIS / I-20 急救</a>
-        <a href="/services/academic-appeal/" class="footer-link">学术 dismissal 申诉</a>
-        <a href="/services/#rfe-response" class="footer-link">RFE 应对</a>
-        <a href="/services/urgent-transfer/" class="footer-link">紧急转学</a>
-        <a href="/services/b-to-f/" class="footer-link">B 转 F 身份</a>
-      </div>
-      <div>
-        <div class="footer-head">规划服务</div>
-        <a href="/services/#opt-stem" class="footer-link">OPT STEM 延期</a>
-        <a href="/services/#undergrad" class="footer-link">美本申请</a>
-        <a href="/services/#master" class="footer-link">美硕申请</a>
-        <a href="/services/#transfer-planning" class="footer-link">转学规划</a>
-      </div>
-      <div>
-        <div class="footer-head">公司</div>
-        <a href="/consultants/" class="footer-link">顾问团队</a>
-        <a href="/resources/" class="footer-link">资源中心</a>
-        <a href="/cases/" class="footer-link">学生案例</a>
-        <a href="/contact/" class="footer-link">联系我们</a>
-      </div>
-      <div>
-        <div class="footer-head">联系</div>
-        <span class="footer-link">微信: {SITE.wechat}</span>
-        <span class="footer-link">WhatsApp: {SITE.whatsapp}</span>
-        <a href={`mailto:${SITE.email}`} class="footer-link">{SITE.email}</a>
-        <span class="footer-link">{SITE.phone}</span>
+
+      <div class="footer-qr-stack footer-qr-right">
+        {SITE.qrFiles.publicAccount && (
+          <a href="#" class="footer-qr-card" aria-label="公众号二维码">
+            <img src={SITE.qrFiles.publicAccount} alt="Maginex 公众号二维码" loading="lazy"
+                 onerror="this.parentElement.style.display='none'" />
+            <span class="footer-qr-caption">关注 · 公众号</span>
+          </a>
+        )}
+        {SITE.qrFiles.xiaohongshu && (
+          <a href="#" class="footer-qr-card" aria-label="小红书二维码">
+            <img src={SITE.qrFiles.xiaohongshu} alt="Maginex 小红书二维码" loading="lazy"
+                 onerror="this.parentElement.style.display='none'" />
+            <span class="footer-qr-caption">小红书</span>
+          </a>
+        )}
       </div>
     </div>
+
+    <!-- Bottom: copyright + (conditional) filings + tiny links -->
     <div class="footer-bottom">
-      <div>© 2019–2026 Maginex Education · 京 ICP 备 19xxxxxx 号</div>
-      <div class="links">
-        <a>隐私</a><a>条款</a><a>退款</a>
+      <div class="footer-copyright">
+        <span>© 2019–2026 Maginex Education · 版权所有</span>
+        {SITE.icpFiling && <span class="footer-filing"> · {SITE.icpFiling}</span>}
+        {SITE.psbFiling && (
+          <span class="footer-filing footer-psb">
+            <span class="psb-dot" aria-hidden="true">●</span>
+            {SITE.psbFiling}
+          </span>
+        )}
+      </div>
+      <div class="footer-bottom-links">
+        <a href="/contact/">隐私政策</a>
+        <a href="/contact/">服务条款</a>
+        <a href="/contact/">退款政策</a>
       </div>
     </div>
+
+  </div>
+
+  <!-- Floating right-bottom CTA pills（覆盖 sticky mobile bar 之上） -->
+  <div class="footer-floating-ctas" aria-label="快速咨询">
+    <a href="/contact/" class="float-cta float-cta-blue">
+      <span class="float-cta-icon">💬</span>
+      <span>免费在线咨询</span>
+    </a>
+    <button type="button" data-wechat-cta="footer-floating" class="float-cta float-cta-green">
+      <span class="float-cta-icon">●</span>
+      <span>免费微信咨询</span>
+    </button>
+  </div>
   </div>
 </footer>
 

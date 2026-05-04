@@ -12,6 +12,24 @@ export const SITE = {
     us: ['+1 626-949-3856', '+1 424-273-9459'],
     cn: ['+86 183-2199-3311', '+86 187-2195-3311'],
   },
+  // Office presence — 业主可填具体街道地址。当前用城市级别。
+  offices: {
+    us: 'Los Angeles, CA',
+    cn: '上海',
+  },
+  // 标语 — 用在 footer + 部分 hero 区下方。Path A 团队署名。
+  sloganLong: '持牌移民律师 + 前 USCIS 政策顾问 + 学术规划组 — 留学急救与申请规划。',
+  // 备案号 — 留空表示不显示。仅当业主真实做了 CN 镜像 + ICP 备案 + 公安网备后填入。
+  // 警告：填假号是违法行为，beian.mps.gov.cn 公开可查。
+  icpFiling: '',  // 形如 "京 ICP 备 19012345 号"
+  psbFiling: '',  // 形如 "京公网安备 11010602104269 号"
+  // 社交媒体 QR 路径 — 留空字符串则 footer 该格不渲染。
+  // 业主把图放到 public/qr/ 后，把对应的 path 填进来即可显示。
+  qrFiles: {
+    wechat: '/qr/wechat.png',  // 已就位（Maginex 向导）
+    xiaohongshu: '',           // TODO: public/qr/xiaohongshu.png 放好后填 '/qr/xiaohongshu.png'
+    publicAccount: '',         // TODO: public/qr/wechat-mp.png 放好后填 '/qr/wechat-mp.png'
+  },
 };
 
 export const NAV = [
