@@ -1,10 +1,8 @@
 ---
-// Conditional analytics — only renders scripts when IDs are configured.
-// To enable, set these env vars in Vercel (or .env.local for local dev):
-//   PUBLIC_GA4_ID=G-XXXXXXXXXX
-//   PUBLIC_CLARITY_ID=xxxxxxxxxx
-const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
-const CLARITY_ID = import.meta.env.PUBLIC_CLARITY_ID;
+// GA4 + Clarity. Production-only by default; dev runs without tracking.
+// To override (e.g., staging property), set PUBLIC_GA4_ID / PUBLIC_CLARITY_ID env vars.
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID || (import.meta.env.PROD ? 'G-Y3BN8FGGLJ' : null);
+const CLARITY_ID = import.meta.env.PUBLIC_CLARITY_ID || (import.meta.env.PROD ? 'wlm6r9yjxw' : null);
 ---
 {GA4_ID && (
   <>
