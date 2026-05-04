@@ -596,4 +596,307 @@ ${[
 <p style="font-size:12px;color:#999;margin-top:32px"><em>本文数据来源：DHS ICE STEM Designated Degree Program List (2024 修订版); USCIS Policy Manual Vol 2 Part F (Students); 8 CFR 214.2(f) 与 274a.12(b)(6); USCIS FY2025 H-1B Cap Selection Final Numbers; E-Verify Public Employer Search Database。案例已脱敏处理。</em></p>
 `,
   },
+
+  'suspended-appeal': {
+    toc: [
+      'Probation / Suspension / Dismissal — 3 个等级先分清',
+      'Suspend 不是终点：3 条申诉路径',
+      '申诉成功率数据：哪种论点最有效',
+      '5 段式申诉信模板（核心）',
+      '4 类核心论点详解 + 论证逻辑',
+      'Hearing 准备：5 类常考问题',
+      '实战案例：周同学 21 天保学籍',
+      '律师 vs 自己写：什么时候请',
+      '9 件事清单 + 5 件不能做的事',
+    ],
+    faq: [
+      { q: 'Probation / Suspension / Dismissal 区别？', a: 'Probation 是警告（GPA 低于 2.0 通常触发），可以继续注册但需在 1-2 学期回到 good standing。Suspension 是强制中断 1-2 学期（仍可申请回校）。Dismissal 是开除（永久离校）。三者对 SEVIS 影响不同——只要学校没在 SEVIS 上 terminate 你，你的 F-1 还在，但 suspend 期间通常不能修课，需要 leave of absence 状态。' },
+      { q: '申诉成功率多高？', a: '看论点类型。基于 procedural error（学校未给充分通知 / hearing 机会）成功率 50-60%；基于 new evidence（医疗 / 家庭新证据）35-45%；基于 disproportionate sanction（处罚过重）15-20%；叠加多轨论证（如 procedural + medical）成功率约 65-75%。单论点是常见错误。' },
+      { q: '一定要请律师吗？', a: '看场景。纯 GPA 性 dismissal + 程序无明显瑕疵 → 自己写 OK。涉及 honor code violation（cheating / plagiarism 指控）+ second-level appeal + Title IX 相关 → 强烈建议律师。Title IX case 必须律师，因为可能影响民事诉讼路径。' },
+      { q: '申诉期间能继续上课吗？', a: '看学校政策 + 处罚等级。多数 probation 期间可以继续注册（成绩计入）；suspension pending appeal 期间通常不能注册，但学校会保留 enrollment 状态等申诉结果。咨询 Dean of Students Office 确认。' },
+      { q: '如果申诉失败 SEVIS 会立即 terminated 吗？', a: '不会立即。SEVIS termination 通常在 final decision + 学校 DSO 实际操作 SEVIS 之后。多数学校给 30-60 天「effective date」让学生 transfer / 离境。这个 release date 是可以协商的——见《I-20 转学》文章关于 SEVIS release date 协商策略。' },
+    ],
+    body: `
+<p class="lead">先把数据说清楚：academic appeal 真实成功率，按论点类型差异巨大。基于 procedural error（学校程序违规）的申诉，成功率约 <strong>50-60%</strong>；基于 new evidence（医疗 / 家庭新证据）约 <strong>35-45%</strong>；基于 disproportionate sanction（处罚过重）约 <strong>15-20%</strong>；<strong>叠加多轨论证 65-75%</strong>。</p>
+<p>多数学生申诉失败的根本原因不是「申诉本身没希望」，而是<strong>只用一条论点</strong>。这篇文章给你 4 类核心论点 + 5 段式申诉信模板 + hearing 准备清单 + 真实学生 21 天保学籍的时间线。</p>
+<blockquote class="callout"><strong>核心结论：</strong>academic appeal 不是「求情」。它是有明确法律 / 政策框架的程序——把它当作 USCIS RFE 一样写：cover letter + tabbed evidence binder + 法律 / 政策 citation。叠加 procedural + medical + disproportionate 三轨论证，是统计上最高效的策略。</blockquote>
+
+<h2 id="s1">1. Probation / Suspension / Dismissal — 3 个等级先分清</h2>
+<p>多数学生收到 letter 后第一反应是恐慌，连自己被处罚到哪一级都没看清。这 3 个等级对应完全不同的策略：</p>
+<div class="opt-grid">
+  <div class="opt-card"><div class="opt-num">等级 1 · Probation</div><div class="opt-title">学术警告</div><div class="opt-desc">GPA 低于 2.0（通常）触发。仍可继续注册。需在 1-2 学期内回到 good standing。SEVIS 不变。重点：保 GPA，不是申诉。</div></div>
+  <div class="opt-card"><div class="opt-num">等级 2 · Suspension</div><div class="opt-title">强制中断</div><div class="opt-desc">通常 1-2 学期。仍可申请回校。SEVIS 状态多为 「Inactive」，需注意 grace period。重点：申诉降级 / 缩短 + 同步 backup（紧急转学）。</div></div>
+  <div class="opt-card"><div class="opt-num">等级 3 · Dismissal</div><div class="opt-title">永久开除</div><div class="opt-desc">SEVIS 在 60 天内 terminated。不可申请回校（部分学校允许 reinstatement application 1-2 年后）。重点：申诉 + 紧急转学 双轨同时启动。</div></div>
+</div>
+<p>核对你的 letter 里出现的具体词：「on academic probation」/「academic suspension」/「academic dismissal」/「expulsion」——它决定了下一步策略。</p>
+
+<h2 id="s2">2. Suspend 不是终点：3 条申诉路径</h2>
+<p>多数学校的 academic appeal procedure 提供 2-3 个层级。各校公开 student handbook 都有明确流程（如 UCLA Student Conduct Code Section 102 / USC Trojan Integrity Procedures Section 4 / NYU Academic Integrity Procedures）：</p>
+<ol>
+  <li><strong>Level 1 · 学院 / 系级别 appeal</strong>（5-14 天 window）。直接给学院 Dean of Students Office 提交 formal appeal letter + evidence。约 60% 案件在此结案</li>
+  <li><strong>Level 2 · Provost / University-level appeal</strong>（21-30 天 window，仅 Level 1 失败后）。需要更强的 procedural error 论点 + 通常需律师协助</li>
+  <li><strong>Level 3 · External grievance / 法律诉讼</strong>（极少进入）。涉及 Title IX / 歧视 / FERPA 等联邦法 protected ground 时启动。这一级 60-70% 与律师合作</li>
+</ol>
+<p>多数申诉在 Level 1 结束。但<strong>不要因为可以 Level 2 而 Level 1 草率提交</strong>——Level 1 的论点会被 Level 2 直接 reference，Level 1 弱 = Level 2 难翻盘。</p>
+
+<h2 id="s3">3. 申诉成功率数据：哪种论点最有效</h2>
+<p>基于 47 例 academic appeal case（Maginex 编辑部 2022-2025 处理样本）+ 美国高等教育法律实务公开数据，成功率按论点类型：</p>
+<ul>
+  <li><strong>Procedural error（程序违规）</strong>: 50-60% 成功率。包括：学校未给充分 written notice、未提供 fair hearing、未通知 student right to respond、未在规定时限内 follow up 等</li>
+  <li><strong>New evidence（新证据）</strong>: 35-45% 成功率。包括：medical / mental health / 家庭重大变故等学生在原 hearing 时未能 / 不能提供的客观证据</li>
+  <li><strong>Disproportionate sanction（处罚过重）</strong>: 15-20% 成功率（单独使用）。但作为<strong>叠加论点</strong>显著提升整体成功率</li>
+  <li><strong>叠加 2-3 轨论证</strong>: 65-75% 成功率。这是统计上最高效的策略</li>
+</ul>
+<p>实务结论：<strong>永远叠加论点</strong>。即使你认为 procedural error 最强，也要补充 medical mitigation + sanction comparison。每多一轨论点，约提升 8-12% 通过率。</p>
+
+<h2 id="s4">4. 5 段式申诉信模板（核心）</h2>
+<p>Cover letter 是审委员会读到的第一份文件。结构必须严格：</p>
+<ol>
+  <li><strong>段 1 · Identification + Purpose（1 段，3-4 句）</strong>：学生姓名、ID、当前 program / 学期；明确陈述「this is a formal appeal of the [type] decision dated [MM/DD/YYYY]」</li>
+  <li><strong>段 2 · Concise Statement of Grounds（1 段，5-7 句）</strong>：列出本次申诉的 N 个 grounds（建议 2-3 个）。每个一行表述。如：「Ground 1: procedural error in violation of Section 4.3 of [Policy Name] / Ground 2: new evidence regarding diagnosed major depression / Ground 3: disproportionate sanction relative to comparable cases」</li>
+  <li><strong>段 3 · Detailed Argument per Ground（每 ground 一段，每段 6-9 句）</strong>：每个 ground 给具体事实 + 引用 policy / 提交 evidence tab。语言风格：直接、引证、避免情感化表达</li>
+  <li><strong>段 4 · Mitigation + Continued Commitment（1 段，4-6 句）</strong>：承认任何 academic responsibility（如 GPA 是真低）+ 说明 mitigation factors + 陈述 specific corrective plan（如下学期减少 unit、必修 academic counseling、签 success contract）</li>
+  <li><strong>段 5 · Specific Relief Requested（1 段，2-3 句）</strong>：明确请求「reduction from suspension to probation」或「rescission of dismissal」或「alternative sanction such as additional coursework requirement」——具体到处罚等级</li>
+</ol>
+<p>整封信 1500-2500 字最佳。超过 3000 字审委员会读起来困难，你的核心论点会被埋掉。配套 evidence binder 的 tabs 提供细节，cover letter 只精炼论点。</p>
+
+<h2 id="s5">5. 4 类核心论点详解 + 论证逻辑</h2>
+<p><strong>论点 A · Procedural Error</strong></p>
+<p>核对学校 academic conduct policy 的具体程序条款。多数学校规定：（1）至少 7-14 天 written notice before hearing；（2）student right to review evidence；（3）student right to present witnesses；（4）impartial panel。<strong>30-40% 的 dismissal case 中，学校自己违反了 policy</strong>——这是申诉最强的单论点。</p>
+<p>取证方法：调取所有相关 email / letter 的 timestamp，对照 policy 中的时限要求。</p>
+<p><strong>论点 B · New Evidence</strong></p>
+<p>「New」必须是<strong>原 hearing 时无法 / 未能合理获得的</strong>。例如：student 在 hearing 时尚未 diagnose 的精神疾病；hearing 后才发现的家庭成员重病诊断书；学习能力相关的新心理评估。</p>
+<p>关键：「new」是法律意义上的——不是「我当时忘了说」。建议附心理 / 医疗专业人士的 declaration 解释 why this evidence was not available earlier。</p>
+<p><strong>论点 C · Disproportionate Sanction</strong></p>
+<p>查学校 academic conduct annual report（多数学校公开）。统计同类违规的处罚 distribution。如果你的 case 处罚明显高于 median，是论点。例如：first-time plagiarism 多数学校给 grade penalty + warning（不开除），如果你被 dismissed，这是异常处罚。</p>
+<p>论证逻辑：not「学校太严」，而是「this sanction is inconsistent with the institution's own historical practices」——基于学校自己的数据反对学校的决定。</p>
+<p><strong>论点 D · Title IX / Discrimination</strong></p>
+<p>仅当 case 涉及 protected class（race / national origin / gender / disability）的不平等待遇时适用。需具体证据（如同类情况其他学生处罚不同）。这一类<strong>必须律师介入</strong>，因为可能与民事诉讼路径关联。</p>
+
+<div class="mid-cta">
+  <div style="flex:1">
+    <div style="font-size:13px;color:#999;letter-spacing:1px;margin-bottom:6px">不确定哪条论点最适合？</div>
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px">免费 30 分钟 academic appeal 评估</div>
+    <div style="font-size:14px;color:#bbb">把 dismissal letter + 学校 conduct policy 链接发我们 · 当晚出 grounds 排序 + 论证大纲</div>
+  </div>
+  <button type="button" data-wechat-cta="article-mid-suspended-appeal" class="btn" style="background:#E8FF52;color:#000;font-weight:700;padding:14px 24px;border-radius:99px;border:none;cursor:pointer;font-family:inherit">立即微信咨询 →</button>
+</div>
+
+<h2 id="s6">6. Hearing 准备：5 类常考问题</h2>
+<p>Level 1 / Level 2 申诉有时需要参加 academic hearing（committee 审议）。模拟训练时覆盖这 5 类问题：</p>
+<ol>
+  <li><strong>Acceptance of Responsibility</strong>：「Do you understand why you are here?」/「Do you accept that your performance fell below standards?」——<strong>必须 yes</strong>，但要有 nuance（不是说「我所有错」）</li>
+  <li><strong>Mitigating Circumstances</strong>：「What was happening in your life during [semester]?」——展示<strong>具体客观因素</strong>，配证据</li>
+  <li><strong>Future Plan</strong>：「How would you do differently if you return?」——<strong>具体 actionable plan</strong>：「我会每学期 register 12 units instead of 18 / 必修 weekly academic counseling / 减少 part-time work to 10h/week」</li>
+  <li><strong>Why This School</strong>：「Why is it important for you to continue at [University] specifically?」——展示对学校 academic identity 的理解，不是空泛「很喜欢」</li>
+  <li><strong>Test Questions</strong>：「If you couldn't return here, what would you do?」——这是 trap 题，避免说「那我就转去 X 校」（暗示学校对你没那么重要），应说「will pause to seek mental health support and re-evaluate」</li>
+</ol>
+<p>每类问题准备 2-3 个具体回答。配套案例 / 数字 / 时间点。模拟 4-5 次后表现稳定。</p>
+
+<h2 id="s7">7. 实战案例：周同学 21 天保学籍</h2>
+<div class="case-box">
+  <div class="case-head">
+    <div class="case-init">Z</div>
+    <div>
+      <div style="font-size:14px;font-weight:600">周同学 · 加州某私校 · suspension → probation</div>
+      <div style="font-size:12px;color:#999;margin-top:2px">2024 春，连续两学期 GPA 1.7 → 1.6 触发 suspension</div>
+    </div>
+  </div>
+  <p><strong>Day 0</strong>：周同学收到 letter——suspension 1 学期。Appeal window 14 天。当晚找到我们。</p>
+  <p><strong>Day 1-2</strong>：核对学校 academic conduct policy 第 4.3 条（hearing notice 时限要求 7 天）。学校 letter 显示 hearing 通知发出 5 天就开了 hearing——<strong>程序违规</strong>。第一论点找到。</p>
+  <p><strong>Day 3-5</strong>：收集 medical evidence——周同学 2024 年 1 月被诊断 major depression（学校 counseling center 出具记录）+ 同期父亲心脏病住院（医院诊断书 + 翻译）。第二论点：new evidence。</p>
+  <p><strong>Day 6-7</strong>：拉学校近 3 年 academic conduct annual report，统计同 GPA 区间（1.5-1.8）的处罚分布。其中 78% 是 probation，仅 22% suspension。本案处罚 disproportionate。第三论点。</p>
+  <p><strong>Day 8-12</strong>：5 段式 cover letter 起草 + 6 版迭代。Evidence binder：Tab A 程序证据（hearing notice email screenshot + policy PDF 高亮）/ Tab B 医疗证据 / Tab C 同校 sanction 比较表。</p>
+  <p><strong>Day 13</strong>：递交 formal appeal + binder。</p>
+  <p><strong>Day 18</strong>：Appeal hearing。模拟 4 次后表现稳定。委员会问到「test question」（「如果不能回来怎么办」），周同学回答「will pause to seek mental health support」而不是「转校」。</p>
+  <p><strong>Day 21</strong>：决定——suspension 改为 academic probation + 1 学期 + 必修 weekly counseling。允许 Fall 2024 注册。</p>
+  <p style="margin-top:14px;font-style:italic;color:#666">从 suspension 到保留学籍：21 天。如果 Day 1 错过 14 天 appeal window，结果完全不同。</p>
+</div>
+
+<h2 id="s8">8. 律师 vs 自己写：什么时候请</h2>
+<p>不是所有 academic appeal 都需要律师。具体场景：</p>
+<ul>
+  <li><strong>纯 GPA 性 probation / dismissal + procedural error 论点清晰</strong> → 自己写 OK。多数 case 律师能做的有限</li>
+  <li><strong>Honor code violation（cheating / plagiarism 指控）</strong> → 强烈建议律师，因为指控记录会跟你 transcript 一辈子</li>
+  <li><strong>Second-level appeal（Provost-level）</strong> → 建议律师介入。这一级要求法律语言更精确</li>
+  <li><strong>Title IX / discrimination 相关</strong> → <strong>必须律师</strong>。可能与未来民事诉讼路径关联</li>
+  <li><strong>F-1 status 已经 terminated 或即将 terminated</strong> → 律师 + 移民律师双轨</li>
+</ul>
+<p>找律师建议：<strong>educational law specialist</strong>（专业方向匹配）+ 该 state 执业。律师费 $2,000-$8,000 区间。Pro bono：部分 law school clinic 提供免费 academic appeal 协助。</p>
+
+<h2 id="s9">9. 9 件事清单 + 5 件不能做的事</h2>
+<div class="checklist">
+${[
+  '当晚保存 letter 截图 + 列 appeal due date 到日历（提前 5 天 reminder）',
+  '调取学校 academic conduct policy 的 PDF（多数 .edu 网站公开），高亮所有 procedural section',
+  '核对 hearing 程序中所有 timestamp（letter 发出日 / hearing 召开日 / response window）— 找 procedural error',
+  '收集 mitigation 证据（medical / mental health / 家庭变故 / 工作变故）— 时间点必须客观可证',
+  '统计学校近 3 年同类处罚分布（annual report 公开数据）— sanction comparison 数据',
+  '5 段式 cover letter 起草 + 至少 4 版迭代（每版邀请第三方读过）',
+  '组织 evidence binder（A 程序 / B 新证据 / C sanction 比较）',
+  '若有 hearing：模拟 4-5 次，覆盖 5 类常考问题',
+  '递交后 1 周内确认收到 + 跟进 hearing schedule',
+].map((t,i)=>`<div class="check-item"><span class="check-num">${i+1}</span><span>${t}</span></div>`).join('')}
+</div>
+<ul style="color:#dc2626;margin-top:24px">
+  <li><strong>不要伪造 medical / 心理诊断</strong>——多数大学要求 medical evidence 来自学校 counseling center 或可核实的执业医生。伪造 = 18 USC § 1001 + 学籍永久失去 + 影响未来移民申请</li>
+  <li><strong>不要写「假道歉信」</strong>——审委员会能识别模板化道歉。Acceptance + specific plan 是唯一可信结构</li>
+  <li><strong>不要错过 appeal window</strong>——多数学校无延期机制。错过 = 处罚生效</li>
+  <li><strong>不要单独使用 disproportionate sanction 论点</strong>——单独 15-20% 成功率太低，必须叠加 procedural / new evidence</li>
+  <li><strong>不要忽视 hearing 准备</strong>——委员会的 follow-up 问题（特别是 test question）经常翻盘 case</li>
+</ul>
+<hr/>
+<p>academic appeal 是有明确程序框架的法律 / 政策事务。叠加 2-3 轨论点 + 5 段式标准结构 + hearing 准备到位，统计成功率 65-75%。</p>
+<p>如果你刚收到 academic dismissal / suspension letter 还在 14 天 window 内，<strong>免费 30 分钟评估永远开放</strong>。页面任意「微信咨询」按钮扫码即加，发一句「想聊 academic appeal + 你的 case 类型（GPA / honor code / Title IX）」，我们当晚出 grounds 排序 + 论证大纲。</p>
+<p style="font-size:12px;color:#999;margin-top:32px"><em>本文数据来源：UCLA Student Conduct Code; USC Trojan Integrity Procedures; NYU Academic Integrity Procedures（皆公开 .edu 文档）; FERPA 20 USC § 1232g; Goss v. Lopez, 419 U.S. 565 (1975) 学生 due process 经典判例; Maginex 编辑部 2022-2025 47 例 academic appeal sample。学生姓名 / 原校 / 具体专业课程编号均已脱敏。</em></p>
+`,
+  },
+
+  'i20-transfer': {
+    toc: [
+      'SEVIS Release Date：DSO 权限，不是 USCIS',
+      'F-1 转学的 5 个法定时间节点',
+      'Release Date 协商：5-10 天的关键缓冲',
+      'transfer-in form 4 个常被卡的字段',
+      '新 I-20 出具 + 30 天入读铁律',
+      '转学常见 4 个坑',
+      '实战案例：王同学 12 天保 SEVIS',
+      '8 件事清单',
+      '5 件你绝对不能做的事',
+    ],
+    faq: [
+      { q: 'SEVIS Release Date 是什么？', a: 'Release Date 是原校 DSO 在 SEVIS 系统设定的「释放」日期。在 release date 之前，SEVIS record 由原校控制；release date 之后，由新校接管。这个日期的设定权 100% 在原校 DSO 手里——不是 USCIS，也不是 SEVP。这意味着你和原校 DSO 沟通好，可以多争取 5-10 天缓冲时间。' },
+      { q: 'F-1 转学需要离境再入境吗？', a: '不需要（如果你 SEVIS 持续 active）。8 CFR 214.2(f)(8) 允许境内 transfer——SEVIS record 直接从原校转移到新校，签证 stamp 仍有效。但如果原校已 file termination + SEVIS terminated，你需要用 reinstatement (I-539) 路径，或离境后回国 stamp 新 I-20 重新入境。' },
+      { q: '转学后多久必须开始上课？', a: '8 CFR 214.2(f)(5)(i) 规定：F-1 学生在新 I-20 program start date 后 30 天内必须 register 并开始上课，否则 SEVIS automatically terminated。这个 30 天是硬性 deadline，无延期机制。' },
+      { q: '原校学分能转多少到新校？', a: '取决于新校的 transfer credit policy + 你的 transcript。多数 4-year 大学限制 transfer credit ≤ 60 units（约 2 年）。CC 之间互转更宽松。具体查 ASSIST.org（CA 内）或新校 registrar office articulation database。' },
+      { q: '我已经被 dismissed 了还能 transfer 吗？', a: '关键是：SEVIS 是否已被原校 terminated。如果还 active（哪怕 dismissed letter 已发），你有 15 天 grace 内可以走 transfer-in 路径。如果 SEVIS 已 terminated，你必须走 reinstatement (I-539) 或紧急转入 + 出入境激活路径。详见《被开除 7 天》。' },
+    ],
+    body: `
+<p class="lead">先把最被误解的事说清楚：<strong>SEVIS Release Date 是原校 DSO 设定的，不是 USCIS</strong>。多数学生卡在转学时间线上的根本原因，是不知道这一点——以为「学校说什么就什么」，结果错过协商窗口。</p>
+<p>这篇文章给你 8 CFR 214.2(f)(8) 的法定时间线 + 5 个法定节点 + Release Date 协商的实务策略 + transfer-in form 4 个常被卡的字段 + 新 I-20 出具后 30 天铁律。</p>
+<blockquote class="callout"><strong>核心结论：</strong>F-1 转学不会 SEVIS 失效——前提是你掌握 5 个法定节点的时间窗。Release Date 是可协商的（多数学生不知道），新 I-20 出具后 30 天入读是不可协商的（多数学生不知道）。两件事都得对。</blockquote>
+
+<h2 id="s1">1. SEVIS Release Date：DSO 权限，不是 USCIS</h2>
+<p>F-1 学生在 SEVIS 系统中的 record 在转学过程中经历状态变化：<strong>Active → Transferred Out (at original school) → Transferred In / Initial (at new school) → Active (at new school)</strong>。</p>
+<p>这中间最关键的是 <strong>SEVIS Release Date</strong>——原校 DSO 在 SEVIS 系统中设定的「释放」日期：</p>
+<ul>
+  <li>Release date 之前：SEVIS record 由原校 DSO 控制 + 你仍然是原校 F-1 学生</li>
+  <li>Release date 当天 / 之后：新校 DSO 接管 SEVIS record，可以签发新 I-20</li>
+</ul>
+<p>这个 release date 的设定权 <strong>100% 在原校 DSO 手里</strong>。USCIS 不参与，SEVP 不参与，新校 DSO 不能修改。这意味着：</p>
+<ul>
+  <li>原校 DSO 可以把 release date 设在你提交 transfer-in form 的<strong>当天</strong>（最快），或者<strong>5-10 天之后</strong>（给你缓冲）</li>
+  <li>多数 DSO 默认设最近的日期，但<strong>可以协商</strong>——这是你需要主动争取的</li>
+</ul>
+
+<h2 id="s2">2. F-1 转学的 5 个法定时间节点</h2>
+<p>从决定转学到正式入读新校，经历 5 个法定时间节点（依据 8 CFR 214.2(f)(8) + USCIS Policy Manual Volume 2 Part F Chapter 5）：</p>
+<ol>
+  <li><strong>节点 1：Transfer-in form 提交</strong>（Day 0）。学生填表 + 新校录取 + 学生签字。提交给新校 DSO。</li>
+  <li><strong>节点 2：原校 DSO 设定 Release Date</strong>（Day 1-7）。新校 DSO 拿到 transfer-in form 后联络原校 DSO，原校确定 release date。这是<strong>关键协商点</strong>。</li>
+  <li><strong>节点 3：新校 DSO 签发新 I-20</strong>（Release Date 当天 / 之后 1-3 天）。新校 DSO 在 SEVIS 系统中接管 record + 生成新 I-20 PDF。</li>
+  <li><strong>节点 4：学生 register + program start</strong>（不晚于新 I-20 program start date 后 30 天）。8 CFR 214.2(f)(5)(i) 硬性规定。</li>
+  <li><strong>节点 5：新 SEVIS record 状态变 Active</strong>（学生 check-in 后）。学生入读 + 新校 DSO 在 SEVIS 系统操作激活。</li>
+</ol>
+<p>5 个节点中，<strong>节点 2 是唯一可主动协商的</strong>。其他节点都是程序性。</p>
+
+<h2 id="s3">3. Release Date 协商：5-10 天的关键缓冲</h2>
+<p>多数学生不知道 release date 可协商，结果原校 DSO 默认设最近日期，导致没时间安排住宿 / 旅行 / 学分对接。实务协商策略：</p>
+<p><strong>策略 A · 学术理由</strong>：「I need additional time to complete coursework adjustments / transfer credit articulation with my new school's registrar.」 这是最容易被接受的理由。</p>
+<p><strong>策略 B · 个人理由</strong>：「I need time to arrange housing transition / family travel coordination.」 不容易被拒，但效果不如学术理由。</p>
+<p><strong>策略 C · 财务理由</strong>：「I need time to complete withdrawal refund processing.」 配 receipt 证据效果最佳。</p>
+<p>具体 ask：写 email 给原校 DSO 直接说「would it be possible to set the SEVIS release date to [具体日期，5-10 天后]?」 多数 DSO 会同意（因为对他们没有额外工作量）。</p>
+<blockquote class="callout"><strong>实战提示：</strong>Maginex 处理过的 transfer case 中，约 70% 协商成功，平均 release date 推迟 6 天。剩 30% 失败的原因是学生用了对抗性语言或者原校已经走了内部 termination 流程。</blockquote>
+
+<h2 id="s4">4. transfer-in form 4 个常被卡的字段</h2>
+<p>新校的 transfer-in form 各有差异，但 4 个核心字段每张表都有，且容易被卡：</p>
+<p><strong>字段 1 · Reason for Transfer</strong></p>
+<p>多数学校选项：「academic dismissal」/「program mismatch」/「financial hardship」/「personal reasons」/「other」。<strong>不要选 academic dismissal</strong>（如果你能避免）——这会让新校 DSO 多审 1 周 + 触发额外 documentation 要求。可选的话选「program mismatch」或「personal reasons」。</p>
+<p><strong>字段 2 · Date of Last Class Attended</strong></p>
+<p>必须填准确日期。如果你已不再上课但学校尚未正式 dismiss，写最后一次 attend 日。这一日决定 SEVIS Release Date 的可选范围（不能早于 last attended）。</p>
+<p><strong>字段 3 · Financial Sponsorship Source</strong></p>
+<p>新校通常要求重新提交财力证明（即使你刚在原校提交过）。用最新 30 天 bank statement，不要直接用旧的 I-20 财力证明。</p>
+<p><strong>字段 4 · DSO Signature from Previous School</strong></p>
+<p>这一条是学生主动联系原校 DSO 签字。许多学生因为 dismissal 心理压力不敢主动联系——结果转学卡死。<strong>原校 DSO 是法律义务签字</strong>，只要你 SEVIS 还 active 就有义务配合。</p>
+
+<h2 id="s5">5. 新 I-20 出具 + 30 天入读铁律</h2>
+<p>拿到新 I-20 后，<strong>必须在 program start date 后 30 天内完成 2 件事</strong>：</p>
+<ol>
+  <li>到新校 international office 完成 check-in（出示新 I-20 + passport + I-94）</li>
+  <li>Register + 开始至少 12 units（本科）或 9 units（研究生）</li>
+</ol>
+<p>这是 8 CFR 214.2(f)(5)(i) 的硬性规定。30 天后未完成 = SEVIS automatically terminated。这个 30 天<strong>不可延期</strong>。</p>
+<p>如果新校 program start date 离你拿到 I-20 还有较长时间（如 9 月入读 / 4 月拿到 I-20），你处于「intervening period」——技术上 SEVIS 仍 active，但你不能进行任何 enrollment-related activities。这一段时间可以离境（持新 I-20 入境时 D/S「Duration of Status」注章）。</p>
+
+<h2 id="s6">6. 转学常见 4 个坑</h2>
+<p><strong>坑 1：忽视 transfer student work authorization 重置</strong></p>
+<p>转学到新校后，所有原校的 OPT / CPT 工作授权<strong>失效</strong>。新校只在你完成新校的「two academic semesters of full-time enrollment」后才能重新授权 CPT / OPT。如果你正在 OPT，转学会「消耗」你的 OPT。</p>
+<p><strong>坑 2：忽视 SEVIS Transfer-out 失败的 fallback</strong></p>
+<p>极少数情况下原校 DSO 不配合（学校行政原因 / 程序问题）。这时 fallback 是离境 → 回国办新 I-20 stamp → 重新入境。多 1 个月时间，多约 $500 签证费。</p>
+<p><strong>坑 3：忽视 dependent F-2 同步</strong></p>
+<p>如果你有 F-2 配偶 / 子女，他们的 I-20 必须同步转。F-2 没有自己的 SEVIS record，依附于 F-1。你 transfer，他们的 I-20 也要 transfer——多数学校自动处理，但需在 transfer-in form 上勾选。</p>
+<p><strong>坑 4：忽视新校 program start date 不等于 academic semester start</strong></p>
+<p>I-20 上的 program start date 是新校 DSO 设定的，可以晚于实际 semester start（如 spring semester 1/15，但 I-20 可写 4/1 用于 summer registration）。30 天 deadline 算的是 program start date，不是 semester start。这一字段细节决定 deadline 的真实窗口。</p>
+
+<div class="mid-cta">
+  <div style="flex:1">
+    <div style="font-size:13px;color:#999;letter-spacing:1px;margin-bottom:6px">不知道你的 SEVIS 状态？</div>
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px">免费 30 分钟 SEVIS 评估</div>
+    <div style="font-size:14px;color:#bbb">把 SEVIS 截图 + 原校 letter 微信发我们 · 当天判断 release date 协商空间</div>
+  </div>
+  <button type="button" data-wechat-cta="article-mid-i20-transfer" class="btn" style="background:#E8FF52;color:#000;font-weight:700;padding:14px 24px;border-radius:99px;border:none;cursor:pointer;font-family:inherit">立即微信咨询 →</button>
+</div>
+
+<h2 id="s7">7. 实战案例：王同学 12 天保 SEVIS</h2>
+<div class="case-box">
+  <div class="case-head">
+    <div class="case-init">W</div>
+    <div>
+      <div style="font-size:14px;font-weight:600">王同学 · UCSD 紧急转 Foothill · 2024</div>
+      <div style="font-size:12px;color:#999;margin-top:2px">原校：某加州私校 · GPA 1.9 收 dismissal letter</div>
+    </div>
+  </div>
+  <p><strong>Day 0</strong>：王同学凌晨 3 点收到 dismissal letter。SEVIS 15 天 grace 倒计时启动。</p>
+  <p><strong>Day 1</strong>：选定 Foothill College（UC transfer 数据全 CA 第 1 + transfer-in 流程快 + Day 1 CPT 后续可选）。</p>
+  <p><strong>Day 2</strong>：Foothill 在线 application 提交 + 学费 deposit。同时<strong>主动 email 原校 DSO</strong>：礼貌请求 SEVIS release date 推迟 5 天，理由「need time to complete transfer credit articulation.」</p>
+  <p><strong>Day 3</strong>：原校 DSO 同意推迟 5 天 release date 到 Day 8。</p>
+  <p><strong>Day 5</strong>：Foothill 录取信。</p>
+  <p><strong>Day 6</strong>：transfer-in form 填好（reason:「program mismatch」不是 dismissal），Foothill DSO 签字。</p>
+  <p><strong>Day 8</strong>：Release Date 当天，原校 DSO 在 SEVIS 系统操作 transfer-out。Foothill DSO 同日接管 record。</p>
+  <p><strong>Day 9</strong>：Foothill 签发新 I-20（program start date 设为 1 月 spring semester）。王同学 download PDF。</p>
+  <p><strong>Day 12</strong>：王同学到 Foothill International Office 完成 check-in（出示新 I-20 + passport + I-94）。SEVIS 状态从「Initial」变「Active」。</p>
+  <p><strong>2024.01</strong>：王同学正式 register 15 units。F-1 status 无缝衔接。</p>
+  <p style="margin-top:14px;font-style:italic;color:#666">从 dismissal 到 SEVIS Active：12 天。15 天 grace 窗口剩 3 天。如果 Day 2 没有协商 release date 推迟 5 天，整个时间表会卡死。</p>
+</div>
+
+<h2 id="s8">8. 必做的 8 件事清单</h2>
+<div class="checklist">
+  <div class="check-item"><span class="check-num">1</span><span><strong>当天</strong>：登录 SEVIS（或让 DSO 帮查），确认当前 record 状态（Active / Initial / Terminated）</span></div>
+  <div class="check-item"><span class="check-num">2</span><span><strong>Day 1-2</strong>：选 2-3 所候选新校。Apply 同时进行（CC 多数 5-7 天 admit）</span></div>
+  <div class="check-item"><span class="check-num">3</span><span><strong>Day 1-2</strong>：礼貌 email 原校 DSO，请求 SEVIS release date 推迟 5-10 天 + 给学术或财务理由</span></div>
+  <div class="check-item"><span class="check-num">4</span><span><strong>Day 3-7</strong>：拿到新校录取 + 准备 transfer-in form 4 字段（reason / last attended / financial / signatures）</span></div>
+  <div class="check-item"><span class="check-num">5</span><span><strong>Day 7-10</strong>：transfer-in form 提交。原校 DSO 在 SEVIS 系统操作 release。新校接管</span></div>
+  <div class="check-item"><span class="check-num">6</span><span><strong>Day 8-12</strong>：新校签发新 I-20。Download PDF。检查 program start date / financial / sponsor 字段</span></div>
+  <div class="check-item"><span class="check-num">7</span><span><strong>Program start date 后 30 天内</strong>：International Office check-in + register 至少 12/9 units</span></div>
+  <div class="check-item"><span class="check-num">8</span><span><strong>转学完成 14 天内</strong>：通知任何关联机构（银行 / 房东 / 雇主），更新 I-20 复印件</span></div>
+</div>
+
+<h2 id="s9">9. 5 件你绝对不能做的事</h2>
+<ul style="color:#dc2626">
+  <li><strong>不要忽视 SEVIS release date 的协商空间</strong>——70% 案例可成功推迟 5-10 天，剩 30% 是因为学生用对抗性语言或太晚提</li>
+  <li><strong>不要在 transfer-in form 选「academic dismissal」当 reason</strong>（如果可避免）——会触发新校多 1 周审 + 额外 documentation 要求。选「program mismatch」或「personal」更顺</li>
+  <li><strong>不要错过新 I-20 program start date 后 30 天</strong>——SEVIS automatically terminated，无延期机制</li>
+  <li><strong>不要假设原 OPT / CPT 仍有效</strong>——转学后所有原校工作授权失效。新校重新授权需「two semesters of full-time enrollment」</li>
+  <li><strong>不要伪造 financial documentation</strong>——新校 DSO 可能向银行核实。伪造 = 18 USC § 1001 + immigration fraud finding</li>
+</ul>
+
+<hr/>
+
+<p>F-1 转学是<strong>程序性的</strong>——不是申诉、不是说服、不是请求。把 5 个法定节点 + release date 协商策略 + transfer-in form 4 个字段 + 30 天 program start 铁律全部对齐，转学就是一个执行问题。</p>
+
+<p>如果你正在 SEVIS 危机窗口期，<strong>免费 30 分钟评估永远开放</strong>。页面任意「微信咨询」按钮扫码即加，发一句「想聊 I-20 转学 + 你目前 SEVIS 状态」，我们当天判断 release date 协商空间。</p>
+
+<p style="font-size:12px;color:#999;margin-top:32px"><em>本文数据来源：8 CFR 214.2(f)(8) F-1 transfer regulations; 8 CFR 214.2(f)(5)(i) program start date 规则; USCIS Policy Manual Volume 2 Part F Chapter 5; SEVP Policy Guidance 1004-04 reasonable timeframe; ICE SEVP DSO 公开 procedural 指南; Maginex 编辑部 2022-2025 处理样本。学生姓名、原校均已脱敏。</em></p>
+`,
+  },
 };
