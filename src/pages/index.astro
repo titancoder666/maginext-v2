@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import EmergencyGrid from '../components/EmergencyGrid.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
+import OfferWall from '../components/OfferWall.astro';
 import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } from '../data/site.js';
 
 const faqJsonLd = {
@@ -162,6 +163,9 @@ const orgJsonLd = {
       </div>
     </div>
   </section>
+
+  <!-- Offer Wall — 43 张录取通知书墙 -->
+  <OfferWall />
 
   <!-- Cases -->
   <section class="section section-soft">

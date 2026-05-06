@@ -1,0 +1,146 @@
+---
+// 显示 offer 录取通知书墙：首页用 marquee（连续滚动），传递「我们处理过很多 case」
+// 全部 43 张完整 grid 见 /offers/ 页面
+const TOTAL = 43;
+// 首页 marquee 取前 18 张（够屏宽 + 重复滚动不会重复肉眼可见）
+const HOMEPAGE_FEATURED = Array.from({ length: 18 }, (_, i) => {
+  const num = String(i + 1).padStart(2, '0');
+  return `/offers/offer-${num}.jpg`;
+});
+---
+<section class="offer-wall-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">RECEIPTS · 录取通知书</div>
+      <h2 class="h2"><span class="hl">{TOTAL} 封</span> offer，<br/>每一封都签收过。</h2>
+      <p class="sub">这不是 Photoshop 抠图，是过去 2 学年我们签约学生收到的真实 admission letter。学生名字已脱敏，校徽和签发机构印章保留——你能在每一封上一眼认出学校。</p>
+    </div>
+
+    <!-- Marquee 横向滚动 -->
+    <div class="offer-marquee" aria-label="录取通知书展示">
+      <div class="offer-marquee-track">
+        {HOMEPAGE_FEATURED.map((src) => (
+          <a href="/offers/" class="offer-thumb" aria-label="查看全部录取通知书">
+            <img src={src} alt="录取通知书 (学生名已脱敏)" loading="lazy" />
+          </a>
+        ))}
+        <!-- 复制一份用于无缝循环 -->
+        {HOMEPAGE_FEATURED.map((src) => (
+          <a href="/offers/" class="offer-thumb" aria-hidden="true" tabindex="-1">
+            <img src={src} alt="" loading="lazy" />
+          </a>
+        ))}
+      </div>
+      <div class="offer-marquee-fade offer-marquee-fade-left" aria-hidden="true"></div>
+      <div class="offer-marquee-fade offer-marquee-fade-right" aria-hidden="true"></div>
+    </div>
+
+    <div class="offer-foot">
+      <div class="offer-foot-stats">
+        <div class="offer-stat-item">
+          <div class="offer-stat-num">{TOTAL}</div>
+          <div class="offer-stat-label">封 offer</div>
+        </div>
+        <div class="offer-stat-item">
+          <div class="offer-stat-num">23</div>
+          <div class="offer-stat-label">所学校</div>
+        </div>
+        <div class="offer-stat-item">
+          <div class="offer-stat-num">2024–2026</div>
+          <div class="offer-stat-label">签约届</div>
+        </div>
+      </div>
+      <a href="/offers/" class="offer-foot-link">查看全部 {TOTAL} 封 offer →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.offer-wall-section { padding: 80px 0; background: #fff; border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border); overflow: hidden; }
+
+.offer-marquee { position: relative; margin-top: 48px; overflow: hidden; }
+.offer-marquee-track {
+  display: flex;
+  gap: 14px;
+  animation: marquee 80s linear infinite;
+  width: max-content;
+}
+.offer-marquee:hover .offer-marquee-track { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-marquee-track { animation: none; }
+}
+
+.offer-thumb {
+  display: block;
+  flex-shrink: 0;
+  width: 180px;
+  height: 240px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f5f5f5;
+  border: 1px solid var(--c-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  transition: transform .2s, box-shadow .2s;
+}
+.offer-thumb:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+}
+.offer-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.offer-marquee-fade {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 2;
+}
+.offer-marquee-fade-left { left: 0; background: linear-gradient(to right, #fff, transparent); }
+.offer-marquee-fade-right { right: 0; background: linear-gradient(to left, #fff, transparent); }
+
+.offer-foot {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 32px;
+  background: var(--c-soft);
+  border-radius: 16px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.offer-foot-stats { display: flex; gap: 48px; }
+.offer-stat-item { text-align: left; }
+.offer-stat-num { font-size: 36px; font-weight: 700; letter-spacing: -1px; line-height: 1; }
+.offer-stat-label { font-size: 12px; color: var(--c-muted); margin-top: 6px; letter-spacing: .5px; }
+.offer-foot-link {
+  padding: 14px 28px;
+  background: #000;
+  color: #fff;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.offer-foot-link:hover { background: var(--c-accent); color: #000; }
+
+@media (max-width: 768px) {
+  .offer-wall-section { padding: 56px 0; }
+  .offer-thumb { width: 140px; height: 188px; }
+  .offer-marquee-track { gap: 10px; animation-duration: 60s; }
+  .offer-foot { padding: 20px; flex-direction: column; align-items: stretch; }
+  .offer-foot-stats { gap: 24px; justify-content: space-between; }
+  .offer-stat-num { font-size: 28px; }
+  .offer-foot-link { text-align: center; }
+}
+</style>
