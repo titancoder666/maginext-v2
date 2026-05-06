@@ -29,19 +29,52 @@ const orgJsonLd = {
 <Base>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(orgJsonLd)}></script>
-  <!-- Hero — emergency-first -->
+  <!-- Hero — 5-slide carousel for different incoming intents -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-tag">
-        <span class="hero-tag-dot hero-tag-dot-urgent"></span>
-        持牌移民律师 + 前 USCIS 政策顾问 · 24h 待命
+
+      <div class="hero-slides" id="hero-slides" aria-live="polite" aria-roledescription="carousel">
+
+        <div class="hero-slide active" data-slide="0">
+          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-urgent"></span>持牌移民律师 + 前 USCIS 政策顾问 · 24h 待命</div>
+          <h1 class="hero-title">身份危机？<br/>24 小时内<br/><span class="hl">有人接你电话</span>。</h1>
+          <p class="hero-lede">Reinstatement · 紧急转学 · OPT/H-1B RFE · 学术 dismissal 申诉 · B 转 F 身份转换<br/>每一项都对应具体的法律条文 + 时间窗口。Maginex 团队处理过 400+ 起留学生急救 case。</p>
+        </div>
+
+        <div class="hero-slide" data-slide="1" aria-hidden="true">
+          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-urgent"></span>凌晨 3 点也响应 · 当晚出申诉路径</div>
+          <h1 class="hero-title">收到 dismissal letter？<br/>还有 15 天<br/><span class="hl">翻盘窗口</span>。</h1>
+          <p class="hero-lede">Probation / Suspension / Dismissal · 5 段式申诉信模板 + procedural error + new evidence + disproportionate sanction 三轨叠加论证<br/>FERPA 引用 + Goss v. Lopez 1975 due process 框架。叠加论证统计成功率 65–75%。</p>
+        </div>
+
+        <div class="hero-slide" data-slide="2" aria-hidden="true">
+          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-purple"></span>保 F-1 不断档 · 48h transfer-in 启动</div>
+          <h1 class="hero-title">原校念不下去？<br/>走 CC，<br/><span class="hl">一样能进 UC</span>。</h1>
+          <p class="hero-lede">UC 系统 92% transfer 录取来自 CC（2024 年 26,250 人）· IGETC + TAG 路径 · Foothill / De Anza 等强校直推<br/>我们带过 17 个 CC 学生进 Top 6 UC，其中 5 人原校 GPA 低于 2.5。</p>
+        </div>
+
+        <div class="hero-slide" data-slide="3" aria-hidden="true">
+          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-purple"></span>USCIS 内部审查口径 · 84% 通过率</div>
+          <h1 class="hero-title">收到 RFE notice？<br/>87 天倒计时<br/><span class="hl">已经开始</span>。</h1>
+          <p class="hero-lede">Type A 文件 / Type B 资格 / Type C 意图 三类 RFE · USCIS Policy Manual 标准 5 段式 response 结构<br/>F-1 / OPT 类 RFE 通过率 91% · H-1B 73% · 持牌律师 sign-off。</p>
+        </div>
+
+        <div class="hero-slide" data-slide="4" aria-hidden="true">
+          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-blue"></span>12,000 份审稿样本 · NACAC 标准</div>
+          <h1 class="hero-title">高三才决定出国？<br/>4 个月<br/><span class="hl">冲 Top 30</span>。</h1>
+          <p class="hero-lede">EA + RD + UC 三轨平行 · 选校 = 2 冲刺 + 4 匹配 + 3 保底 · 文书 4 周写完 6 篇<br/>2025 年我们带的 6 个「高三决定派」里 4 人进 Top 30。Common App + UC App 双系统。</p>
+        </div>
+
       </div>
-      <h1 class="hero-title">身份危机？<br/>24 小时内<br/><span class="hl">有人接你电话</span>。</h1>
-      <p class="hero-lede">
-        Reinstatement · 紧急转学 · OPT/H-1B RFE · 学术 dismissal 申诉 · B 转 F 身份转换
-        <br/>
-        每一项都对应具体的法律条文 + 时间窗口。Maginex 团队处理过 400+ 起留学生急救 case。
-      </p>
+
+      <div class="hero-dots" role="tablist" aria-label="选择场景">
+        <button type="button" class="hero-dot active" data-idx="0" role="tab" aria-label="身份危机"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="1" role="tab" aria-label="学术 dismissal 申诉"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="2" role="tab" aria-label="低 GPA 紧急转学"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="3" role="tab" aria-label="OPT 或 H-1B RFE"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="4" role="tab" aria-label="美本申请"><span class="hero-dot-bar"></span></button>
+      </div>
+
       <div class="hero-ctas">
         <button type="button" class="btn btn-primary btn-lg" data-wechat-cta="hero-primary"><span style="color:var(--c-wechat); margin-right:8px">●</span>立即微信咨询 <span style="margin-left:8px">→</span></button>
         <a href="#emergency" class="btn btn-ghost btn-lg">先看 6 类急救场景</a>
@@ -61,6 +94,43 @@ const orgJsonLd = {
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      const wrap = document.getElementById('hero-slides');
+      if (!wrap) return;
+      const slides = Array.from(wrap.querySelectorAll('.hero-slide'));
+      const dots = Array.from(document.querySelectorAll('.hero-dot'));
+      const ROTATE_MS = 6000;
+      let cur = 0, timer = null;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function show(i) {
+        slides.forEach((s, j) => {
+          s.classList.toggle('active', j === i);
+          s.setAttribute('aria-hidden', j === i ? 'false' : 'true');
+        });
+        dots.forEach((d, j) => d.classList.toggle('active', j === i));
+        cur = i;
+      }
+      function next() { show((cur + 1) % slides.length); }
+      function start() {
+        if (reduced) return;
+        stop();
+        timer = setInterval(next, ROTATE_MS);
+      }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+      dots.forEach((d, i) => d.addEventListener('click', () => { show(i); start(); }));
+      wrap.addEventListener('mouseenter', stop);
+      wrap.addEventListener('mouseleave', start);
+
+      // Pause when tab not visible
+      document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+
+      start();
+    })();
+  </script>
 
   <EmergencyGrid />
   <ProcessSteps />
@@ -300,9 +370,34 @@ const orgJsonLd = {
 .hero { padding: 120px 0 96px; background: linear-gradient(180deg, #fff 0%, #fafafa 100%); border-bottom: 1px solid var(--c-border); }
 .hero-inner { max-width: 1100px; margin: 0 auto; padding: 0 var(--pad-x); text-align: center; }
 .hero-tag { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; background: #fff; border: 1px solid var(--c-border); border-radius: 99px; font-size: 13px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
-.hero-tag-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--c-green); box-shadow: 0 0 0 4px rgba(34,197,94,.15); }
+.hero-tag-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--c-green); box-shadow: 0 0 0 4px rgba(34,197,94,.15); flex-shrink: 0; }
 .hero-tag-dot-urgent { background: #dc2626; box-shadow: 0 0 0 4px rgba(220,38,38,.15); animation: hero-pulse 2s ease-in-out infinite; }
+.hero-tag-dot-purple { background: #7c3aed; box-shadow: 0 0 0 4px rgba(124,58,237,.15); }
+.hero-tag-dot-blue { background: #0891b2; box-shadow: 0 0 0 4px rgba(8,145,178,.15); }
 @keyframes hero-pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(220,38,38,.15); } 50% { box-shadow: 0 0 0 8px rgba(220,38,38,.05); } }
+
+/* Hero carousel slides */
+.hero-slides { position: relative; min-height: 460px; }
+.hero-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility .6s; }
+.hero-slide.active { opacity: 1; visibility: visible; }
+.hero-slide .hero-tag { margin-top: 0; }
+.hero-slide .hero-title { margin-top: 32px; }
+.hero-slide .hero-lede { margin-top: 28px; }
+
+.hero-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; margin-bottom: 24px; }
+.hero-dot { width: 40px; height: 4px; background: rgba(0,0,0,.1); border: none; border-radius: 99px; padding: 0; cursor: pointer; position: relative; overflow: hidden; transition: background .15s; }
+.hero-dot:hover { background: rgba(0,0,0,.25); }
+.hero-dot.active { background: #000; }
+.hero-dot-bar { display: none; }
+
+@media (max-width: 1024px) {
+  .hero-slides { min-height: 420px; }
+}
+@media (max-width: 768px) {
+  .hero-slides { min-height: 360px; }
+  .hero-dots { gap: 6px; }
+  .hero-dot { width: 28px; height: 3px; }
+}
 .hero-title { font-size: 88px; font-weight: 700; line-height: 1.02; letter-spacing: -3.5px; margin-top: 32px; }
 .hero-lede { font-size: 20px; line-height: 1.6; color: #444; margin-top: 32px; max-width: 680px; margin-left: auto; margin-right: auto; }
 .hero-ctas { display: flex; gap: 12px; margin-top: 40px; justify-content: center; flex-wrap: wrap; }
