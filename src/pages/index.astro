@@ -36,33 +36,33 @@ const orgJsonLd = {
       <div class="hero-slides" id="hero-slides" aria-live="polite" aria-roledescription="carousel">
 
         <div class="hero-slide active" data-slide="0">
-          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-urgent"></span>持牌移民律师 + 前 USCIS 政策顾问 · 24h 待命</div>
-          <h1 class="hero-title">身份危机？<br/>24 小时内<br/><span class="hl">有人接你电话</span>。</h1>
-          <p class="hero-lede">Reinstatement · 紧急转学 · OPT/H-1B RFE · 学术 dismissal 申诉 · B 转 F 身份转换<br/>每一项都对应具体的法律条文 + 时间窗口。Maginex 团队处理过 400+ 起留学生急救 case。</p>
+          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-urgent"></span>持牌律师 + 前 USCIS 政策顾问 · 24h 待命</div>
+          <h1 class="hero-title">身份危机？<br/>24 小时内<br/><span class="hl">有人接电话</span>。</h1>
+          <p class="hero-lede">Reinstatement · 紧急转学 · RFE · dismissal 申诉 · B 转 F<br/>处理过 400+ 起留学生急救 case。</p>
         </div>
 
         <div class="hero-slide" data-slide="1" aria-hidden="true">
           <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-urgent"></span>凌晨 3 点也响应 · 当晚出申诉路径</div>
-          <h1 class="hero-title">收到 dismissal letter？<br/>还有 15 天<br/><span class="hl">翻盘窗口</span>。</h1>
-          <p class="hero-lede">Probation / Suspension / Dismissal · 5 段式申诉信模板 + procedural error + new evidence + disproportionate sanction 三轨叠加论证<br/>FERPA 引用 + Goss v. Lopez 1975 due process 框架。叠加论证统计成功率 65–75%。</p>
+          <h1 class="hero-title">学校开除你？<br/>还有 15 天<br/><span class="hl">能翻盘</span>。</h1>
+          <p class="hero-lede">5 段式申诉信模板 + 三轨叠加论证（procedural / new evidence / sanction）<br/>FERPA + Goss v. Lopez 1975 框架。统计成功率 65–75%。</p>
         </div>
 
         <div class="hero-slide" data-slide="2" aria-hidden="true">
           <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-purple"></span>保 F-1 不断档 · 48h transfer-in 启动</div>
-          <h1 class="hero-title">原校念不下去？<br/>走 CC，<br/><span class="hl">一样能进 UC</span>。</h1>
-          <p class="hero-lede">UC 系统 92% transfer 录取来自 CC（2024 年 26,250 人）· IGETC + TAG 路径 · Foothill / De Anza 等强校直推<br/>我们带过 17 个 CC 学生进 Top 6 UC，其中 5 人原校 GPA 低于 2.5。</p>
+          <h1 class="hero-title">原校念不下去？<br/>不必回国，<br/><span class="hl">CC 能进 UC</span>。</h1>
+          <p class="hero-lede">UC 92% transfer 录取来自 CC（2024 年 26,250 人）· IGETC + TAG 路径<br/>17 个 CC 学生进 Top 6 UC，5 人原校 GPA &lt; 2.5。</p>
         </div>
 
         <div class="hero-slide" data-slide="3" aria-hidden="true">
           <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-purple"></span>USCIS 内部审查口径 · 84% 通过率</div>
-          <h1 class="hero-title">收到 RFE notice？<br/>87 天倒计时<br/><span class="hl">已经开始</span>。</h1>
-          <p class="hero-lede">Type A 文件 / Type B 资格 / Type C 意图 三类 RFE · USCIS Policy Manual 标准 5 段式 response 结构<br/>F-1 / OPT 类 RFE 通过率 91% · H-1B 73% · 持牌律师 sign-off。</p>
+          <h1 class="hero-title">收到 RFE？<br/>3 天内<br/><span class="hl">出应对大纲</span>。</h1>
+          <p class="hero-lede">Type A 文件 / Type B 资格 / Type C 意图 三类 RFE · 5 段式 response<br/>F-1/OPT 类通过率 91% · H-1B 73% · 持牌律师 sign-off。</p>
         </div>
 
         <div class="hero-slide" data-slide="4" aria-hidden="true">
           <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-blue"></span>12,000 份审稿样本 · NACAC 标准</div>
-          <h1 class="hero-title">高三才决定出国？<br/>4 个月<br/><span class="hl">冲 Top 30</span>。</h1>
-          <p class="hero-lede">EA + RD + UC 三轨平行 · 选校 = 2 冲刺 + 4 匹配 + 3 保底 · 文书 4 周写完 6 篇<br/>2025 年我们带的 6 个「高三决定派」里 4 人进 Top 30。Common App + UC App 双系统。</p>
+          <h1 class="hero-title">高三才决定？<br/>4 个月<br/><span class="hl">冲 Top 30</span>。</h1>
+          <p class="hero-lede">EA + RD + UC 三轨平行 · 文书 4 周写完 6 篇<br/>2025 年「高三决定派」6 人 4 进 Top 30。</p>
         </div>
 
       </div>
@@ -101,7 +101,7 @@ const orgJsonLd = {
       if (!wrap) return;
       const slides = Array.from(wrap.querySelectorAll('.hero-slide'));
       const dots = Array.from(document.querySelectorAll('.hero-dot'));
-      const ROTATE_MS = 2000;
+      const ROTATE_MS = 5000;
       let cur = 0, timer = null;
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -377,11 +377,11 @@ const orgJsonLd = {
 @keyframes hero-pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(220,38,38,.15); } 50% { box-shadow: 0 0 0 8px rgba(220,38,38,.05); } }
 
 /* Hero carousel slides */
-.hero-slides { position: relative; min-height: 460px; }
+.hero-slides { position: relative; min-height: 380px; }
 .hero-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility .6s; }
 .hero-slide.active { opacity: 1; visibility: visible; }
 .hero-slide .hero-tag { margin-top: 0; }
-.hero-slide .hero-title { margin-top: 32px; }
+.hero-slide .hero-title { margin-top: 28px; }
 .hero-slide .hero-lede { margin-top: 28px; }
 
 .hero-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; margin-bottom: 24px; }
@@ -391,14 +391,14 @@ const orgJsonLd = {
 .hero-dot-bar { display: none; }
 
 @media (max-width: 1024px) {
-  .hero-slides { min-height: 420px; }
+  .hero-slides { min-height: 340px; }
 }
 @media (max-width: 768px) {
-  .hero-slides { min-height: 360px; }
+  .hero-slides { min-height: 280px; }
   .hero-dots { gap: 6px; }
   .hero-dot { width: 28px; height: 3px; }
 }
-.hero-title { font-size: 88px; font-weight: 700; line-height: 1.02; letter-spacing: -3.5px; margin-top: 32px; }
+.hero-title { font-size: 68px; font-weight: 700; line-height: 1.05; letter-spacing: -2.5px; margin-top: 28px; }
 .hero-lede { font-size: 20px; line-height: 1.6; color: #444; margin-top: 32px; max-width: 680px; margin-left: auto; margin-right: auto; }
 .hero-ctas { display: flex; gap: 12px; margin-top: 40px; justify-content: center; flex-wrap: wrap; }
 .hero-micro { display: flex; gap: 32px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
@@ -477,7 +477,7 @@ const orgJsonLd = {
 .form-card { background: #fff; border-radius: 20px; padding: 32px; color: #000; }
 
 @media (max-width: 1024px) {
-  .hero-title { font-size: 60px; letter-spacing: -2px; }
+  .hero-title { font-size: 56px; letter-spacing: -1.8px; }
   .h2-huge { font-size: 60px; }
   .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
   .bento { grid-template-columns: 1fr 1fr; }
@@ -486,7 +486,7 @@ const orgJsonLd = {
 }
 @media (max-width: 768px) {
   .hero { padding: 64px 0 56px; }
-  .hero-title { font-size: 40px; letter-spacing: -1.5px; line-height: 1.05; }
+  .hero-title { font-size: 36px; letter-spacing: -1.2px; line-height: 1.1; }
   .hero-lede { font-size: 16px; }
   .hero-micro { gap: 16px; }
   .big-num-row { grid-template-columns: 1fr 1fr; gap: 16px; padding: 24px 0; }
