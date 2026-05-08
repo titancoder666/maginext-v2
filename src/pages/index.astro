@@ -103,7 +103,6 @@ const orgJsonLd = {
       const dots = Array.from(document.querySelectorAll('.hero-dot'));
       const ROTATE_MS = 5000;
       let cur = 0, timer = null;
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function show(i) {
         slides.forEach((s, j) => {
@@ -115,7 +114,6 @@ const orgJsonLd = {
       }
       function next() { show((cur + 1) % slides.length); }
       function start() {
-        if (reduced) return;
         stop();
         timer = setInterval(next, ROTATE_MS);
       }
@@ -379,6 +377,9 @@ const orgJsonLd = {
 /* Hero carousel slides */
 .hero-slides { position: relative; min-height: 380px; }
 .hero-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility .6s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { transition: none; }
+}
 .hero-slide.active { opacity: 1; visibility: visible; }
 .hero-slide .hero-tag { margin-top: 0; }
 .hero-slide .hero-title { margin-top: 28px; }
