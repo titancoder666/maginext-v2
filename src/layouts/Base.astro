@@ -37,6 +37,10 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site).toStri
   <meta property="og:image" content={ogImage} />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  {SITE.googleSiteVerification && <meta name="google-site-verification" content={SITE.googleSiteVerification} />}
+  {SITE.bingSiteVerification && <meta name="msvalidate.01" content={SITE.bingSiteVerification} />}
+  {SITE.baiduSiteVerification && <meta name="baidu-site-verification" content={SITE.baiduSiteVerification} />}
+  {SITE.yandexSiteVerification && <meta name="yandex-verification" content={SITE.yandexSiteVerification} />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

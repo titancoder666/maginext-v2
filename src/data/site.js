@@ -23,6 +23,12 @@ export const SITE = {
   // 警告：填假号是违法行为，beian.mps.gov.cn 公开可查。
   icpFiling: '',  // 形如 "京 ICP 备 19012345 号"
   psbFiling: '',  // 形如 "京公网安备 11010602104269 号"
+  // 搜索引擎 webmaster 验证 token（留空 = 不渲染）
+  // 注册后把 Google Search Console / Bing Webmaster 给的 content 值填进来
+  googleSiteVerification: '',  // GSC: <meta name="google-site-verification" content="XXX">
+  bingSiteVerification: '',    // Bing: <meta name="msvalidate.01" content="XXX">
+  baiduSiteVerification: '',   // 百度: <meta name="baidu-site-verification" content="XXX">
+  yandexSiteVerification: '',  // (optional)
   // 社交媒体 QR 路径 — 留空字符串则 footer 该格不渲染。
   // 业主把图放到 public/qr/ 后，把对应的 path 填进来即可显示。
   qrFiles: {

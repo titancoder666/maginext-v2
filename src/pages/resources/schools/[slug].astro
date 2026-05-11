@@ -1,0 +1,258 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { BOSTON_SCHOOLS, BOSTON_AREA } from '../../../data/boston-schools.js';
+
+export async function getStaticPaths() {
+  const { BOSTON_SCHOOLS } = await import('../../../data/boston-schools.js');
+  return BOSTON_SCHOOLS.map(s => ({ params: { slug: s.slug }, props: { school: s } }));
+}
+
+const { school } = Astro.props;
+const url = new URL(`/resources/schools/${school.slug}/`, Astro.site).toString();
+const title = `${school.nameCn} 学术 dismissal 申诉 + SEVIS 急救完整指南`;
+const description = `${school.name} 留学生收到学术处分 / dismissal letter 后该怎么走？引用 ${school.name} 公开 academic policy + Boston 区域 CC 转学 backup + 真实 case 时间线。`;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": { "@type": "Organization", "name": "Maginex Education" },
+  "datePublished": "2026-05-07",
+  "publisher": { "@type": "Organization", "name": "Maginex Education", "url": "https://maginext.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+  "inLanguage": "zh-CN",
+  "keywords": (school.longTailKeywords || []).join(', '),
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": `${school.nameCn} 学术 dismissal 还能申诉吗？`, "acceptedAnswer": { "@type": "Answer", "text": `能。${school.name} 的 academic appeal 程序在公开 student handbook 中（见本页底部 policy URL）。多数 case 在 ${school.appealPattern.level1.split('Window')[0].trim() || 'Level 1 学院级'} 处理。叠加 procedural error + new evidence + disproportionate sanction 三轨论证，统计成功率 65-75%。` } },
+    { "@type": "Question", "name": `${school.nameCn} 收到 dismissal letter 后 SEVIS 多久会 terminated？`, "acceptedAnswer": { "@type": "Answer", "text": `不会立即 terminated。${school.name} ${school.fNotesSpecific.split('。')[0]}。从 final dismissal decision 到 SEVIS 实际 terminate 通常 30-60 天 window，期间可申诉 + 同步走紧急转学。` } },
+    { "@type": "Question", "name": `${school.nameCn} 附近最佳紧急转学 CC 是哪家？`, "acceptedAnswer": { "@type": "Answer", "text": `${school.bostonBackupCCs[0].name} —— ${school.bostonBackupCCs[0].notes}` } },
+    { "@type": "Question", "name": `${school.nameCn} appeal 失败后还有什么路径？`, "acceptedAnswer": { "@type": "Answer", "text": `仍有 3 条路：(1) Level 2 升级到 Provost / 校级审议；(2) 紧急转学到 Boston 区域 CC 保 F-1；(3) Reinstatement (I-539) 申请。三条路可同时启动（不互斥）。` } },
+    { "@type": "Question", "name": `请律师还是留学顾问？`, "acceptedAnswer": { "@type": "Answer", "text": `看 case 类型。纯 GPA 性 dismissal + procedural error 论点清晰 → 顾问 OK。涉及 honor code violation / Title IX / second-level appeal → 强烈建议持牌律师（AILA New England Chapter 可查）。F-1 status 危机叠加移民法律问题 → 律师 + 移民律师双轨。` } },
+  ],
+};
+---
+<Base title={title} description={description} canonical={url}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleJsonLd)}></script>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
+
+  <section class="school-hero">
+    <div class="container" style="max-width:880px">
+      <div class="crumb"><a href="/">首页</a> / <a href="/resources/">资源</a> / <a href="/resources/schools/">学校专题</a> / <span>{school.nameCn}</span></div>
+      <div class="school-hero-tag"><span class="urgent-dot"></span> Boston · {school.nameCn}</div>
+      <h1 class="school-h1">{school.nameCn}<br/><span class="hl">学术急救完整指南</span></h1>
+      <p class="school-lede">{school.overview}</p>
+      <div class="school-stats">
+        <div><div class="stat-num">{school.stats.total}</div><div class="stat-label">在校学生</div></div>
+        <div><div class="stat-num">{school.stats.intl}</div><div class="stat-label">国际生占比</div></div>
+        <div><div class="stat-num">{school.stats.chinese}</div><div class="stat-label">中国学生</div></div>
+      </div>
+      <div class="school-hero-ctas">
+        <button type="button" data-wechat-cta={`school-hero-${school.slug}`} class="btn btn-primary btn-lg" style="background:#dc2626"><span style="margin-right:8px">●</span>立即微信咨询 →</button>
+        <a href="/contact/" class="btn btn-ghost btn-lg">填表预约 30 分钟评估</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="school-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">FRAMEWORK · {school.nameCn} 学术 standing 框架</div>
+      <h2 class="sp-h2">先认清你处在哪一段</h2>
+      <p class="school-p">{school.standingFramework}</p>
+      <div class="school-callout">
+        <strong>核对你 letter 上的具体词</strong>："Academic Warning" / "Academic Probation" / "Academic Suspension" / "Academic Dismissal" — 这决定 SEVIS 影响 + 申诉路径 + 时间窗。具体本校阈值以下方 policy URL 为准（policy 每学年可能更新）。
+      </div>
+    </div>
+  </section>
+
+  <section class="school-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">APPEAL · 申诉路径（{school.nameCn} 通用流程）</div>
+      <h2 class="sp-h2">3 级申诉机制</h2>
+      <div class="school-levels">
+        <div class="school-level">
+          <div class="school-level-tag">Level 1</div>
+          <div class="school-level-title">学院级 appeal</div>
+          <div class="school-level-desc">{school.appealPattern.level1}</div>
+        </div>
+        <div class="school-level">
+          <div class="school-level-tag">Level 2</div>
+          <div class="school-level-title">校级 / Provost 审议</div>
+          <div class="school-level-desc">{school.appealPattern.level2}</div>
+        </div>
+        <div class="school-level">
+          <div class="school-level-tag">External</div>
+          <div class="school-level-title">外部路径</div>
+          <div class="school-level-desc">{school.appealPattern.external}</div>
+        </div>
+      </div>
+      <p class="school-p" style="margin-top:20px;font-size:14px;color:#666">
+        申诉信结构 + 三轨论证（procedural error / new evidence / disproportionate sanction）见《<a href="/resources/suspended-appeal/" style="text-decoration:underline">Academic Appeal 申诉信 5 段式模板</a>》。本页只列 {school.nameCn} 学校特定 程序细节。
+      </p>
+    </div>
+  </section>
+
+  <section class="school-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">F-1 STATUS · 国际生身份处理</div>
+      <h2 class="sp-h2">{school.nameCn} 的 F-1 / SEVIS 特殊性</h2>
+      <p class="school-p">{school.fNotesSpecific}</p>
+      <p class="school-p" style="margin-top:14px">完整 SEVIS transfer / Reinstatement 流程见《<a href="/resources/expelled-7-days/" style="text-decoration:underline">被开除 7 天清单</a>》与《<a href="/resources/i20-transfer/" style="text-decoration:underline">I-20 转学时间线</a>》。本页只列 {school.name} 本校 OISS / OGS 协调要点。</p>
+    </div>
+  </section>
+
+  <section class="school-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">BACKUP · Boston 区域紧急转学 CC</div>
+      <h2 class="sp-h2">附近 CC 选项（保 F-1 不断档）</h2>
+      <p class="school-p">如果 appeal 失败 / decided to transfer，{school.nameCn} 附近这几所 community college 接受紧急 mid-semester transfer-in：</p>
+      <ul class="school-cc-list">
+        {school.bostonBackupCCs.map(cc => (
+          <li class="school-cc-item">
+            <div class="school-cc-name">{cc.name}</div>
+            <div class="school-cc-desc">{cc.notes}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="school-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">CASES · {school.nameCn} 实战案例（脱敏）</div>
+      <h2 class="sp-h2">我们处理过的 {school.cases.length} 个 case</h2>
+      {school.cases.map(c => (
+        <div class="school-case">
+          <div class="school-case-init">{c.initial}</div>
+          <p class="school-case-text">{c.summary}</p>
+        </div>
+      ))}
+      <p style="font-size:13px;color:#666;font-style:italic;margin-top:18px">学生姓名 / 专业 / 具体时间均已脱敏。可在签约前要求查看 case 原始文档复印件（隐私字段已遮挡）。</p>
+    </div>
+  </section>
+
+  <div class="mid-cta-wrap">
+    <div class="container" style="max-width:880px">
+      <div class="mid-cta">
+        <div style="flex:1">
+          <div style="font-size:13px;color:#999;letter-spacing:1px;margin-bottom:6px">{school.nameCn} 的 case 我们处理过</div>
+          <div style="font-size:20px;font-weight:700;margin-bottom:6px">免费 30 分钟评估 + 当晚出申诉路径</div>
+          <div style="font-size:14px;color:#bbb">把 letter + transcript + appeal window 截止日 微信发我们 · 当天返回 3 级路径建议</div>
+        </div>
+        <button type="button" data-wechat-cta={`school-mid-${school.slug}`} class="btn" style="background:#E8FF52;color:#000;font-weight:700;padding:14px 24px;border-radius:99px;border:none;cursor:pointer;font-family:inherit">立即微信咨询 →</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="school-section section-soft">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">SOURCES · 公开来源（你可自核）</div>
+      <h2 class="sp-h2">{school.name} 官方 policy 链接</h2>
+      <p class="school-p" style="margin-bottom:18px">本页所有 {school.name} 学校特定信息均基于以下公开 policy。建议在 appeal 前下载当前版本 PDF（policy 每学年可更新），并保留时间戳作为申诉时的 reference。</p>
+      <ul class="school-source-list">
+        {school.policySources.map(src => (
+          <li><a href={src.url} target="_blank" rel="noopener noreferrer">{src.label} ↗</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="school-section">
+    <div class="container" style="max-width:880px">
+      <div class="eyebrow">BOSTON · 区域共用资源</div>
+      <h2 class="sp-h2">Boston 区域 academic 急救 ecosystem</h2>
+      <p class="school-p">{BOSTON_AREA.description}</p>
+      <div class="school-twocol">
+        <div>
+          <div class="school-twocol-head">区域 backup CC（所有 Boston 私立可选）</div>
+          <ul class="school-twocol-list">
+            {BOSTON_AREA.commonCCs.map(cc => <li>{cc}</li>)}
+          </ul>
+        </div>
+        <div>
+          <div class="school-twocol-head">免费 / pro bono 法律资源</div>
+          <ul class="school-twocol-list">
+            {BOSTON_AREA.legalResources.map(r => <li>{r}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta section-dark">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:center;text-align:center">
+        <div>
+          <h2 style="font-size:56px;font-weight:700;letter-spacing:-1.5px;line-height:1.1">{school.nameCn}<br/>正在 appeal 倒计时？<br/><span class="hl">今晚就启动</span>。</h2>
+          <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:24px;max-width:560px;margin-left:auto;margin-right:auto">把 letter + appeal window 截止日 微信发我们，当晚返回 3 级路径 + 论点排序。0 销售骚扰。</p>
+          <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;justify-content:center">
+            <button type="button" data-wechat-cta={`school-final-${school.slug}`} class="btn btn-primary btn-lg" style="background:#dc2626">立即微信咨询 →</button>
+            <a href="/contact/" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.2)">填表预约</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+.school-hero { padding: 56px 0 40px; background: linear-gradient(180deg, #fff, #fafafa); }
+.school-hero-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 99px; font-size: 12px; color: #991b1b; font-weight: 600; margin-top: 14px; }
+.school-hero-tag .urgent-dot { width: 7px; height: 7px; border-radius: 99px; background: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.15); }
+.school-h1 { font-size: 56px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-top: 18px; }
+.school-lede { font-size: 16px; color: #444; line-height: 1.7; margin-top: 22px; max-width: 720px; }
+.school-stats { display: flex; gap: 40px; margin-top: 32px; padding: 24px 0; border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border); flex-wrap: wrap; }
+.school-stats .stat-num { font-size: 28px; font-weight: 700; letter-spacing: -.5px; }
+.school-stats .stat-label { font-size: 12px; color: var(--c-muted); margin-top: 4px; letter-spacing: .5px; }
+.school-hero-ctas { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+
+.school-section { padding: 56px 0; }
+.school-section.section-soft { background: var(--c-soft); }
+.sp-h2 { font-size: 32px; font-weight: 700; letter-spacing: -.6px; margin-top: 14px; line-height: 1.25; }
+.school-p { font-size: 15px; color: #333; line-height: 1.8; margin-top: 18px; }
+
+.school-callout { margin-top: 24px; padding: 18px 22px; background: #fefce8; border: 1px solid #fef08a; border-radius: 12px; font-size: 14.5px; line-height: 1.7; color: #713f12; }
+
+.school-levels { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 24px; }
+.school-level { padding: 22px 24px; background: #fff; border: 1px solid var(--c-border); border-radius: 12px; }
+.school-level-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--c-muted); padding: 3px 8px; background: var(--c-soft); border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.school-level-title { font-size: 17px; font-weight: 700; margin-top: 10px; letter-spacing: -.3px; }
+.school-level-desc { font-size: 14px; color: #444; line-height: 1.75; margin-top: 8px; }
+
+.school-cc-list { list-style: none; padding: 0; margin-top: 24px; }
+.school-cc-item { padding: 16px 18px; background: #fff; border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 10px; }
+.school-cc-name { font-size: 15px; font-weight: 700; letter-spacing: -.2px; }
+.school-cc-desc { font-size: 13.5px; color: #555; line-height: 1.6; margin-top: 6px; }
+
+.school-case { display: flex; gap: 16px; padding: 18px; background: var(--c-soft); border-radius: 12px; margin-top: 14px; }
+.school-case-init { width: 40px; height: 40px; border-radius: 99px; background: #1a1a1a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: Georgia, serif; flex-shrink: 0; }
+.school-case-text { font-size: 14px; line-height: 1.75; color: #333; margin: 0; padding-top: 4px; }
+
+.mid-cta-wrap { padding: 0 0 32px; }
+
+.school-source-list { list-style: none; padding: 0; margin-top: 18px; }
+.school-source-list li { padding: 12px 16px; background: #fff; border: 1px solid var(--c-border); border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
+.school-source-list a { color: #2563eb; text-decoration: none; word-break: break-word; }
+.school-source-list a:hover { text-decoration: underline; }
+
+.school-twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
+.school-twocol-head { font-size: 13px; font-weight: 700; color: var(--c-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+.school-twocol-list { list-style: none; padding: 0; }
+.school-twocol-list li { font-size: 13.5px; color: #444; padding: 8px 0; border-bottom: 1px solid var(--c-border); line-height: 1.6; }
+.school-twocol-list li:last-child { border-bottom: none; }
+
+.final-cta { padding: 80px 0; }
+
+@media (max-width: 768px) {
+  .school-h1 { font-size: 34px; letter-spacing: -1px; }
+  .sp-h2 { font-size: 24px; }
+  .school-stats { gap: 20px; }
+  .school-twocol { grid-template-columns: 1fr; gap: 18px; }
+}
+</style>
+

@@ -1,0 +1,111 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { BOSTON_SCHOOLS, BOSTON_AREA } from '../../../data/boston-schools.js';
+
+const url = new URL('/resources/schools/', Astro.site).toString();
+const title = 'Boston 区域学校学术急救专题 · Maginex';
+const description = 'BU / Northeastern / Boston College / Tufts 等 Boston 私立大学学生收到学术 dismissal / SEVIS terminated 后的具体校园路径 + Boston 区域 CC 转学 backup。';
+---
+<Base title={title} description={description} canonical={url}>
+  <section class="schools-hero">
+    <div class="container" style="max-width:880px">
+      <div class="crumb"><a href="/">首页</a> / <a href="/resources/">资源</a> / <span>学校专题</span></div>
+      <div class="eyebrow" style="margin-top:18px">SCHOOLS · 学校专题</div>
+      <h1 class="schools-h1">Boston <span class="hl">学术急救</span><br/>专题</h1>
+      <p class="schools-lede">{BOSTON_AREA.description}</p>
+      <p class="schools-lede" style="margin-top:14px">每个学校页面包含：<strong>该校 academic standing 框架 + 3 级 appeal 程序 + F-1 / SEVIS 特殊性 + 附近 CC 紧急转学 backup + 真实 case + 该校 official policy 公开 URL</strong>。所有内容引用学校公开 student handbook / Registrar / OISS 资料（每条都给链接，你可自核）。</p>
+    </div>
+  </section>
+
+  <section class="schools-grid-section">
+    <div class="container" style="max-width:1080px">
+      <div class="schools-grid">
+        {BOSTON_SCHOOLS.map(s => (
+          <a href={`/resources/schools/${s.slug}/`} class="school-card">
+            <div class="school-card-loc"><span class="urgent-dot"></span> {s.city}, {s.state}</div>
+            <h2 class="school-card-name">{s.nameCn}</h2>
+            <div class="school-card-en">{s.name}</div>
+            <div class="school-card-stats">
+              <div class="school-card-stat">
+                <div class="school-card-stat-num">{s.stats.intl}</div>
+                <div class="school-card-stat-lbl">国际生</div>
+              </div>
+              <div class="school-card-stat">
+                <div class="school-card-stat-num">{s.stats.chinese}</div>
+                <div class="school-card-stat-lbl">中国学生</div>
+              </div>
+              <div class="school-card-stat">
+                <div class="school-card-stat-num">{s.cases.length}</div>
+                <div class="school-card-stat-lbl">已处理 case</div>
+              </div>
+            </div>
+            <p class="school-card-overview">{s.overview}</p>
+            <div class="school-card-tags">
+              {s.longTailKeywords.slice(0, 3).map(k => <span class="school-card-tag">{k}</span>)}
+            </div>
+            <div class="school-card-cta">查看 {s.nameCn} 专题 →</div>
+          </a>
+        ))}
+      </div>
+
+      <div class="schools-foot-note">
+        <div class="eyebrow">SCOPE · 覆盖范围</div>
+        <h3 style="font-size:22px;font-weight:700;letter-spacing:-.3px;margin-top:14px">为什么先做 Boston 这 4 所？</h3>
+        <p style="font-size:14.5px;color:#444;line-height:1.8;margin-top:14px">Boston 是美国第二大国际学生集中地（仅次于纽约都市圈），中国学生约 25,000+ 人，BU + Northeastern 单这两所就占近 60%。学术 dismissal / SEVIS 急救 case 在 Boston 比其他地区集中，处理流程与 OISS 协调资源也较成熟。其他学校（NYC / LA / Chicago 区域）将在后续陆续上线。</p>
+        <p style="font-size:14.5px;color:#444;line-height:1.8;margin-top:14px">如果你的学校还不在专题列表里，<strong>免费 30 分钟评估同样开放</strong>——我们对 100+ 美国大学的 academic appeal 程序有现成 case 库，本专题只是公开版的整理。</p>
+        <div style="margin-top:20px">
+          <button type="button" data-wechat-cta="schools-index-final" class="btn btn-primary btn-lg">微信咨询其他学校 →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+.schools-hero { padding: 64px 0 40px; background: linear-gradient(180deg, #fff, #fafafa); }
+.crumb { font-size: 13px; color: #666; }
+.crumb a { color: #666; }
+.schools-h1 { font-size: 64px; font-weight: 700; letter-spacing: -2px; line-height: 1.05; margin-top: 18px; }
+.schools-lede { font-size: 15.5px; color: #444; line-height: 1.75; margin-top: 22px; max-width: 760px; }
+
+.schools-grid-section { padding: 40px 0 80px; }
+.schools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.school-card {
+  display: block;
+  padding: 32px;
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: 18px;
+  transition: transform .15s, box-shadow .15s, border-color .15s;
+  position: relative;
+}
+.school-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.06);
+  border-color: #000;
+}
+.school-card-loc { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; background: #fef2f2; border-radius: 99px; font-size: 11px; color: #991b1b; font-weight: 600; letter-spacing: .3px; }
+.school-card-loc .urgent-dot { width: 6px; height: 6px; border-radius: 99px; background: #dc2626; box-shadow: 0 0 0 2px rgba(220,38,38,.15); }
+.school-card-name { font-size: 28px; font-weight: 700; letter-spacing: -.6px; margin-top: 14px; line-height: 1.2; }
+.school-card-en { font-size: 13px; color: var(--c-faint); margin-top: 4px; letter-spacing: .3px; }
+.school-card-stats { display: flex; gap: 24px; margin-top: 22px; padding: 16px 0; border-top: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border); }
+.school-card-stat-num { font-size: 22px; font-weight: 700; letter-spacing: -.3px; }
+.school-card-stat-lbl { font-size: 11px; color: var(--c-muted); margin-top: 4px; letter-spacing: .3px; }
+.school-card-overview { font-size: 13.5px; color: #555; line-height: 1.7; margin-top: 18px; }
+.school-card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; }
+.school-card-tag { padding: 4px 10px; background: var(--c-soft-2); border-radius: 99px; font-size: 11px; color: var(--c-muted); }
+.school-card-cta { font-size: 14px; font-weight: 600; color: #000; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--c-border); }
+
+.schools-foot-note { margin-top: 56px; padding: 32px; background: var(--c-soft); border-radius: 18px; }
+
+@media (max-width: 768px) {
+  .schools-h1 { font-size: 38px; letter-spacing: -1px; }
+  .schools-grid { grid-template-columns: 1fr; gap: 14px; }
+  .school-card { padding: 22px; }
+  .school-card-name { font-size: 22px; }
+}
+</style>
