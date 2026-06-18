@@ -167,55 +167,5 @@ const faqJsonLd = {
   </section>
 </Base>
 
-<style is:global>
-.serv-page-hero { padding: 64px 0 48px; background: linear-gradient(180deg, #fff, #fafafa); }
-.crumb { font-size: 13px; color: #666; }
-.crumb a { color: #666; }
-.serv-hero-tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 99px; font-size: 12px; color: #991b1b; margin-top: 14px; font-weight: 600; }
-.serv-hero-tag .urgent-dot { width: 7px; height: 7px; border-radius: 99px; background: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,.15); animation: sph-pulse 2s ease-in-out infinite; }
-@keyframes sph-pulse { 0%, 100% { box-shadow: 0 0 0 3px rgba(220,38,38,.15); } 50% { box-shadow: 0 0 0 6px rgba(220,38,38,.05); } }
-.serv-hero-h1 { font-size: 56px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-top: 18px; }
-.serv-hero-lede { font-size: 17px; color: #444; line-height: 1.7; margin-top: 24px; max-width: 720px; }
-.serv-hero-ctas { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
-
-.serv-page-section { padding: 64px 0; }
-.serv-page-section.section-soft { background: var(--c-soft); }
-.sp-h2 { font-size: 32px; font-weight: 700; letter-spacing: -.6px; margin-top: 14px; line-height: 1.25; }
-
-.sp-scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
-.sp-scope-card { background: #fff; border: 1px solid var(--c-border); border-radius: 14px; padding: 22px; }
-.sp-scope-num { font-size: 12px; color: var(--c-faint); letter-spacing: 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 700; }
-.sp-scope-title { font-size: 17px; font-weight: 700; letter-spacing: -.3px; margin-top: 8px; line-height: 1.4; }
-.sp-scope-desc { font-size: 13.5px; color: #555; line-height: 1.7; margin-top: 8px; }
-
-.sp-do-list { list-style: none; padding: 0; margin: 32px 0 0; counter-reset: do; }
-.sp-do-list li { position: relative; padding: 16px 0 16px 56px; border-bottom: 1px solid var(--c-border); font-size: 15px; line-height: 1.7; counter-increment: do; }
-.sp-do-list li:last-child { border-bottom: none; }
-.sp-do-list li::before { content: counter(do, decimal-leading-zero); position: absolute; left: 0; top: 16px; font-size: 13px; font-weight: 700; color: var(--c-muted); letter-spacing: 1px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; padding: 4px 10px; background: var(--c-soft); border-radius: 6px; }
-
-.sp-dont-card { background: #fef2f2; border: 1px solid #fecaca; border-radius: 14px; padding: 28px; margin-top: 24px; }
-.sp-dont-list { list-style: none; padding: 0; margin: 0; }
-.sp-dont-list li { padding: 10px 0; font-size: 15px; line-height: 1.8; color: #4a1a1a; border-bottom: 1px solid #fecaca; }
-.sp-dont-list li:last-child { border-bottom: none; }
-
-.sp-legal-list { list-style: none; padding: 0; margin: 24px 0 0; }
-.sp-legal-list li { padding: 14px 18px; background: #fff; border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 8px; font-size: 14px; line-height: 1.7; color: #333; }
-
-.case-box { padding: 24px; background: #fff; border-radius: 14px; border: 1px solid var(--c-border); margin-top: 24px; }
-.case-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-.case-init { width: 42px; height: 42px; border-radius: 99px; background: #1a1a1a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: Georgia, serif; }
-.case-box p { font-size: 14.5px; line-height: 1.8; color: #333; margin: 0; padding: 6px 0; }
-
-.sp-resource-card { display: block; padding: 28px; background: #fff; border: 1px solid var(--c-border); border-radius: 14px; margin-top: 24px; transition: all .15s; }
-.sp-resource-card:hover { border-color: #000; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
-
-.final-cta { padding: 80px 0; }
-
-@media (max-width: 768px) {
-  .serv-hero-h1 { font-size: 36px; letter-spacing: -1px; }
-  .sp-h2 { font-size: 24px; }
-  .sp-scope-grid { grid-template-columns: 1fr; }
-  .sp-do-list li { padding-left: 48px; }
-}
-</style>
+<!-- 服务详情页共享基础样式已迁移到 src/styles/global.css（多页共用，避免 is:global 只打包进本页）。 -->
 

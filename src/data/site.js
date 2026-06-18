@@ -44,6 +44,7 @@ export const SITE = {
 };
 
 export const NAV = [
+  { href: '/services/cc-to-uc/', label: 'CC 转 UC' },
   { href: '/consultants/', label: '顾问' },
   { href: '/services/', label: '服务' },
   { href: '/cases/', label: '案例' },
@@ -182,13 +183,13 @@ export const SERVICES = [
   },
   {
     id: 'transfer-planning', tier: 'standard', urgency: 'planning',
-    title: '转学规划（非紧急）',
-    sub: 'CC → UC 2 年 IGETC + TAG 布局，校际转学路径',
-    scope: '当前在读，主动规划转入更好学校（非危机驱动）',
-    pricingTier: '$$',
-    timeline: '12-24 个月',
-    from: '入读 CC 后第 1 学期',
-    detailHref: '/resources/gpa-low-transfer/',
+    title: 'CC 转 UC 名校直通车 ★',
+    sub: '社区大学 → UC 八大，无需托福雅思，60 学分直录大三',
+    scope: '高中及以上学历，想低成本进 UCB/UCLA/UCSD/UCI/UCSB 等名校',
+    pricingTier: '$$$',
+    timeline: '最快 1 年转学，1.5–2 年毕业',
+    from: '随时报名（每年 1/5/8/10 月开课）',
+    detailHref: '/services/cc-to-uc/',
   },
 ];
 

@@ -133,6 +133,29 @@ const orgJsonLd = {
   <EmergencyGrid />
   <ProcessSteps />
 
+  <!-- Core service — CC → UC 名校直通车 -->
+  <section class="section section-soft">
+    <div class="container">
+      <a href="/services/cc-to-uc/" class="core-banner">
+        <div class="core-left">
+          <div class="eyebrow" style="color:#92660a">CORE SERVICE · 核心服务</div>
+          <h2 class="core-h2">从社区大学，<br/>直通 <span class="hl">UC 八大名校</span>。</h2>
+          <p class="core-lede">无需托福雅思、无需高考成绩，修满 60 学分直录本科大三。同比直申<strong>省学费 6–8 万美金</strong>，最快 1 年完成转学。加州转学地图 + 完整时间线全部公开。</p>
+          <div class="core-pills">
+            <span>仅需 60 学分</span><span>无托福 / 雅思</span><span>直录大三</span><span>UCB / UCLA / UCSD…</span>
+          </div>
+          <span class="core-cta">查看 CC 转 UC 完整方案 →</span>
+        </div>
+        <div class="core-right">
+          <div class="core-stat"><b>43,543</b><i>2024Fall UC 转学申请</i></div>
+          <div class="core-stat"><b>34,668</b><i>来自加州社区大学</i></div>
+          <div class="core-stat"><b>8</b><i>UC 八大全覆盖</i></div>
+          <div class="core-stat"><b>47%</b><i>美高毕业生首选路径</i></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <!-- Promises -->
   <section class="section">
     <div class="container">
@@ -485,7 +508,26 @@ const orgJsonLd = {
   .bento-feature { grid-row: span 1; grid-column: span 2; }
   .final-grid { grid-template-columns: 1fr; gap: 48px; }
 }
+/* Core service banner */
+.core-banner { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: center; padding: 44px; background: #fff; border: 1px solid var(--c-border); border-radius: 24px; transition: box-shadow .2s, border-color .2s; }
+.core-banner:hover { border-color: #f0d98a; box-shadow: 0 16px 48px rgba(146,102,10,.08); }
+.core-h2 { font-size: 44px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-top: 16px; }
+.core-lede { font-size: 16px; color: #444; line-height: 1.7; margin-top: 20px; }
+.core-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.core-pills span { font-size: 12.5px; font-weight: 600; padding: 6px 12px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 99px; }
+.core-cta { display: inline-block; margin-top: 26px; font-size: 15px; font-weight: 700; }
+.core-right { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.core-stat { padding: 22px 20px; background: var(--c-soft); border-radius: 16px; }
+.core-stat b { display: block; font-size: 34px; font-weight: 800; letter-spacing: -1.2px; line-height: 1; }
+.core-stat i { display: block; font-size: 12.5px; font-style: normal; color: var(--c-muted); margin-top: 8px; line-height: 1.4; }
+
+@media (max-width: 1024px) {
+  .core-banner { grid-template-columns: 1fr; gap: 28px; }
+  .core-h2 { font-size: 34px; }
+}
 @media (max-width: 768px) {
+  .core-banner { padding: 28px; }
+  .core-h2 { font-size: 28px; letter-spacing: -1px; }
   .hero { padding: 64px 0 56px; }
   .hero-title { font-size: 36px; letter-spacing: -1.2px; line-height: 1.1; }
   .hero-lede { font-size: 16px; }
