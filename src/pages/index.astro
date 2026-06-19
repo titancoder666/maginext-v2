@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import EmergencyGrid from '../components/EmergencyGrid.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import OfferWall from '../components/OfferWall.astro';
+import SignupTicker from '../components/SignupTicker.astro';
 import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } from '../data/site.js';
 
 const faqJsonLd = {
@@ -29,6 +30,8 @@ const orgJsonLd = {
 <Base>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(orgJsonLd)}></script>
+  <!-- 近期签约滚动公告条 -->
+  <SignupTicker />
   <!-- Hero — 5-slide carousel for different incoming intents -->
   <section class="hero">
     <div class="hero-inner">
@@ -273,8 +276,8 @@ const orgJsonLd = {
             <div class="case-head">
               <div class="case-avatar" style={`background:${c.bg}`}>{c.initials}</div>
               <div style="flex:1">
-                <div class="case-name">{c.surname}</div>
-                <div class="case-from">{c.from} · '{c.year.slice(2)}</div>
+                <div class="case-name">{c.surname} <span class="case-phone">{c.phone}</span></div>
+                <div class="case-from">{c.from} · {c.status}</div>
               </div>
               <span class="case-verify">✓ 已核实</span>
             </div>
@@ -284,8 +287,8 @@ const orgJsonLd = {
             </div>
             <div class="case-quote">"{c.quote}"</div>
             <div class="case-stats">
-              <div><div class="case-stat-num">{c.gpa}</div><div class="case-stat-key">GPA</div></div>
-              {c.sat && <div><div class="case-stat-num">{c.sat}</div><div class="case-stat-key">SAT</div></div>}
+              <div><div class="case-stat-num">{c.gpa || '未提供'}</div><div class="case-stat-key">GPA</div></div>
+              {(c.sat || c.toefl) && <div><div class="case-stat-num">{c.sat || c.toefl}</div><div class="case-stat-key">{c.sat ? 'SAT' : '标化'}</div></div>}
             </div>
           </article>
         ))}
@@ -472,6 +475,7 @@ const orgJsonLd = {
 .case-head { display: flex; gap: 12px; align-items: center; }
 .case-avatar { width: 42px; height: 42px; border-radius: 99px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; font-family: Georgia, serif; }
 .case-name { font-size: 14px; font-weight: 600; }
+.case-phone { font-weight: 500; font-size: 12px; color: var(--c-faint); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; margin-left: 4px; }
 .case-from { font-size: 12px; color: var(--c-faint); margin-top: 1px; }
 .case-verify { font-size: 11px; color: var(--c-green); font-weight: 600; }
 .case-school { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--c-border); }

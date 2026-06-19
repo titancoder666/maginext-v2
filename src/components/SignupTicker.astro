@@ -1,0 +1,64 @@
+---
+// 首页「近期签约」滚动公告条 — 姓氏 + 脱敏手机号 + 项目，逐条轮播。
+import { SIGNUPS } from '../data/site.js';
+---
+<div class="signup-ticker" role="status" aria-label="近期签约动态">
+  <div class="container st-inner">
+    <span class="st-badge"><span class="st-dot"></span>近期签约</span>
+    <div class="st-roll" id="signup-roll">
+      {SIGNUPS.map((s, i) => (
+        <div class={`st-item${i === 0 ? ' is-active' : ''}`} data-i={i}>
+          <span class="st-name">{s.name}</span>
+          <span class="st-phone">{s.phone}</span>
+          <span class="st-sep">·</span>
+          <span class="st-text">{s.text}</span>
+        </div>
+      ))}
+    </div>
+    <a href="/cases/" class="st-more">查看全部案例 →</a>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const roll = document.getElementById('signup-roll');
+    if (!roll) return;
+    const items = Array.from(roll.querySelectorAll('.st-item'));
+    if (items.length < 2) return;
+    let i = 0, timer = null;
+    function tick() {
+      items[i].classList.remove('is-active');
+      i = (i + 1) % items.length;
+      items[i].classList.add('is-active');
+    }
+    function start() { if (!timer) timer = setInterval(tick, 2800); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    // 减少动效偏好 / 后台标签：不自动轮播
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+    roll.addEventListener('mouseenter', stop);
+    roll.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+  })();
+</script>
+
+<style>
+  .signup-ticker { background: #0f0f0f; color: #fff; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .st-inner { display: flex; align-items: center; gap: 16px; height: 44px; }
+  .st-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; color: var(--c-accent); flex-shrink: 0; letter-spacing: .5px; }
+  .st-dot { width: 7px; height: 7px; border-radius: 99px; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.18); animation: st-pulse 1.6s ease-in-out infinite; }
+  @keyframes st-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+  .st-roll { position: relative; flex: 1; height: 44px; overflow: hidden; min-width: 0; }
+  .st-item { position: absolute; inset: 0; display: flex; align-items: center; gap: 10px; font-size: 13px; opacity: 0; transform: translateY(9px); transition: opacity .5s ease, transform .5s ease; pointer-events: none; white-space: nowrap; }
+  .st-item.is-active { opacity: 1; transform: none; pointer-events: auto; }
+  .st-name { font-weight: 700; flex-shrink: 0; }
+  .st-phone { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--c-accent); font-size: 12.5px; flex-shrink: 0; }
+  .st-sep { color: rgba(255,255,255,.3); flex-shrink: 0; }
+  .st-text { color: rgba(255,255,255,.78); overflow: hidden; text-overflow: ellipsis; }
+  .st-more { flex-shrink: 0; font-size: 12px; color: rgba(255,255,255,.55); font-weight: 600; }
+  .st-more:hover { color: #fff; }
+  @media (max-width: 768px) {
+    .st-inner { gap: 10px; height: 42px; }
+    .st-more { display: none; }
+    .st-badge { font-size: 11px; }
+  }
+</style>

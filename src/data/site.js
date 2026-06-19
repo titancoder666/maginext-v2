@@ -81,15 +81,110 @@ export const ADVISORS = [
     tags: ['文书', '简历', '面试'], photo: 'EW', bgColor: '#4f2d3a' },
 ];
 
+// 学生案例 — 刻意覆盖年龄 / 职业 / 学历 / 成绩 / 学校的差异性，展现服务普适度。
+// 字段：phone 手机号（中间 4 位脱敏）/ status 身份年龄 / from 背景出身 / note 一句话资历
+// gpa / sat / toefl 留空字符串表示「无 / 未提供」。offer 对应 /offers/ 录取通知书图。
+// 隐私：phone 为脱敏展示，姓名已匿名（仅姓 + 称谓）。
 export const CASES = [
-  { initials: 'L', surname: '李同学', school: 'UC Berkeley', major: '计算机科学', year: '2025', gpa: '3.87', sat: '1520', from: '北京四中', quote: '面试前两周顾问陪我练了 12 次模拟。', bg: '#1a1a1a' },
-  { initials: 'W', surname: '王同学', school: 'UCLA', major: '经济学', year: '2025', gpa: '3.92', sat: '1540', from: '上海中学', quote: '从 Community College 转学到 UCLA 真的实现了。', bg: '#2d3748' },
-  { initials: 'Z', surname: '张同学', school: 'UCSD', major: '生物工程', year: '2025', gpa: '3.78', sat: '1490', from: '深圳外国语', quote: '签证被 RFE 之后 Michael 老师 3 天搞定。', bg: '#553c40' },
-  { initials: 'C', surname: '陈同学', school: 'Cornell', major: '酒店管理', year: '2024', gpa: '3.95', sat: '1560', from: '杭州外国语', quote: '文书改了 9 版，每一版都比上一版更像我自己。', bg: '#3a2d4f' },
-  { initials: 'H', surname: '黄同学', school: 'NYU Stern', major: '金融', year: '2024', gpa: '3.83', sat: '1500', from: 'Boston Latin', quote: '美高背景的我在选校上获益最多。', bg: '#2d4f3a' },
-  { initials: 'X', surname: '徐同学', school: 'CMU', major: 'CS+ML', year: '2025', gpa: '3.91', from: '南京外国语', quote: '科研背景包装非常专业，没有水分。', bg: '#4f4a2d' },
-  { initials: 'Y', surname: '杨同学', school: 'Columbia', major: '统计学', year: '2024', gpa: '3.89', sat: '1530', from: '北师大附中', quote: '从迷茫到清晰，规划路径非常清楚。', bg: '#1a1a1a' },
-  { initials: 'F', surname: '冯同学', school: 'UPenn', major: '应用数学', year: '2024', gpa: '3.94', sat: '1550', from: 'Andover', quote: '美高 + 留学规划都在 Maginex。', bg: '#2d3748' },
+  // ── 标杆：顶尖高中 + 高标化 ──
+  { initials: 'L', surname: '李同学', honor: '同学', phone: '159****8012', status: '高三应届 · 17 岁',
+    from: '上海中学', school: 'UC Berkeley', major: '计算机科学', year: '2025', gpa: '3.87', sat: '1520',
+    bg: '#1a1a1a', offer: '/offers/offer-03.jpg',
+    note: '国内顶尖高中 + 高标化，冲刺型直申规划。',
+    quote: '面试前两周顾问陪我练了 12 次模拟。' },
+
+  // ── 普适度核心：在职 + 大专 + 无标化 ──
+  { initials: 'W', surname: '王女士', honor: '女士', phone: '138****6012', status: '27 岁 · 已工作 3 年',
+    from: '国内大专 → 外企行政', school: 'UCLA', major: '传媒 Communication', year: '2025', gpa: '', sat: '',
+    bg: '#2d3748', offer: '/offers/offer-07.jpg',
+    note: '大专学历、无托福无 SAT；先入读社区大学，上班族也转进了 UC。',
+    quote: '我以为大专 + 上班，这辈子跟名校无缘了。' },
+
+  // ── 低 GPA 救援 ──
+  { initials: 'Z', surname: '张同学', honor: '同学', phone: '186****4571', status: '原校濒临退学',
+    from: '普通高中 → 社区大学', school: 'UC Davis', major: '经济学', year: '2025', gpa: '2.3 → 3.6', sat: '',
+    bg: '#553c40', offer: '/offers/offer-12.jpg',
+    note: '高中成绩普通、原校 GPA 2.3 触发退学警告，CC 两年重置 GPA 后逆袭。',
+    quote: 'GPA 2.3 的时候，没人觉得我还能翻盘。' },
+
+  // ── 大龄转码 + 双非本科 + 硕士 ──
+  { initials: 'C', surname: '陈先生', honor: '先生', phone: '137****2098', status: '29 岁 · 转码',
+    from: '双非一本 → 在职 5 年', school: 'USC', major: '应用数据科学（硕士）', year: '2025', gpa: '3.1', sat: '', toefl: '',
+    bg: '#3a2d4f', offer: '/offers/offer-18.jpg',
+    note: '本科双非、工作 5 年想转数据方向，硕士跳板进 Top 30。',
+    quote: '工作几年再申，文书反而更有东西可写。' },
+
+  // ── 美高 + 中等成绩 ──
+  { initials: 'H', surname: '黄同学', honor: '同学', phone: '150****7733', status: '美高 11 年级',
+    from: 'Boston Latin School', school: 'NYU Stern', major: '金融', year: '2024', gpa: '3.5', sat: '1450',
+    bg: '#2d4f3a', offer: '/offers/offer-22.jpg',
+    note: '美高背景、成绩中游，靠选校策略 + 活动包装拿下商学院。',
+    quote: '我的分数不顶尖，选校单帮我兜住了。' },
+
+  // ── 民办国际校 + 低 GPA + 托福 ──
+  { initials: 'L', surname: '刘同学', honor: '同学', phone: '139****5180', status: '高三 · 国际部',
+    from: '民办国际高中', school: 'UC Irvine', major: '心理学', year: '2025', gpa: '2.9', sat: '', toefl: '托福 88',
+    bg: '#4f2d3a', offer: '/offers/offer-27.jpg',
+    note: '民办国际校、GPA 不到 3、无 SAT，托福 88 也进了 UC。',
+    quote: '别人都劝我降级，Maginex 让我先上 CC 再冲。' },
+
+  // ── 最强普适度信号：中专 / 职高起点 ──
+  { initials: 'Z', surname: '周同学', honor: '同学', phone: '188****3026', status: '中专起点',
+    from: '中专 → 社区大学', school: 'UC Santa Barbara', major: '社会学', year: '2025', gpa: 'CC 3.7', sat: '',
+    bg: '#1a1a1a', offer: '/offers/offer-31.jpg',
+    note: '中专学历起步、国内升学几乎堵死，CC 路径直接转进 UC。',
+    quote: '从中专到 UCSB，我自己都不敢信。' },
+
+  // ── 晚起步：高三才决定 ──
+  { initials: 'X', surname: '徐同学', honor: '同学', phone: '135****6644', status: '高三下才决定',
+    from: '省重点高中', school: 'UC San Diego', major: '生物', year: '2025', gpa: '3.6', sat: '',
+    bg: '#2d3748', offer: '/offers/offer-09.jpg',
+    note: '高三下学期才决定出国、错过标化，转学路径无缝衔接。',
+    quote: '决定得晚，但路径选对了就不晚。' },
+
+  // ── Gap year + 三本 ──
+  { initials: 'Y', surname: '杨女士', honor: '女士', phone: '151****9087', status: '24 岁 · gap 1 年',
+    from: '国内三本 → 间隔年', school: 'UCLA', major: '艺术史（转学）', year: '2024', gpa: '3.2', sat: '',
+    bg: '#553c40', offer: '/offers/offer-15.jpg',
+    note: '三本院校、间隔年后转学，非传统路径照样进 UCLA。',
+    quote: 'gap 那年没浪费，全用来补 CC 学分了。' },
+
+  // ── 标杆：北京四中 + 藤校 ──
+  { initials: 'F', surname: '冯同学', honor: '同学', phone: '130****1122', status: '高三应届 · 18 岁',
+    from: '北京四中', school: 'UPenn', major: '应用数学', year: '2024', gpa: '3.94', sat: '1550',
+    bg: '#3a2d4f', offer: '/offers/offer-02.jpg',
+    note: '顶尖高中 + 接近满分标化，藤校全周期规划。',
+    quote: '文书改了 9 版，每版都更像我自己。' },
+
+  // ── 复读生 + 普通高中 + 低 GPA ──
+  { initials: 'H', surname: '何同学', honor: '同学', phone: '176****4350', status: '高考复读一年',
+    from: '普通高中（复读）', school: 'UC Riverside', major: '商科', year: '2025', gpa: '2.8', sat: '',
+    bg: '#2d4f3a', offer: '/offers/offer-36.jpg',
+    note: '高考复读一年仍不理想、GPA 偏低，转学换了条赛道。',
+    quote: '高考没赢的，我在转学这条路赢回来了。' },
+
+  // ── 大龄在职 + 硕士跃迁 ──
+  { initials: 'L', surname: '林先生', honor: '先生', phone: '182****7715', status: '32 岁 · 在职管理',
+    from: '本科 GPA 3.0 → 工作 8 年', school: 'CMU', major: '信息系统（硕士）', year: '2025', gpa: '3.0', sat: '', toefl: 'GMAT 680',
+    bg: '#1a1a1a', offer: '/offers/offer-40.jpg',
+    note: '32 岁在职、本科普通，硕士冲进 CMU 实现职业跃迁。',
+    quote: '年龄不是问题，把职业逻辑讲清楚就行。' },
+];
+
+// 首页「近期签约」滚动公告条数据。phone 中间 4 位脱敏。
+export const SIGNUPS = [
+  { name: '王女士', phone: '138****6012', text: 'CC 转 UCLA · 签约' },
+  { name: '李同学', phone: '159****8012', text: 'UC Berkeley CS · 录取' },
+  { name: '陈先生', phone: '137****2098', text: 'USC 数据科学硕士 · 签约' },
+  { name: '张同学', phone: '186****4571', text: '低 GPA 转学 UC Davis · 签约' },
+  { name: '周同学', phone: '188****3026', text: '中专起点转 UCSB · 录取' },
+  { name: '刘同学', phone: '139****5180', text: '托福 88 进 UC Irvine · 签约' },
+  { name: '杨女士', phone: '151****9087', text: 'gap year 转学 UCLA · 签约' },
+  { name: '何同学', phone: '176****4350', text: '复读生转 UC Riverside · 签约' },
+  { name: '林先生', phone: '182****7715', text: '32 岁在职 · CMU 硕士签约' },
+  { name: '徐同学', phone: '135****6644', text: '高三速申 UC San Diego · 签约' },
+  { name: '黄同学', phone: '150****7733', text: '美高转 NYU Stern · 录取' },
+  { name: '吴女士', phone: '133****8420', text: 'B 转 F 身份 + 转学 · 签约' },
 ];
 
 // 9 服务 · 分两层

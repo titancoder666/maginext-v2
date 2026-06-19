@@ -41,6 +41,7 @@ const faqJsonLd = {
 ---
 <Base title="CC 转 UC 名校直通车 · 社区大学转学加州大学 · Maginex" description="美国社区大学转 UC 八大名校（UCB/UCLA/UCSD/UCI/UCSB 等）。无需托福雅思、修满 60 学分直录本科大三。加州转学地图 + 完整时间线 + UC 录取数据公开。">
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqJsonLd)}></script>
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" slot="head" />
 
   <!-- HERO -->
   <section class="serv-page-hero cc-hero">
@@ -91,7 +92,7 @@ const faqJsonLd = {
     <div class="container" style="max-width:1100px">
       <div class="eyebrow">INTERACTIVE MAP · 加州社区大学转学地图</div>
       <h2 class="sp-h2">{collegeCount} 所社区大学全在图上，<span class="hl">{partners.length} 所深度合作</span>直通 UCB / UCLA。</h2>
-      <p class="sp-lede-2">气泡<strong>大小 = 转入 UC 人数</strong>（UC Data Warehouse, Fall 2023），<strong>颜色 = 所在地区</strong>。<span class="gold-text">★ 金圈标注的是 Maginex 深度合作院校</span>——它们转入 <strong>UC Berkeley / UCLA 的录取率全加州最前列</strong>，我们与其长期对接选课、学分与转学资源。<span class="map-hint">在地图上悬停或点击任意学校查看详情。</span></p>
+      <p class="sp-lede-2">真实地图可<strong>拖动缩放</strong>。圆点<strong>大小 = 转入 UC 人数</strong>（UC Data Warehouse, Fall 2023），<strong>颜色 = 所在地区</strong>。<span class="gold-text">★ 金圈标注的是 Maginex 深度合作院校</span>——它们转入 <strong>UC Berkeley / UCLA 的录取率全加州最前列</strong>，我们与其长期对接选课、学分与转学资源。<span class="map-hint">悬停 / 点击任意圆点查看详情；点一下地图即可滚轮缩放。</span></p>
 
       <div class="map-controls">
         <div class="map-chips">
@@ -103,37 +104,23 @@ const faqJsonLd = {
 
       <div class="map-wrap" id="cc-map-wrap">
         <div class="map-svg-box">
-          <svg viewBox="0 0 320 600" class="ca-map" id="cc-map-svg" role="img" aria-label="加州 116 所社区大学转学 UC 交互地图">
-            <path d={outlinePath} fill="#fff" stroke="#d4d4d4" stroke-width="1.4" stroke-linejoin="round"/>
-            {placed.map((c) => (
-              <g class={`cc-bubble${c.partner ? ' is-partner' : ''}`}
-                 data-name={c.name} data-n={c.n || ''} data-region={regionLabel[c.region]}
-                 data-partner={c.partner ? '1' : ''} data-uc={c.partnerUC || ''} data-note={c.partnerNote || ''}
-                 role={c.partner ? 'button' : null} tabindex={c.partner ? '0' : null}
-                 aria-label={c.partner ? `${c.name}，深度合作院校` : null}>
-                {c.partner && <circle class="cc-ring" cx={c.xy[0]} cy={c.xy[1]} r={c.r + 3.5} fill="none" stroke="#caa033" stroke-width="2"/>}
-                <circle class="cc-dot" cx={c.xy[0]} cy={c.xy[1]} r={c.r}
-                  fill={regionColor[c.region]} fill-opacity={c.n ? 0.6 : 0.85}
-                  stroke={regionColor[c.region]} stroke-width="1" stroke-opacity="0.9"/>
-              </g>
-            ))}
-            <g class="partner-badges">
-              {partners.map((p, i) => (
-                <g class="pbadge" data-target={p.name}>
-                  <circle cx={+(p.xy[0] + p.r * 0.7 + 5).toFixed(1)} cy={+(p.xy[1] - p.r * 0.7 - 5).toFixed(1)} r="7" fill="#caa033" stroke="#fff" stroke-width="1.5"/>
-                  <text x={+(p.xy[0] + p.r * 0.7 + 5).toFixed(1)} y={+(p.xy[1] - p.r * 0.7 - 5 + 3).toFixed(1)} text-anchor="middle" font-size="9" font-weight="700" fill="#fff">{i + 1}</text>
-                </g>
-              ))}
-            </g>
-          </svg>
+          <div id="cc-leaflet" class="cc-leaflet" aria-label="加州 116 所社区大学转学 UC 交互地图"></div>
           <div class="map-size-legend">
-            <span class="msl-title">气泡大小 = 转入 UC 人数</span>
+            <span class="msl-title">圆点大小 = 转入 UC 人数</span>
             <span class="msl-row"><span class="msl-c" style="width:7px;height:7px"></span>数据较小 / 未公开</span>
             <span class="msl-row"><span class="msl-c" style="width:13px;height:13px"></span>~300</span>
             <span class="msl-row"><span class="msl-c" style="width:23px;height:23px"></span>~1000</span>
             <span class="msl-row"><span class="msl-c msl-gold"></span>★ 深度合作院校</span>
           </div>
-          <div class="cc-tip" id="cc-tip" hidden></div>
+          <script type="application/json" id="cc-data" set:html={JSON.stringify({
+            colleges: CA_COLLEGES.map((c) => ({
+              name: c.name, lat: c.lat, lon: c.lon, region: c.region, n: c.n || 0,
+              partner: !!c.partner, uc: c.partnerUC || '', note: c.partnerNote || '',
+              regionLabel: regionLabel[c.region],
+            })),
+            regionColor,
+            partners: partners.map((p) => p.name),
+          })} />
         </div>
 
         <div class="map-side">
@@ -332,97 +319,118 @@ const faqJsonLd = {
       </div>
     </div>
   </section>
+  <script is:inline src="/vendor/leaflet/leaflet.js"></script>
   <script is:inline>
     (function () {
-      const wrap = document.getElementById('cc-map-wrap');
-      if (!wrap) return;
-      const svg = document.getElementById('cc-map-svg');
-      const tip = document.getElementById('cc-tip');
-      const info = document.getElementById('cc-info');
-      const defaultHTML = info.innerHTML;
-      const search = document.getElementById('cc-search');
-      const chips = Array.from(document.querySelectorAll('.map-chip'));
-      const bubbles = Array.from(svg.querySelectorAll('.cc-bubble'));
-      const byName = {};
-      bubbles.forEach(function (b) { byName[b.dataset.name] = b; });
+      var dataEl = document.getElementById('cc-data');
+      var box = document.getElementById('cc-leaflet');
+      if (!dataEl || !box || typeof L === 'undefined') return;
+      var D;
+      try { D = JSON.parse(dataEl.textContent); } catch (e) { return; }
+      var info = document.getElementById('cc-info');
+      var defaultHTML = info.innerHTML;
+      var search = document.getElementById('cc-search');
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.map-chip'));
 
-      function clearDim() { bubbles.forEach(function (b) { b.classList.remove('dim'); }); wrap.classList.remove('dimmed'); }
-      function clearSelect() { bubbles.forEach(function (b) { b.classList.remove('is-selected'); }); }
+      var map = L.map(box, {
+        center: [37.2, -119.2], zoom: 6, minZoom: 5, maxZoom: 12,
+        scrollWheelZoom: false, zoomControl: true, attributionControl: true,
+      });
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        subdomains: 'abcd', maxZoom: 19,
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+      }).addTo(map);
+      // 仅在聚焦地图后启用滚轮缩放，避免劫持页面滚动
+      map.on('focus', function () { map.scrollWheelZoom.enable(); });
+      map.on('blur', function () { map.scrollWheelZoom.disable(); });
 
-      // tooltip
-      function moveTip(e) {
-        const box = svg.getBoundingClientRect();
-        let x = e.clientX - box.left + 12, y = e.clientY - box.top + 12;
-        if (x > box.width - 150) x = e.clientX - box.left - 150;
-        tip.style.left = x + 'px'; tip.style.top = y + 'px';
+      function rOf(n) { return n ? 4 + Math.min(n, 1000) / 1000 * 15 : 3; }
+      function baseStyle(c) {
+        var col = D.regionColor[c.region] || '#888';
+        return { radius: rOf(c.n), color: col, weight: c.partner ? 1.5 : 1, fillColor: col,
+          fillOpacity: c.n ? 0.6 : 0.85, opacity: 0.9 };
       }
-      function showTip(g, e) {
-        const n = g.dataset.n, p = g.dataset.partner;
-        tip.innerHTML = '<b>' + g.dataset.name + '</b>' + (n ? ' · 转入 UC ' + n + ' 人' : '') +
-          (p ? '<span class="tip-gold">★ Maginex 深度合作院校</span>' : '');
-        tip.hidden = false; moveTip(e);
+      function tipHTML(c) {
+        return '<b>' + c.name + '</b>' + (c.n ? ' · 转入 UC ' + c.n + ' 人' : '') +
+          (c.partner ? '<br><span class="lt-gold">★ 深度合作院校</span>' : '');
       }
-      function hideTip() { tip.hidden = true; }
 
-      // panel detail
-      function showDetail(g) {
-        const d = g.dataset, n = d.n, p = d.partner;
-        let html = '<button type="button" class="cc-back">← 返回合作院校</button>' +
-          '<div class="cc-d-name">' + d.name + '</div>' +
-          '<div class="cc-d-meta">' + d.region + (n ? ' · 转入 UC ' + n + ' 人（Fall 2023）' : ' · 暂无公开转入细分数据') + '</div>';
-        if (p) {
-          html += '<div class="cc-d-partner"><div class="cc-d-partner-h"><span class="pc-uc">' + d.uc + '</span> ★ Maginex 深度合作院校</div><p>' + d.note + '</p></div>';
+      var entries = {};
+      D.colleges.forEach(function (c) {
+        var ring = c.partner
+          ? L.circleMarker([c.lat, c.lon], { radius: rOf(c.n) + 4, color: '#caa033', weight: 2, fill: false, interactive: false }).addTo(map)
+          : null;
+        var dot = L.circleMarker([c.lat, c.lon], baseStyle(c)).addTo(map);
+        dot.bindTooltip(tipHTML(c), { direction: 'top', offset: [0, -3], className: 'cc-ltip', sticky: true });
+        dot.on('click', function () { selectCollege(c.name); });
+        entries[c.name] = { dot: dot, ring: ring, c: c };
+      });
+
+      function resetStyles() {
+        Object.keys(entries).forEach(function (k) {
+          entries[k].dot.setStyle(baseStyle(entries[k].c));
+          if (entries[k].ring) entries[k].ring.setStyle({ opacity: 0.9 });
+        });
+      }
+      function dimExcept(pred) {
+        Object.keys(entries).forEach(function (k) {
+          var e = entries[k], on = pred(e.c);
+          e.dot.setStyle({ opacity: on ? 0.9 : 0.12, fillOpacity: on ? (e.c.n ? 0.6 : 0.85) : 0.06 });
+          if (e.ring) e.ring.setStyle({ opacity: on ? 0.9 : 0.1 });
+        });
+      }
+
+      function showDetail(c) {
+        var html = '<button type="button" class="cc-back">← 返回合作院校</button>' +
+          '<div class="cc-d-name">' + c.name + '</div>' +
+          '<div class="cc-d-meta">' + c.regionLabel + (c.n ? ' · 转入 UC ' + c.n + ' 人（Fall 2023）' : ' · 暂无公开转入细分数据') + '</div>';
+        if (c.partner) {
+          html += '<div class="cc-d-partner"><div class="cc-d-partner-h"><span class="pc-uc">' + c.uc + '</span> ★ Maginex 深度合作院校</div><p>' + c.note + '</p></div>';
         }
-        html += '<button type="button" data-wechat-cta="cc-map-' + (p ? 'partner-detail' : 'college') + '" class="cc-d-cta">咨询从这所学校转 UC →</button>';
+        html += '<button type="button" data-wechat-cta="cc-map-' + (c.partner ? 'partner-detail' : 'college') + '" class="cc-d-cta">咨询从这所学校转 UC →</button>';
         info.innerHTML = html;
-        info.querySelector('.cc-back').addEventListener('click', restore);
+        var back = info.querySelector('.cc-back');
+        if (back) back.addEventListener('click', restore);
       }
-      function restore() { info.innerHTML = defaultHTML; bindCards(); clearSelect(); }
-      function select(g) { clearSelect(); g.classList.add('is-selected'); showDetail(g); }
+      function restore() { info.innerHTML = defaultHTML; bindCards(); }
+
+      function selectCollege(name) {
+        var e = entries[name]; if (!e) return;
+        resetStyles();
+        e.dot.setStyle({ weight: 3, color: '#000' });
+        e.dot.bringToFront();
+        showDetail(e.c);
+      }
 
       function bindCards() {
-        info.querySelectorAll('.partner-card, .pbadge').forEach(function (el) {
+        Array.prototype.slice.call(info.querySelectorAll('.partner-card')).forEach(function (el) {
           el.addEventListener('click', function () {
-            const g = byName[el.dataset.target]; if (g) { clearDim(); select(g); }
+            var e = entries[el.getAttribute('data-target')];
+            if (e) { map.flyTo([e.c.lat, e.c.lon], 8, { duration: 0.6 }); selectCollege(el.getAttribute('data-target')); }
           });
         });
       }
 
-      bubbles.forEach(function (g) {
-        g.addEventListener('mouseenter', function (e) { showTip(g, e); });
-        g.addEventListener('mousemove', moveTip);
-        g.addEventListener('mouseleave', hideTip);
-        g.addEventListener('click', function () { select(g); });
-        g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(g); } });
-      });
-      // badges clickable → focus partner
-      Array.from(svg.querySelectorAll('.pbadge')).forEach(function (b) {
-        b.style.pointerEvents = 'auto'; b.style.cursor = 'pointer';
-        b.addEventListener('click', function () { const g = byName[b.dataset.target]; if (g) { clearDim(); select(g); } });
-      });
-
-      // filter chips
       chips.forEach(function (ch) {
         ch.addEventListener('click', function () {
-          chips.forEach(function (c) { c.classList.remove('is-active'); });
+          chips.forEach(function (x) { x.classList.remove('is-active'); });
           ch.classList.add('is-active');
           if (search) search.value = '';
-          clearDim(); clearSelect(); restore();
-          wrap.classList.toggle('only-partner', ch.dataset.filter === 'partner');
+          restore();
+          if (ch.getAttribute('data-filter') === 'partner') dimExcept(function (c) { return c.partner; });
+          else resetStyles();
         });
       });
 
-      // search
       if (search) search.addEventListener('input', function () {
-        const q = search.value.trim().toLowerCase();
-        wrap.classList.remove('only-partner');
-        chips.forEach(function (c) { c.classList.remove('is-active'); });
-        if (!q) { clearDim(); chips[0].classList.add('is-active'); return; }
-        wrap.classList.add('dimmed');
-        bubbles.forEach(function (b) { b.classList.toggle('dim', b.dataset.name.toLowerCase().indexOf(q) === -1); });
+        var q = search.value.trim().toLowerCase();
+        chips.forEach(function (x) { x.classList.remove('is-active'); });
+        if (!q) { chips[0].classList.add('is-active'); resetStyles(); return; }
+        dimExcept(function (c) { return c.name.toLowerCase().indexOf(q) !== -1; });
       });
 
       bindCards();
+      setTimeout(function () { map.invalidateSize(); }, 250);
     })();
   </script>
 </Base>
@@ -468,6 +476,15 @@ const faqJsonLd = {
 
 .map-wrap { display: grid; grid-template-columns: 400px 1fr; gap: 28px; margin-top: 18px; align-items: start; }
 .map-svg-box { position: relative; background: #fff; border: 1px solid var(--c-border); border-radius: 16px; padding: 14px; }
+.cc-leaflet { height: 540px; width: 100%; border-radius: 12px; z-index: 0; background: #f3f4f6; }
+.cc-leaflet:focus { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+/* Leaflet 自定义 tooltip + 控件微调 */
+.cc-ltip { background: #111; color: #fff; border: none; border-radius: 8px; font-size: 12px; line-height: 1.45; padding: 7px 10px; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+.cc-ltip b { font-weight: 700; }
+.cc-ltip .lt-gold { color: #ffd86b; font-weight: 700; font-size: 11px; }
+.leaflet-tooltip.cc-ltip::before { display: none; }
+.leaflet-container { font: inherit; }
+.leaflet-control-attribution { font-size: 10px; }
 .ca-map { width: 100%; height: auto; }
 .cc-bubble { cursor: pointer; transition: opacity .18s; }
 .cc-bubble .cc-dot { transition: fill-opacity .15s; }
@@ -528,7 +545,7 @@ const faqJsonLd = {
 .rl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin-top: 10px; }
 .rl-item { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: #444; }
 .rl-dot { width: 9px; height: 9px; border-radius: 99px; flex-shrink: 0; }
-.map-size-legend { position: absolute; left: 18px; bottom: 16px; display: flex; flex-direction: column; gap: 6px; font-size: 10.5px; color: #777; }
+.map-size-legend { position: absolute; left: 22px; bottom: 22px; z-index: 500; display: flex; flex-direction: column; gap: 6px; font-size: 10.5px; color: #555; background: rgba(255,255,255,.92); padding: 10px 12px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.1); pointer-events: none; }
 .msl-title { font-weight: 700; color: #444; margin-bottom: 2px; }
 .msl-row { display: flex; align-items: center; gap: 7px; }
 .msl-c { display: inline-block; border-radius: 99px; background: #cdcdcd; flex-shrink: 0; width: 16px; height: 16px; }

@@ -1,62 +1,128 @@
 ---
 import Base from '../layouts/Base.astro';
 import { CASES } from '../data/site.js';
+
+// 用于「普适度」概览条
+const minGpaCase = '2.3';
 ---
-<Base title="学生案例 · Maginex" description="真实学生录取案例：GPA、标化、来源高中、录取学校全部公开。所有案例经学生书面授权。">
+<Base title="学生案例 · Maginex" description="真实学生录取案例：从上海中学到中专、从高三应届到 32 岁在职、从 GPA 3.94 到 2.3 甚至无标化——覆盖各种背景的学生都转进了名校。录取信原件可面谈核验。">
   <section class="hero">
-    <div class="container" style="text-align:center;max-width:900px">
+    <div class="container" style="text-align:center;max-width:920px">
       <div class="eyebrow">STORIES · 学生说</div>
-      <h1 class="hero-title">每一个数字<br/>都<span class="hl">有名有姓</span>。</h1>
-      <p class="hero-lede">所有案例经学生书面授权 · GPA / 标化成绩可在签约前核验复印件 · 录取信原件可面谈查看</p>
+      <h1 class="hero-title">不只是学霸，<br/><span class="hl">什么背景都有</span>。</h1>
+      <p class="hero-lede">上海中学到中专、高三应届到 32 岁在职、GPA 3.94 到 2.3 甚至无标化——下面每一位的<strong>出身、成绩、年龄都不一样</strong>。这正是我们想让你看到的：路径选对，起点不决定终点。</p>
+      <div class="cases-overview">
+        <div class=" co-item"><div class="co-num">17→32</div><div class="co-key">岁 · 年龄跨度</div></div>
+        <div class="co-item"><div class="co-num">{minGpaCase}</div><div class="co-key">最低 GPA 也救回</div></div>
+        <div class="co-item"><div class="co-num">中专→藤校</div><div class="co-key">学历跨度</div></div>
+        <div class="co-item"><div class="co-num">43 封</div><div class="co-key">真实录取信</div></div>
+      </div>
     </div>
   </section>
+
   <section class="section">
     <div class="container">
       <div class="case-grid">
-        {CASES.concat(CASES).map(c => (
-          <article class="card case-card">
-            <div class="case-head">
-              <div class="case-avatar" style={`background:${c.bg}`}>{c.initials}</div>
-              <div style="flex:1">
-                <div class="case-name">{c.surname}</div>
-                <div class="case-from">{c.from} · '{c.year.slice(2)}</div>
+        {CASES.map(c => (
+          <article class="case-card">
+            <div class="cc-head">
+              <div class="cc-avatar" style={`background:${c.bg}`}>{c.initials}</div>
+              <div class="cc-id">
+                <div class="cc-name">{c.surname}<span class="cc-phone">{c.phone}</span></div>
+                <div class="cc-status">{c.status}</div>
               </div>
-              <span class="case-verify">✓ 已核实</span>
+              <span class="cc-verify">✓ 已签约</span>
             </div>
-            <div class="case-school">
-              <div class="case-school-name">{c.school}</div>
-              <div class="case-major">{c.major}</div>
+
+            <a href="/offers/" class="cc-offer" aria-label={`查看 ${c.school} 录取通知书`}>
+              <img src={c.offer} alt={`${c.school} 录取通知书（学生信息已脱敏）`} loading="lazy" />
+              <div class="cc-offer-info">
+                <div class="cc-offer-tag">录取通知书</div>
+                <div class="cc-school">{c.school}</div>
+                <div class="cc-major">{c.major} · '{c.year.slice(2)}</div>
+              </div>
+            </a>
+
+            <div class="cc-meta">
+              <div class="cc-mrow"><span class="cc-k">背景</span><span class="cc-v">{c.from}</span></div>
+              <div class="cc-mrow"><span class="cc-k">GPA</span><span class="cc-v">{c.gpa || '未提供 / 无'}</span></div>
+              <div class="cc-mrow"><span class="cc-k">标化</span><span class="cc-v">{c.sat || c.toefl || '无'}</span></div>
             </div>
-            <div class="case-quote">"{c.quote}"</div>
-            <div class="case-stats">
-              <div><div class="case-stat-num">{c.gpa}</div><div class="case-stat-key">GPA</div></div>
-              {c.sat && <div><div class="case-stat-num">{c.sat}</div><div class="case-stat-key">SAT</div></div>}
-            </div>
+
+            <div class="cc-note">{c.note}</div>
+            <div class="cc-quote">"{c.quote}"</div>
           </article>
         ))}
+      </div>
+
+      <p class="cases-disclaimer">
+        <strong>关于隐私与真实性</strong>：为保护学生隐私，姓名仅保留姓 + 称谓，手机号中间四位以 <code>****</code> 隐去；
+        年龄 / 学校 / 成绩等背景信息为<strong>脱敏后的真实案例</strong>。录取通知书均为真实 admission letter（学生个人信息黑条遮挡，校徽、印章、签发日期保留），
+        <a href="/offers/">原件可在面谈时核验</a>。我们签约条款明令禁止任何虚假包装。
+      </p>
+    </div>
+  </section>
+
+  <section class="cases-cta section-dark">
+    <div class="container" style="text-align:center">
+      <h2 style="font-size:48px;font-weight:700;letter-spacing:-1.5px;line-height:1.1">你的起点，<span class="hl">也在这张表里</span>。</h2>
+      <p style="font-size:16px;color:rgba(255,255,255,.7);line-height:1.7;margin-top:20px;max-width:560px;margin-left:auto;margin-right:auto">不管你是高分还是低 GPA、应届还是在职、重点高中还是中专——把你的情况发我们，免费评估你能去哪。</p>
+      <div style="display:flex;gap:14px;margin-top:28px;justify-content:center;flex-wrap:wrap">
+        <button type="button" data-wechat-cta="cases-final" class="btn btn-primary btn-lg">免费评估我的背景 →</button>
+        <a href="/contact/" class="btn btn-ghost btn-lg" style="color:#fff;border-color:rgba(255,255,255,.2)">填表预约</a>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-.hero { padding: 88px 0 56px; }
-.hero-title { font-size: 72px; font-weight: 700; letter-spacing: -2.5px; line-height: 1.05; margin-top: 18px; }
-.hero-lede { font-size: 18px; color: #444; margin-top: 24px; }
+.hero { padding: 88px 0 48px; }
+.hero-title { font-size: 64px; font-weight: 700; letter-spacing: -2.2px; line-height: 1.06; margin-top: 18px; }
+.hero-lede { font-size: 17px; color: #444; margin-top: 24px; line-height: 1.7; }
+
+.cases-overview { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 40px; }
+.co-item { padding: 18px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 14px; }
+.co-num { font-size: 24px; font-weight: 800; letter-spacing: -.6px; }
+.co-key { font-size: 12px; color: var(--c-muted); margin-top: 6px; }
+
 .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.case-card { padding: 24px; }
-.case-head { display: flex; gap: 12px; align-items: center; }
-.case-avatar { width: 42px; height: 42px; border-radius: 99px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: Georgia, serif; }
-.case-name { font-size: 14px; font-weight: 600; }
-.case-from { font-size: 12px; color: var(--c-faint); margin-top: 1px; }
-.case-verify { font-size: 11px; color: var(--c-green); font-weight: 600; }
-.case-school { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--c-border); }
-.case-school-name { font-size: 24px; font-weight: 700; letter-spacing: -.5px; }
-.case-major { font-size: 13px; color: var(--c-muted); margin-top: 4px; }
-.case-quote { font-size: 14px; color: #333; line-height: 1.6; margin-top: 16px; padding: 14px; background: var(--c-soft); border-radius: 8px; }
-.case-stats { display: flex; gap: 24px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--c-border); }
-.case-stat-num { font-size: 18px; font-weight: 700; }
-.case-stat-key { font-size: 11px; color: var(--c-faint); margin-top: 2px; letter-spacing: 1px; }
+.case-card { padding: 22px; background: #fff; border: 1px solid var(--c-border); border-radius: 16px; display: flex; flex-direction: column; }
+
+.cc-head { display: flex; gap: 11px; align-items: center; }
+.cc-avatar { width: 40px; height: 40px; border-radius: 99px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-family: Georgia, serif; flex-shrink: 0; }
+.cc-id { flex: 1; min-width: 0; }
+.cc-name { font-size: 14px; font-weight: 700; display: flex; align-items: baseline; gap: 7px; flex-wrap: wrap; }
+.cc-phone { font-size: 12px; font-weight: 500; color: var(--c-faint); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.cc-status { font-size: 11.5px; color: var(--c-muted); margin-top: 3px; }
+.cc-verify { font-size: 11px; color: var(--c-green); font-weight: 600; flex-shrink: 0; }
+
+.cc-offer { display: flex; gap: 14px; align-items: center; margin-top: 18px; padding: 12px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 12px; transition: border-color .15s, box-shadow .15s; }
+.cc-offer:hover { border-color: #999; box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+.cc-offer img { width: 64px; height: 84px; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid var(--c-border); background: #fff; flex-shrink: 0; }
+.cc-offer-info { min-width: 0; }
+.cc-offer-tag { font-size: 10px; letter-spacing: 1px; color: var(--c-faint); font-weight: 700; text-transform: uppercase; }
+.cc-school { font-size: 20px; font-weight: 700; letter-spacing: -.4px; margin-top: 4px; line-height: 1.1; }
+.cc-major { font-size: 12.5px; color: var(--c-muted); margin-top: 4px; }
+
+.cc-meta { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; padding: 12px; background: var(--c-soft); border-radius: 10px; }
+.cc-mrow { display: flex; gap: 12px; font-size: 12.5px; line-height: 1.5; }
+.cc-k { color: var(--c-faint); font-size: 11px; letter-spacing: 1px; font-weight: 600; min-width: 38px; flex-shrink: 0; padding-top: 1px; }
+.cc-v { color: #111; flex: 1; }
+
+.cc-note { font-size: 13px; color: #444; line-height: 1.65; margin-top: 14px; }
+.cc-quote { font-size: 13.5px; color: #333; line-height: 1.6; margin-top: 12px; padding: 12px 14px; background: #fffdf2; border: 1px solid #f0e4a8; border-radius: 10px; font-style: italic; }
+
+.cases-disclaimer { font-size: 13px; color: #666; line-height: 1.8; margin-top: 36px; padding: 20px 24px; background: var(--c-soft); border: 1px solid var(--c-border); border-radius: 14px; }
+.cases-disclaimer code { background: #fff; border: 1px solid var(--c-border); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
+.cases-disclaimer a { color: #000; text-decoration: underline; text-underline-offset: 2px; }
+
+.cases-cta { padding: 80px 0; }
+
 @media (max-width: 1024px) { .case-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 768px) { .case-grid { grid-template-columns: 1fr; } .hero-title { font-size: 40px; } }
+@media (max-width: 768px) {
+  .hero-title { font-size: 38px; letter-spacing: -1.2px; }
+  .cases-overview { grid-template-columns: 1fr 1fr; }
+  .case-grid { grid-template-columns: 1fr; }
+  .cases-cta h2 { font-size: 32px !important; }
+}
 </style>
