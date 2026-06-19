@@ -61,7 +61,7 @@ export const GUARANTEES = [
 
 export const STATS = [
   { num: '517', unit: '封', label: '累计录取 offer', sub: '2019–2025 学年' },
-  { num: '43%', label: 'Top 30 录取率', sub: '近三年平均' },
+  { num: '98%', label: 'UCB·UCLA 全程服务录取率', sub: '分母 = 完整走完全程服务的申请者' },
   { num: '8', unit: '位', label: '前招生官 / 移民局顾问', sub: '全部实名可查' },
   { num: '0', label: '虚假文书 / 代写', sub: '签约条款明确禁止' },
 ];
