@@ -1,13 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const TOTAL = 43;
+import { OFFER_WALL } from '../data/site.js';
+const TOTAL = OFFER_WALL.total;
 const ALL_OFFERS = Array.from({ length: TOTAL }, (_, i) => {
   const num = String(i + 1).padStart(2, '0');
   return `/offers/offer-${num}.jpg`;
 });
 ---
-<Base title={`${TOTAL} 封录取通知书 · Maginex 录取墙`} description="过去 2 学年 Maginex 签约学生的真实录取通知书。Cornell / Berkeley / UCLA / NYU / CMU / USC 等 23 所学校。学生信息已脱敏，校徽印章保留。">
+<Base title={`${TOTAL} 封录取通知书 · Maginex 录取墙`} description="过去 2 学年 Maginex 签约学生的真实录取通知书。Cornell / Berkeley / UCLA / NYU / CMU / USC 等 19 所学校。学生信息已脱敏，校徽印章保留。">
   <section class="offers-hero">
     <div class="container" style="max-width:880px">
       <div class="crumb"><a href="/">首页</a> / <span>录取通知书墙</span></div>
@@ -23,7 +24,7 @@ const ALL_OFFERS = Array.from({ length: TOTAL }, (_, i) => {
           <div class="offers-stat-label">封 admission letter</div>
         </div>
         <div class="offers-stat">
-          <div class="offers-stat-num">23</div>
+          <div class="offers-stat-num">{OFFER_WALL.schools}</div>
           <div class="offers-stat-label">所学校覆盖</div>
         </div>
         <div class="offers-stat">

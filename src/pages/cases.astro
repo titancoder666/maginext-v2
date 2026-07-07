@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { CASES } from '../data/site.js';
+import { CASES, OFFER_WALL } from '../data/site.js';
 
 // 用于「普适度」概览条
 const minGpaCase = '2.3';
@@ -15,7 +15,7 @@ const minGpaCase = '2.3';
         <div class=" co-item"><div class="co-num">17→32</div><div class="co-key">岁 · 年龄跨度</div></div>
         <div class="co-item"><div class="co-num">{minGpaCase}</div><div class="co-key">最低 GPA 也救回</div></div>
         <div class="co-item"><div class="co-num">中专→藤校</div><div class="co-key">学历跨度</div></div>
-        <div class="co-item"><div class="co-num">43 封</div><div class="co-key">真实录取信</div></div>
+        <div class="co-item"><div class="co-num">{OFFER_WALL.total} 封</div><div class="co-key">真实录取信</div></div>
       </div>
     </div>
   </section>

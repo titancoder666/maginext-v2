@@ -4,7 +4,7 @@ import EmergencyGrid from '../components/EmergencyGrid.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import OfferWall from '../components/OfferWall.astro';
 import SignupTicker from '../components/SignupTicker.astro';
-import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS } from '../data/site.js';
+import { SITE, GUARANTEES, STATS, ADVISORS, CASES, SERVICES, FAQ, PARTNERS, OFFER_WALL } from '../data/site.js';
 
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -39,48 +39,48 @@ const orgJsonLd = {
       <div class="hero-slides" id="hero-slides" aria-live="polite" aria-roledescription="carousel">
 
         <div class="hero-slide active" data-slide="0">
+          <div class="hero-tag"><span class="hero-tag-dot" style="background:#caa033"></span>核心路径 · CC 转 UC 名校快捷直通车</div>
+          <h1 class="hero-title">留学 · 转学，<br/>一条<span class="hl">逐梦名校</span>的路。</h1>
+          <p class="hero-lede">从社区大学直通 UC 八大 — 无需托福雅思、60 学分直录大三<br/>UCB · UCLA 全程服务录取率 98% · 同步规划藤校冲刺。</p>
+        </div>
+
+        <div class="hero-slide" data-slide="1" aria-hidden="true">
+          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-blue"></span>12,000 份审稿样本 · NACAC 标准</div>
+          <h1 class="hero-title">冲藤校 Top 30？<br/>高三决定<br/><span class="hl">也来得及</span>。</h1>
+          <p class="hero-lede">EA + RD + UC 三轨平行 · 文书 4 周写完 6 篇<br/>录取墙上挂着 MIT · Stanford · Cornell · UPenn · Columbia · Brown 的真实录取信。</p>
+        </div>
+
+        <div class="hero-slide" data-slide="2" aria-hidden="true">
           <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-urgent"></span>持牌律师 + 前 USCIS 政策顾问 · 24h 待命</div>
           <h1 class="hero-title">身份危机？<br/>24 小时内<br/><span class="hl">有人接电话</span>。</h1>
           <p class="hero-lede">Reinstatement · 紧急转学 · RFE · dismissal 申诉 · B 转 F<br/>处理过 400+ 起留学生急救 case。</p>
         </div>
 
-        <div class="hero-slide" data-slide="1" aria-hidden="true">
+        <div class="hero-slide" data-slide="3" aria-hidden="true">
           <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-urgent"></span>凌晨 3 点也响应 · 当晚出申诉路径</div>
           <h1 class="hero-title">学校开除你？<br/>还有 15 天<br/><span class="hl">能翻盘</span>。</h1>
           <p class="hero-lede">5 段式申诉信模板 + 三轨叠加论证（procedural / new evidence / sanction）<br/>FERPA + Goss v. Lopez 1975 框架。统计成功率 65–75%。</p>
         </div>
 
-        <div class="hero-slide" data-slide="2" aria-hidden="true">
-          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-purple"></span>保 F-1 不断档 · 48h transfer-in 启动</div>
-          <h1 class="hero-title">原校念不下去？<br/>不必回国，<br/><span class="hl">CC 能进 UC</span>。</h1>
-          <p class="hero-lede">UC 92% transfer 录取来自 CC（2024 年 26,250 人）· IGETC + TAG 路径<br/>17 个 CC 学生进 Top 6 UC，5 人原校 GPA &lt; 2.5。</p>
-        </div>
-
-        <div class="hero-slide" data-slide="3" aria-hidden="true">
+        <div class="hero-slide" data-slide="4" aria-hidden="true">
           <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-purple"></span>USCIS 内部审查口径 · 84% 通过率</div>
           <h1 class="hero-title">收到 RFE？<br/>3 天内<br/><span class="hl">出应对大纲</span>。</h1>
           <p class="hero-lede">Type A 文件 / Type B 资格 / Type C 意图 三类 RFE · 5 段式 response<br/>F-1/OPT 类通过率 91% · H-1B 73% · 持牌律师 sign-off。</p>
         </div>
 
-        <div class="hero-slide" data-slide="4" aria-hidden="true">
-          <div class="hero-tag"><span class="hero-tag-dot hero-tag-dot-blue"></span>12,000 份审稿样本 · NACAC 标准</div>
-          <h1 class="hero-title">高三才决定？<br/>4 个月<br/><span class="hl">冲 Top 30</span>。</h1>
-          <p class="hero-lede">EA + RD + UC 三轨平行 · 文书 4 周写完 6 篇<br/>2025 年「高三决定派」6 人 4 进 Top 30。</p>
-        </div>
-
       </div>
 
       <div class="hero-dots" role="tablist" aria-label="选择场景">
-        <button type="button" class="hero-dot active" data-idx="0" role="tab" aria-label="身份危机"><span class="hero-dot-bar"></span></button>
-        <button type="button" class="hero-dot" data-idx="1" role="tab" aria-label="学术 dismissal 申诉"><span class="hero-dot-bar"></span></button>
-        <button type="button" class="hero-dot" data-idx="2" role="tab" aria-label="低 GPA 紧急转学"><span class="hero-dot-bar"></span></button>
-        <button type="button" class="hero-dot" data-idx="3" role="tab" aria-label="OPT 或 H-1B RFE"><span class="hero-dot-bar"></span></button>
-        <button type="button" class="hero-dot" data-idx="4" role="tab" aria-label="美本申请"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot active" data-idx="0" role="tab" aria-label="CC 转 UC 逐梦路径"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="1" role="tab" aria-label="藤校与 Top 30 申请"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="2" role="tab" aria-label="身份危机"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="3" role="tab" aria-label="学术 dismissal 申诉"><span class="hero-dot-bar"></span></button>
+        <button type="button" class="hero-dot" data-idx="4" role="tab" aria-label="OPT 或 H-1B RFE"><span class="hero-dot-bar"></span></button>
       </div>
 
       <div class="hero-ctas">
         <button type="button" class="btn btn-primary btn-lg" data-wechat-cta="hero-primary"><span style="color:var(--c-wechat); margin-right:8px">●</span>立即微信咨询 <span style="margin-left:8px">→</span></button>
-        <a href="#emergency" class="btn btn-ghost btn-lg">先看 6 类急救场景</a>
+        <a href="/services/cc-to-uc/" class="btn btn-ghost btn-lg">看 CC 转 UC 逐梦路径 →</a>
       </div>
       <div class="hero-micro">
         {['24h 真人回复','公对公转账','合同律所公证','案件失败退服务费'].map(t => (
@@ -133,15 +133,12 @@ const orgJsonLd = {
     })();
   </script>
 
-  <EmergencyGrid />
-  <ProcessSteps />
-
-  <!-- Core service — CC → UC 名校直通车 -->
+  <!-- Core service — CC → UC 逐梦路径 -->
   <section class="section section-soft">
     <div class="container">
       <a href="/services/cc-to-uc/" class="core-banner">
         <div class="core-left">
-          <div class="eyebrow" style="color:#92660a">CORE SERVICE · 核心服务</div>
+          <div class="eyebrow" style="color:#92660a">DREAM PATH · 留学 & 转学的逐梦路径</div>
           <h2 class="core-h2">从社区大学，<br/>直通 <span class="hl">UC 八大名校</span>。</h2>
           <p class="core-lede">无需托福雅思、无需高考成绩，修满 60 学分直录本科大三。同比直申<strong>省学费 6–8 万美金</strong>，最快 1 年完成转学。加州转学地图 + 完整时间线全部公开。</p>
           <p class="core-partner">★ 与 Santa Monica、De Anza、Diablo Valley 等 UCB / UCLA 转学强校深度合作</p>
@@ -157,6 +154,97 @@ const orgJsonLd = {
           <div class="core-stat"><b>47%</b><i>美高毕业生首选路径</i></div>
         </div>
       </a>
+    </div>
+  </section>
+
+  <!-- Bento — results -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">RESULTS · 录取数据</div>
+        <h2 class="h2">累计 517 封 offer，<br/>墙上挂着 <span class="hl">{OFFER_WALL.total} 封原件</span>。</h2>
+        <p class="sub">517 为 2019–2025 学年累计录取口径；下方录取墙展示其中 {OFFER_WALL.total} 封已脱敏原件，原件均可面谈核验。</p>
+      </div>
+      <div class="bento">
+        <div class="bento-cell bento-feature">
+          <div class="bento-eyebrow">FEATURED · 累计</div>
+          <div class="bento-num-big">100+ 封<br/>UC 录取</div>
+          <div class="bento-sub" style="margin-top:14px">Berkeley · UCLA · UCSD · Davis · UCSB · Irvine<br/>累计 UC 录取已上百封 · CC 转 UC 主战场</div>
+          <div class="chip-row" style="margin-top:auto;padding-top:24px">
+            {['UCB','UCLA','UCSD','UCD','UCSB','UCI','UCSC'].map(s => <span class="chip">{s}</span>)}
+          </div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">IVY & TOP 10</div>
+          <div class="bento-num">23</div>
+          <div class="bento-sub">藤校 / Top 10 录取 · 录取信在墙上</div>
+          <div class="chip-row">{['MIT','Stanford','Cornell','UPenn','Columbia','Brown'].map(s => <span class="chip">{s}</span>)}</div>
+        </div>
+        <div class="bento-cell bento-dark">
+          <div class="bento-eyebrow" style="color:var(--c-accent)">UCB · UCLA</div>
+          <div class="bento-num">98%</div>
+          <div class="bento-sub" style="color:rgba(255,255,255,.7)">录取率 · 全程服务申请者</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:14px;line-height:1.6">分母 = 完整走完全程申请服务的学生</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">STEM</div>
+          <div class="bento-num">189</div>
+          <div class="bento-sub">CS / 工程录取</div>
+          <div class="chip-row">{['UCB','UCLA','UCSD','UCI','UT Austin'].map(s => <span class="chip">{s}</span>)}</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">BUSINESS</div>
+          <div class="bento-num">67</div>
+          <div class="bento-sub">商科录取</div>
+          <div class="chip-row">{['NYU Stern','USC Marshall','BU Questrom','UCB Haas'].map(s => <span class="chip">{s}</span>)}</div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-eyebrow">TRANSFER</div>
+          <div class="bento-num">72</div>
+          <div class="bento-sub">美本转学成功</div>
+          <div style="font-size:12px;color:var(--c-muted);margin-top:14px;line-height:1.6">CC → UC<br/>校际转学</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offer Wall — 43 张录取通知书墙 -->
+  <OfferWall />
+
+  <!-- Cases -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">IVY LEAGUE · 藤校与顶尖名校</div>
+        <h2 class="h2">MIT · Stanford · 藤校，<br/><span class="hl">有名有姓有录取信</span>。</h2>
+        <p class="sub">每张卡片对应录取墙上的真实录取信原件 · 所有案例经学生书面授权 · 更多不同背景的案例见案例页</p>
+      </div>
+      <div class="grid-3">
+        {CASES.filter(c => c.ivy).slice(0,6).map(c => (
+          <article class="card card-white case-card">
+            <div class="case-head">
+              <div class="case-avatar" style={`background:${c.bg}`}>{c.initials}</div>
+              <div style="flex:1">
+                <div class="case-name">{c.surname} <span class="case-phone">{c.phone}</span></div>
+                <div class="case-from">{c.from} · {c.status}</div>
+              </div>
+              <span class="case-verify">✓ 已核实</span>
+            </div>
+            <div class="case-school">
+              <div class="case-school-name">{c.school}</div>
+              <div class="case-major">{c.major}</div>
+            </div>
+            <div class="case-quote">"{c.quote}"</div>
+            <div class="case-stats">
+              <div><div class="case-stat-num">{c.gpa || '未提供'}</div><div class="case-stat-key">GPA</div></div>
+              {(c.sat || c.toefl) && <div><div class="case-stat-num">{c.sat || c.toefl}</div><div class="case-stat-key">{c.sat ? 'SAT' : '标化'}</div></div>}
+            </div>
+          </article>
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <a href="/cases/" class="btn btn-ghost btn-lg">查看全部案例（中专到藤校，什么背景都有）→</a>
+      </div>
     </div>
   </section>
 
@@ -209,95 +297,9 @@ const orgJsonLd = {
     </div>
   </section>
 
-  <!-- Bento — results -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">RESULTS · 录取数据</div>
-        <h2 class="h2">517 封 offer，<br/><span class="hl">下面是其中一部分</span>。</h2>
-      </div>
-      <div class="bento">
-        <div class="bento-cell bento-feature">
-          <div class="bento-eyebrow">FEATURED · 累计</div>
-          <div class="bento-num-big">100+ 封<br/>UC 录取</div>
-          <div class="bento-sub" style="margin-top:14px">Berkeley · UCLA · UCSD · Davis · UCSB · Irvine<br/>累计 UC 录取已上百封 · CC 转 UC 主战场</div>
-          <div class="chip-row" style="margin-top:auto;padding-top:24px">
-            {['UCB','UCLA','UCSD','UCD','UCSB','UCI','UCSC'].map(s => <span class="chip">{s}</span>)}
-          </div>
-        </div>
-        <div class="bento-cell">
-          <div class="bento-eyebrow">海外名校</div>
-          <div class="bento-num">23</div>
-          <div class="bento-sub">UC 外名校录取</div>
-          <div class="chip-row">{['USC','NYU','BU','UT Austin','UBC'].map(s => <span class="chip">{s}</span>)}</div>
-        </div>
-        <div class="bento-cell bento-dark">
-          <div class="bento-eyebrow" style="color:var(--c-accent)">UCB · UCLA</div>
-          <div class="bento-num">98%</div>
-          <div class="bento-sub" style="color:rgba(255,255,255,.7)">录取率 · 全程服务申请者</div>
-          <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:14px;line-height:1.6">分母 = 完整走完全程申请服务的学生</div>
-        </div>
-        <div class="bento-cell">
-          <div class="bento-eyebrow">STEM</div>
-          <div class="bento-num">189</div>
-          <div class="bento-sub">CS / 工程录取</div>
-          <div class="chip-row">{['UCB','UCLA','UCSD','UCI','UT Austin'].map(s => <span class="chip">{s}</span>)}</div>
-        </div>
-        <div class="bento-cell">
-          <div class="bento-eyebrow">BUSINESS</div>
-          <div class="bento-num">67</div>
-          <div class="bento-sub">商科录取</div>
-          <div class="chip-row">{['NYU Stern','USC Marshall','BU Questrom','UCB Haas'].map(s => <span class="chip">{s}</span>)}</div>
-        </div>
-        <div class="bento-cell">
-          <div class="bento-eyebrow">TRANSFER</div>
-          <div class="bento-num">72</div>
-          <div class="bento-sub">美本转学成功</div>
-          <div style="font-size:12px;color:var(--c-muted);margin-top:14px;line-height:1.6">CC → UC<br/>校际转学</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Offer Wall — 43 张录取通知书墙 -->
-  <OfferWall />
-
-  <!-- Cases -->
-  <section class="section section-soft">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">STORIES · 学生说</div>
-        <h2 class="h2">真实学生，<br/><span class="hl">真实数据</span>。</h2>
-        <p class="sub">所有案例经学生书面授权 · GPA / 标化成绩可在签约前核验复印件</p>
-      </div>
-      <div class="grid-3">
-        {CASES.slice(0,6).map(c => (
-          <article class="card card-white case-card">
-            <div class="case-head">
-              <div class="case-avatar" style={`background:${c.bg}`}>{c.initials}</div>
-              <div style="flex:1">
-                <div class="case-name">{c.surname} <span class="case-phone">{c.phone}</span></div>
-                <div class="case-from">{c.from} · {c.status}</div>
-              </div>
-              <span class="case-verify">✓ 已核实</span>
-            </div>
-            <div class="case-school">
-              <div class="case-school-name">{c.school}</div>
-              <div class="case-major">{c.major}</div>
-            </div>
-            <div class="case-quote">"{c.quote}"</div>
-            <div class="case-stats">
-              <div><div class="case-stat-num">{c.gpa || '未提供'}</div><div class="case-stat-key">GPA</div></div>
-              {(c.sat || c.toefl) && <div><div class="case-stat-num">{c.sat || c.toefl}</div><div class="case-stat-key">{c.sat ? 'SAT' : '标化'}</div></div>}
-            </div>
-          </article>
-        ))}
-      </div>
-      <div style="text-align:center;margin-top:48px">
-        <a href="/cases/" class="btn btn-ghost btn-lg">查看全部案例 →</a>
-      </div>
-    </div>
-  </section>
+  <!-- 紧急场景（含 CC 转 UC 作为紧急留学方案）-->
+  <EmergencyGrid />
+  <ProcessSteps />
 
   <!-- Services -->
   <section class="section">

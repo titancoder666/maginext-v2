@@ -1,12 +1,11 @@
 ---
 // 显示 offer 录取通知书墙：首页用 marquee（连续滚动），传递「我们处理过很多 case」
-// 全部 43 张完整 grid 见 /offers/ 页面
-const TOTAL = 43;
-// 首页 marquee 取前 18 张（够屏宽 + 重复滚动不会重复肉眼可见）
-const HOMEPAGE_FEATURED = Array.from({ length: 18 }, (_, i) => {
-  const num = String(i + 1).padStart(2, '0');
-  return `/offers/offer-${num}.jpg`;
-});
+// 数量统一引用 site.js 的 OFFER_WALL（单一数据源），全部图见 /offers/ 页面
+import { OFFER_WALL } from '../data/site.js';
+const TOTAL = OFFER_WALL.total;
+// 首页 marquee 精选 18 张：藤校 / Top 10 在前，UC 核心校随后
+const FEATURED_NUMS = [3, 22, 2, 8, 26, 9, 30, 35, 14, 49, 44, 47, 1, 29, 33, 43, 10, 20];
+const HOMEPAGE_FEATURED = FEATURED_NUMS.map(n => `/offers/offer-${String(n).padStart(2, '0')}.jpg`);
 ---
 <section class="offer-wall-section">
   <div class="container">
@@ -42,11 +41,11 @@ const HOMEPAGE_FEATURED = Array.from({ length: 18 }, (_, i) => {
           <div class="offer-stat-label">封 offer</div>
         </div>
         <div class="offer-stat-item">
-          <div class="offer-stat-num">23</div>
+          <div class="offer-stat-num">{OFFER_WALL.schools}</div>
           <div class="offer-stat-label">所学校</div>
         </div>
         <div class="offer-stat-item">
-          <div class="offer-stat-num">2024–2026</div>
+          <div class="offer-stat-num">{OFFER_WALL.years}</div>
           <div class="offer-stat-label">签约届</div>
         </div>
       </div>
